@@ -23,12 +23,14 @@ const AppRoutes = () => {
           <Route path="/course/:id/lessons" element={<CourseLessons />} />
           <Route path="/course/:id/reviews" element={<CourseReviews />} />
           <Route path="/creator/:id" element={<CreatorProfile />} />
-          <Route path="*" element={<NotFound />} />
         </Route>
 
-        {/* Routes without Navbar and Footer (Auth Pages) */}
+        {/* Routes without MainLayout wrapper */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        
+        {/* 404 handles its own Layout to perfectly match grid design */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

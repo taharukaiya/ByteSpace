@@ -1,57 +1,95 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FiShoppingBag } from 'react-icons/fi';
+import Footer from '../components/Footer';
 
 const NotFound = () => {
   return (
-    <div className="relative min-h-[calc(100vh-200px)] flex items-center justify-center bg-[#0047FF] overflow-hidden">
-      {/* Grid Background */}
+    <div className="min-h-screen flex flex-col font-sans bg-[#0047FF]">
+      {/* 
+        Grid Background overlaying the entire blue area 
+        We use a fixed cell size (e.g., 160px x 160px) and center it
+      */}
       <div 
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)
+            linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)
           `,
-          backgroundSize: '100px 100px',
-          backgroundPosition: 'center center'
+          backgroundSize: '160px 160px',
+          backgroundPosition: 'center top'
         }}
       ></div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 w-full">
-        {/* Giant 404 Text */}
-        <div className="relative flex items-center justify-center w-full">
+      {/* Navbar specific to 404 to ensure it's transparent and sits over grid */}
+      <nav className="text-white px-8 lg:px-16 py-6 flex justify-between items-center relative z-20">
+        <Link to="/" className="flex items-center gap-2">
+          <img src="/logo.svg" alt="Logo" className="h-6" />
+          <span className="text-2xl font-bold font-poppins">ByteSpace</span>
+        </Link>
+        
+        <div className="hidden md:flex gap-10 text-sm font-medium">
+          <Link to="/" className="hover:text-[#D4FF00] transition-colors">Home</Link>
+          <Link to="/" className="hover:text-[#D4FF00] transition-colors">Courses</Link>
+          <Link to="/" className="hover:text-[#D4FF00] transition-colors">Creators</Link>
+        </div>
+        
+        <div className="flex items-center gap-8 text-sm font-medium">
+          <Link to="/login" className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
+          <Link to="/signup" className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
+          <button className="hover:text-[#D4FF00] transition-colors">
+            <FiShoppingBag size={20} />
+          </button>
+        </div>
+      </nav>
+
+      {/* Main 404 Content */}
+      <div className="relative flex-grow flex flex-col items-center justify-center z-10 w-full overflow-hidden pb-20">
+        
+        <div className="relative flex flex-col items-center justify-center w-full mt-10">
+          {/* Giant 404 Background Text */}
           <h1 
-            className="text-[12rem] md:text-[20rem] font-bold leading-none select-none"
+            className="text-[280px] md:text-[380px] font-bold font-poppins leading-none select-none tracking-tight -mb-20"
             style={{
               background: 'linear-gradient(180deg, #D4FF00 0%, rgba(212, 255, 0, 0) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               color: 'transparent',
-              opacity: 0.9
+              opacity: 0.95,
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 1
             }}
           >
             404
           </h1>
           
           {/* Foreground Title overlaying 404 */}
-          <h2 className="absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl md:text-6xl font-bold text-white w-full max-w-4xl tracking-tight">
-            The page you are looking<br className="hidden md:block" /> for doesn't exist
+          <h2 className="text-4xl md:text-[54px] font-bold font-poppins text-white leading-tight text-center z-10 w-full max-w-4xl tracking-normal">
+            The page you are looking<br/>for doesn't exist
           </h2>
         </div>
 
         {/* Subtitle */}
-        <p className="text-white/80 mt-16 md:mt-12 mb-8 text-lg md:text-xl font-sans max-w-lg mx-auto relative z-20">
+        <p className="text-white/90 mt-12 mb-10 text-[15px] md:text-[17px] font-sans font-normal text-center max-w-lg mx-auto z-10">
           Try to use a correct url or go back to homepage to start again
         </p>
 
         {/* CTA Button */}
         <Link 
           to="/"
-          className="relative z-20 bg-[#D4FF00] text-black px-8 py-3 rounded-full font-semibold hover:bg-[#bce600] transition-colors duration-300 font-sans"
+          className="z-10 bg-[#D4FF00] text-black px-10 py-3.5 rounded-full font-semibold text-[15px] hover:bg-[#bce600] transition-colors duration-300"
         >
           Back to Home
         </Link>
+      </div>
+
+      <div className="relative z-20">
+        <Footer />
       </div>
     </div>
   );
