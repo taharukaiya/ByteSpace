@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiShoppingBag } from 'react-icons/fi';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const NotFound = () => {
@@ -8,7 +8,6 @@ const NotFound = () => {
     <div className="min-h-screen flex flex-col font-sans bg-[#0047FF]">
       {/* 
         Grid Background overlaying the entire blue area 
-        We use a fixed cell size (e.g., 160px x 160px) and center it
       */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
@@ -22,27 +21,7 @@ const NotFound = () => {
         }}
       ></div>
 
-      {/* Navbar specific to 404 to ensure it's transparent and sits over grid */}
-      <nav className="text-white px-8 lg:px-16 py-6 flex justify-between items-center relative z-20">
-        <Link to="/" className="flex items-center gap-2">
-          <img src="/logo.svg" alt="Logo" className="h-6" />
-          <span className="text-2xl font-bold font-poppins">ByteSpace</span>
-        </Link>
-        
-        <div className="hidden md:flex gap-10 text-sm font-medium">
-          <Link to="/" className="hover:text-[#D4FF00] transition-colors">Home</Link>
-          <Link to="/" className="hover:text-[#D4FF00] transition-colors">Courses</Link>
-          <Link to="/" className="hover:text-[#D4FF00] transition-colors">Creators</Link>
-        </div>
-        
-        <div className="flex items-center gap-8 text-sm font-medium">
-          <Link to="/login" className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
-          <Link to="/signup" className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
-          <button className="hover:text-[#D4FF00] transition-colors">
-            <FiShoppingBag size={20} />
-          </button>
-        </div>
-      </nav>
+      <Navbar variant="transparent" />
 
       {/* Main 404 Content */}
       <div className="relative flex-grow flex flex-col items-center justify-center z-10 w-full overflow-hidden pb-20">
