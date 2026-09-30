@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0047FF;
+  --color-accent: #D4FF00;
+  --color-gray-bg: #F5F5F5;
+  
+  --font-poppins: 'Poppins', sans-serif;
+  --font-satoshi: 'Satoshi', sans-serif;
+  
+  /* Make Satoshi the default sans font, and Poppins available as font-poppins */
+  --font-sans: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base headings to use Poppins, per typical modern design patterns if Poppins is included */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
