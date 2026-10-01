@@ -276,7 +276,7 @@ export default function Landing() {
       {/* ══════════════════════════ PROFESSIONAL GROWTH ══════════════════════ */}
       <section
         className="py-16 md:py-24 overflow-hidden"
-        style={{ background:'linear-gradient(160deg, #eef2ff 0%, #f5ffe8 40%, #f0f0f0 100%)' }}
+        style={{ background: 'radial-gradient(circle at 0% 0%, #cce0ff 0%, transparent 50%), radial-gradient(circle at 100% 0%, rgba(212,255,0,0.35) 0%, transparent 50%), #f4f7ff' }}
       >
         <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
@@ -302,15 +302,15 @@ export default function Landing() {
           <div className="lg:w-1/2 relative flex justify-center items-end min-h-[360px]">
             {/* Green noodle top-right */}
             <img src={noodle} alt="" aria-hidden
-              className="absolute top-[-10px] right-[-10px] w-[70px] z-20 pointer-events-none hidden sm:block"
+              className="absolute top-[0px] right-[0px] w-[70px] z-30 pointer-events-none hidden sm:block"
               style={{ filter: filterGreen }} />
 
-            {/* Student image */}
+            {/* Student image (IN FRONT of the course card) */}
             <img src={guyLaptop} alt="Student"
-              className="relative z-10 h-[320px] md:h-[400px] object-contain" />
+              className="relative z-20 h-[320px] md:h-[400px] object-contain" />
 
-            {/* Floating mini course card */}
-            <div className="absolute left-[-10px] sm:left-[-30px] bottom-[30px] z-20 w-[160px] md:w-[180px] bg-white rounded-2xl p-3 shadow-xl">
+            {/* Floating mini course card (BEHIND student) */}
+            <div className="absolute left-[-10px] sm:left-[-20px] bottom-[40px] z-10 w-[160px] md:w-[180px] bg-white rounded-2xl p-3 shadow-xl">
               <div className="rounded-xl overflow-hidden mb-2" style={{ aspectRatio:'16/9' }}>
                 <img src={imgFigma} alt="" className="w-full h-full object-cover" />
               </div>
@@ -324,7 +324,7 @@ export default function Landing() {
             </div>
 
             {/* Learning Progress floating card */}
-            <div className="absolute right-[-10px] sm:right-[-20px] top-[20px] z-20 bg-white rounded-2xl px-4 py-3 shadow-xl" style={{ minWidth:140 }}>
+            <div className="absolute right-[-10px] sm:right-[-20px] top-[30px] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl" style={{ minWidth:140 }}>
               <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
               <p className="text-gray-900 font-bold text-[28px] font-poppins leading-none">55%</p>
               <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
@@ -338,40 +338,43 @@ export default function Landing() {
       {/* ══════════════════════════ CREATE & MANAGE ═══════════════════════════ */}
       <section
         className="py-16 md:py-24 overflow-hidden"
-        style={{ background:'linear-gradient(160deg, #f5ffe8 0%, #eef2ff 50%, #f5f5f5 100%)' }}
+        style={{ background: 'radial-gradient(circle at 0% 100%, rgba(212,255,0,0.35) 0%, transparent 50%), radial-gradient(circle at 100% 100%, #cce0ff 0%, transparent 50%), #f4f7ff' }}
       >
         <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
 
           {/* Left: girl image + floating cards */}
           <div className="lg:w-1/2 relative flex justify-center items-end min-h-[420px]">
-            {/* Green noodle */}
+            {/* Green noodle (BEHIND girl) */}
             <img src={noodle} alt="" aria-hidden
-              className="absolute right-[-10px] top-[60px] w-[70px] z-20 pointer-events-none hidden sm:block"
+              className="absolute right-[5%] top-[50%] w-[90px] z-10 pointer-events-none hidden sm:block"
               style={{ filter: filterGreen }} />
 
             {/* Girl image */}
             <img src={girlHeadphones} alt="Creator with headphones"
-              className="relative z-10 h-[360px] md:h-[440px] object-contain" />
+              className="relative z-20 h-[360px] md:h-[440px] object-contain" />
 
-            {/* Total Revenue card (top-left) */}
-            <div className="absolute left-[-10px] sm:left-[-20px] top-[30px] z-20 bg-[#0047FF] rounded-2xl px-4 py-3 shadow-xl text-white" style={{ minWidth:140 }}>
+            {/* Total Revenue card (top-left, BEHIND girl) */}
+            <div className="absolute left-[-10px] sm:left-[-30px] top-[40px] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 shadow-xl text-white" style={{ minWidth:150 }}>
               <p className="text-white/70 text-[10px]">Total Revenue</p>
               <p className="text-white/60 text-[9px]">July, 105</p>
               <p className="font-bold text-[22px] font-poppins mt-0.5">$120.29</p>
-            </div>
-
-            {/* Year to Date card */}
-            <div className="absolute left-[-10px] sm:left-[-20px] top-[130px] z-20 bg-[#0047FF] rounded-2xl px-4 py-3 shadow-xl text-white" style={{ minWidth:140 }}>
-              <p className="text-white/70 text-[10px]">Year to Date</p>
-              <p className="text-white/60 text-[9px]">2023</p>
-              <p className="font-bold text-[22px] font-poppins mt-0.5">$1,200.38</p>
               <div className="mt-2 w-full h-1 bg-blue-400/40 rounded-full">
-                <div className="h-full bg-[#D4FF00] rounded-full" style={{ width:'65%' }} />
+                <div className="h-full bg-[#D4FF00] rounded-full" style={{ width:'75%' }} />
               </div>
             </div>
 
-            {/* Happy Students card (bottom, white) */}
-            <div className="absolute bottom-[10px] right-[-10px] sm:right-[-20px] z-20 bg-white rounded-2xl px-4 py-3 shadow-xl text-left">
+            {/* Year to Date card (mid-left, BEHIND girl) */}
+            <div className="absolute left-[-20px] sm:left-[-50px] top-[160px] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 shadow-xl text-white" style={{ minWidth:150 }}>
+              <p className="text-white/70 text-[10px]">Year to Date</p>
+              <p className="text-white/60 text-[9px]">2023</p>
+              <p className="font-bold text-[22px] font-poppins mt-0.5 mb-2">$1,200.38</p>
+              <div className="inline-block bg-[#D4FF00] text-black text-[10px] font-bold px-2 py-0.5 rounded-full">
+                +12%
+              </div>
+            </div>
+
+            {/* Happy Students card (bottom, IN FRONT of girl) */}
+            <div className="absolute bottom-[20px] right-[-10px] sm:right-[-20px] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl text-left">
               <p className="font-bold text-gray-900 text-[13px] font-poppins mb-1">Happy Students</p>
               <p className="text-gray-500 text-[11px] flex items-center gap-1 mb-2">
                 4.5 <span className="text-gray-400">(240)</span>
