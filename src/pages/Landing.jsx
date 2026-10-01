@@ -164,31 +164,32 @@ export default function Landing() {
           </div>
 
           {/* ─── Hero image area ──────────────────────────────────────── */}
-          <div className="mt-12 flex justify-center">
-            {/* Group container that tightly hugs the image width */}
-            <div className="relative inline-flex justify-center items-end">
-              
-              {/* Green blob behind student */}
-              <div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full bg-[#D4FF00] z-0"
-                style={{ width:'min(500px,88vw)', height:'min(440px,78vw)' }}
-              />
-
-              {/* Student image (defines width of container) */}
+          <div className="mt-12 flex justify-center px-4">
+            {/* The huge green semi-circle container */}
+            <div
+              className="relative bg-[#D4FF00] w-full max-w-[800px] flex justify-center items-end"
+              style={{
+                aspectRatio: '2/1',
+                borderTopLeftRadius: '1000px',
+                borderTopRightRadius: '1000px',
+              }}
+            >
+              {/* Student image (breaks out of the top slightly) */}
               <img
                 src={guyLaptop}
                 alt="Student with laptop"
-                className="relative z-10 h-[300px] sm:h-[360px] md:h-[420px] lg:h-[480px] object-contain object-bottom"
+                className="absolute bottom-0 z-10 object-contain object-bottom pointer-events-none"
+                style={{ height: '115%' }}
               />
 
               {/* Floating card – UI/UX Design (left) */}
-              <div className="absolute left-[-20%] md:left-[-35%] top-[30%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
+              <div className="absolute left-[-2%] md:left-[5%] top-[30%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
                 <p className="font-bold text-gray-900 text-[13px] font-poppins">UI/UX Design</p>
                 <p className="text-gray-400 text-[11px] mt-0.5">200 Courses → 1000+ Students</p>
               </div>
 
               {/* Floating card – Happy Students */}
-              <div className="absolute left-[-15%] md:left-[-25%] bottom-[15%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
+              <div className="absolute left-[-5%] md:left-[0%] bottom-[15%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
                 <p className="font-bold text-gray-900 text-[13px] font-poppins mb-1">Happy Students</p>
                 <p className="text-gray-600 text-[11px] flex items-center gap-1 mb-2">
                   4.5 <span className="text-gray-400">(240)</span>
@@ -198,7 +199,7 @@ export default function Landing() {
               </div>
 
               {/* Floating card – Learning Progress (right) */}
-              <div className="absolute right-[-15%] md:right-[-35%] top-[45%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[145px]">
+              <div className="absolute right-[-2%] md:right-[5%] top-[40%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[145px]">
                 <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
                 <p className="text-gray-900 font-bold text-[34px] font-poppins leading-none">55%</p>
                 <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
