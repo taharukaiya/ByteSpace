@@ -72,13 +72,13 @@ const AuthCollage = () => {
       </div>
 
       {/* ── Happy Students card ── */}
-      <div className="absolute bottom-0 right-[10px] bg-[#D4FF00] px-5 py-4 rounded-3xl shadow-xl flex flex-col gap-1.5 z-30 w-[240px]">
+      <div className="absolute bottom-0 right-[10px] bg-[#D4FF00] px-5 py-4 rounded-3xl shadow-xl flex flex-col gap-1.5 z-30 w-[240px] overflow-hidden">
         <p className="text-gray-900 font-semibold text-[17px] font-poppins">Happy Students</p>
         <p className="text-gray-900 font-semibold text-[13px] flex items-center gap-1.5">
           4.5 <span className="text-gray-500 font-normal">(240)</span>
           <FiStar className="text-[#0047FF] fill-[#0047FF] text-[14px]" />
         </p>
-        <StudentEllipse avatarCount={7} countText="2K+" size="lg" variant="dark" />
+        <StudentEllipse avatarCount={7} countText="2K+" size="md" variant="dark" />
       </div>
 
       {/* ── White noodle – overlapping Happy Students card top-right ── */}
