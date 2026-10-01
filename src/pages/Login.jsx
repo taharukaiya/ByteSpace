@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CourseCard from '../components/CourseCard';
-import imgData from '../assets/images/the Power of Big Data.jpg';
+import AuthCollage from '../components/AuthCollage';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -9,55 +8,61 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Firebase auth integration goes here
     console.log("Login with", email, password);
   };
 
   return (
-    <div className="min-h-screen bg-[#0047FF] flex items-center justify-center p-8 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#0047FF] font-sans overflow-x-hidden flex flex-col relative">
       
-      <div className="w-full max-w-6xl flex flex-col md:flex-row bg-transparent rounded-3xl overflow-hidden shadow-2xl relative z-10 h-[80vh]">
+      {/* Grid Background */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px)
+          `,
+          backgroundSize: '150px 150px',
+          backgroundPosition: 'center top'
+        }}
+      ></div>
+
+      {/* Top Logo */}
+      <div className="relative z-20 w-11/12 lg:w-10/12 mx-auto pt-10 pb-4">
+        <Link to="/">
+          <img src="/logo.svg" alt="Logo" className="h-8" />
+        </Link>
+      </div>
+
+      <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto flex-grow flex flex-col md:flex-row items-center justify-between pb-16 pt-4 gap-12">
         
-        {/* Left Side - Illustration */}
-        <div className="w-full md:w-1/2 p-12 flex flex-col justify-center relative bg-[#0047FF] text-white hidden md:flex border-r border-blue-500">
-           <Link to="/" className="absolute top-8 left-12 text-2xl font-bold flex items-center gap-2">
-            <span className="text-[#D4FF00]">b</span>
-           </Link>
-           <h2 className="text-3xl font-bold font-poppins mb-4">Sign in with ease</h2>
-           <p className="text-blue-100 max-w-sm mb-12 leading-relaxed">
-             Experience a seamless and efficient sign-in process that grants you instant access to a world of knowledge.
-           </p>
-           
-           {/* Course Card component */}
-           <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-24 z-20 w-80 scale-90 pointer-events-none">
-             <CourseCard 
-                title="the Power of Big Data"
-                author="purepearl studio"
-                rating={4.5}
-                price={25}
-                lessons={17}
-                duration="2 hours 16 mins"
-                comments={59}
-                imageSrc={imgData}
-             />
-           </div>
-           
-           {/* Decorative elements */}
-           <div className="absolute left-10 top-1/2 w-20 h-20 border-[10px] border-[#D4FF00] rounded-full z-10"></div>
-           <div className="absolute bottom-10 left-10 w-32 h-32 bg-[#D4FF00] rounded-tl-[40px] rounded-br-[40px] rotate-45 z-10"></div>
+        {/* Left Side - Text & Collage */}
+        <div className="w-full md:w-1/2 flex flex-col">
+          <h1 className="text-white text-3xl font-bold font-poppins mb-6">
+            Sign in with ease
+          </h1>
+          <p className="text-blue-100/90 max-w-md text-[15px] leading-relaxed font-sans font-light">
+            Experience a seamless and efficient sign-in process that
+            grants you instant access to a world of knowledge.
+          </p>
+
+          <AuthCollage />
         </div>
 
-        {/* Right Side - Form */}
-        <div className="w-full md:w-1/2 bg-white p-12 md:p-20 flex flex-col justify-center rounded-3xl md:rounded-l-none relative z-30">
-          <p className="text-[#0047FF] mb-2 font-medium">Sign In</p>
-          <h2 className="text-4xl font-bold text-gray-900 font-poppins mb-10">Welcome Back</h2>
+        {/* Right Side - Form Card */}
+        <div className="w-full md:w-[480px] bg-white rounded-[32px] p-10 lg:p-12 shadow-2xl relative z-30">
+          
+          <p className="text-[#0047FF] mb-2 font-medium text-[15px]">Sign In</p>
+          <h2 className="text-4xl lg:text-[42px] font-bold font-poppins text-gray-900 mb-10 leading-tight">
+            Welcome Back
+          </h2>
           
           <form onSubmit={handleLogin} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
               <input 
                 type="email" 
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF]"
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF] text-[15px]"
                 placeholder="designer@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -68,7 +73,7 @@ const Login = () => {
               <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
               <input 
                 type="password" 
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF]"
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF] text-[15px] tracking-widest"
                 placeholder="********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -78,32 +83,46 @@ const Login = () => {
             <div className="flex justify-end pt-2">
                <button 
                 type="submit" 
-                className="bg-[#D4FF00] text-black font-semibold py-3.5 px-9 rounded-full hover:bg-[#bce600] transition-colors"
+                className="bg-[#D4FF00] text-black font-semibold py-3.5 px-10 rounded-full hover:bg-[#bce600] transition-colors text-[15px]"
               >
                 Sign In
               </button>
             </div>
           </form>
 
-          <div className="mt-8 flex items-center">
-             <div className="flex-grow border-t border-gray-200"></div>
-             <span className="px-4 text-gray-400 text-sm">or</span>
-             <div className="flex-grow border-t border-gray-200"></div>
+          {/* Divider */}
+          <div className="mt-8 flex items-center justify-center relative">
+             <div className="absolute inset-0 flex items-center">
+               <div className="w-full border-t border-gray-200"></div>
+             </div>
+             <div className="relative bg-white px-4 text-[13px] text-gray-400">
+               or
+             </div>
           </div>
 
-          <div className="mt-8 flex justify-center gap-4">
-             <button className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors text-xl font-bold text-gray-700">
-                f
+          {/* Social Logins */}
+          <div className="mt-8 flex justify-center gap-5">
+             <button className="w-[50px] h-[50px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 transition-colors">
+                {/* SVG for Facebook can be used, but text as fallback matches previous */}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47 14 5.5 16 5.5H17.5V2.14C17.174 2.097 15.943 2 14.643 2C11.928 2 10 3.657 10 6.7V9.5H7V13.5H10V22H14V13.5Z" />
+                </svg>
              </button>
-             <button className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors text-xl font-bold text-gray-700">
-                G
+             <button className="w-[50px] h-[50px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 12.23C21 11.45 20.93 10.73 20.81 10H12.2V14.16H17.21C17.03 15.42 16.29 16.5 15.19 17.24V20H18.06C19.8 18.39 21 15.54 21 12.23Z" fill="black" stroke="none" />
+                  <path d="M12.2 21C14.67 21 16.73 20.17 18.06 18.72L15.19 15.96C14.47 16.45 13.43 16.78 12.2 16.78C9.8 16.78 7.76 15.16 7.03 12.98H4.07V15.79C5.55 18.73 8.64 21 12.2 21Z" fill="black" stroke="none" />
+                  <path d="M7.03 12.98C6.84 12.4 6.74 11.77 6.74 11.13C6.74 10.49 6.84 9.85 7.03 9.27V6.46H4.07C3.46 7.68 3.12 9.07 3.12 10.5C3.12 11.93 3.46 13.32 4.07 14.54L7.03 12.98Z" fill="black" stroke="none" />
+                  <path d="M12.2 5.48C13.54 5.48 14.73 5.95 15.68 6.86L18.15 4.39C16.72 3.06 14.66 2.25 12.2 2.25C8.64 2.25 5.55 4.52 4.07 7.46L7.03 10.27C7.76 8.09 9.8 6.46 12.2 6.46V5.48Z" fill="black" stroke="none" />
+                </svg>
              </button>
           </div>
 
-          <p className="mt-12 text-center text-[15px] text-gray-600">
+          <div className="mt-12 text-center text-[14px] text-gray-500">
             New user? <Link to="/signup" className="text-[#0047FF] hover:underline font-medium">Create an account</Link>
-          </p>
+          </div>
         </div>
+
       </div>
     </div>
   );

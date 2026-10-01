@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CourseCard from '../components/CourseCard';
-import imgDigital from '../assets/images/Build Digital Asset.jpg';
+import AuthCollage from '../components/AuthCollage';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -10,55 +9,62 @@ const Signup = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    // Firebase auth integration goes here
     console.log("Signup with", name, email, password);
   };
 
   return (
-    <div className="min-h-screen bg-[#0047FF] flex items-center justify-center p-8 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#0047FF] font-sans overflow-x-hidden flex flex-col relative">
       
-      <div className="w-full max-w-6xl flex flex-col md:flex-row bg-transparent rounded-3xl overflow-hidden shadow-2xl relative z-10 h-[85vh]">
+      {/* Grid Background */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px)
+          `,
+          backgroundSize: '150px 150px',
+          backgroundPosition: 'center top'
+        }}
+      ></div>
+
+      {/* Top Logo */}
+      <div className="relative z-20 w-11/12 lg:w-10/12 mx-auto pt-10 pb-4">
+        <Link to="/">
+          <img src="/logo.svg" alt="Logo" className="h-8" />
+        </Link>
+      </div>
+
+      <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto flex-grow flex flex-col md:flex-row items-center justify-between pb-16 pt-4 gap-12">
         
-        {/* Left Side - Illustration */}
-        <div className="w-full md:w-1/2 p-12 flex flex-col justify-center relative bg-[#0047FF] text-white hidden md:flex border-r border-blue-500">
-           <Link to="/" className="absolute top-8 left-12 text-2xl font-bold flex items-center gap-2">
-            <span className="text-[#D4FF00]">b</span>
-           </Link>
-           <h2 className="text-3xl font-bold font-poppins mb-4">Sign up and come in</h2>
-           <p className="text-blue-100 max-w-sm mb-12 leading-relaxed">
-             The registration process is straightforward, uncomplicated, and efficient, allowing users to sign up quickly, easily, and at no cost
-           </p>
-           
-           {/* Course Card Component */}
-           <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-24 z-20 w-80 scale-90 pointer-events-none">
-             <CourseCard 
-                title="Build Digital Asset"
-                author="purepearl studio"
-                rating={4.5}
-                price={25}
-                lessons={17}
-                duration="2 hours 16 mins"
-                comments={59}
-                imageSrc={imgDigital}
-             />
-           </div>
-           
-           {/* Decorative elements */}
-           <div className="absolute left-10 top-1/3 w-20 h-20 border-[10px] border-[#D4FF00] rounded-full z-10"></div>
-           <div className="absolute bottom-20 left-10 w-32 h-32 bg-[#D4FF00] rounded-tl-[40px] rounded-br-[40px] rotate-12 z-10"></div>
+        {/* Left Side - Text & Collage */}
+        <div className="w-full md:w-1/2 flex flex-col">
+          <h1 className="text-white text-3xl font-bold font-poppins mb-6">
+            Sign up and come in
+          </h1>
+          <p className="text-blue-100/90 max-w-md text-[15px] leading-relaxed font-sans font-light">
+            The registration process is straightforward, uncomplicated,
+            and efficient, allowing users to sign up quickly, easily, and at
+            no cost
+          </p>
+
+          <AuthCollage />
         </div>
 
-        {/* Right Side - Form */}
-        <div className="w-full md:w-1/2 bg-white p-12 md:p-16 flex flex-col justify-center rounded-3xl md:rounded-l-none relative z-30">
-          <p className="text-[#0047FF] mb-2 font-medium">Create an Account</p>
-          <h2 className="text-4xl font-bold font-poppins text-gray-900 mb-10">Welcome to<br/>ByteSpace</h2>
+        {/* Right Side - Form Card */}
+        <div className="w-full md:w-[480px] bg-white rounded-[32px] p-10 lg:p-12 shadow-2xl relative z-30">
           
-          <form onSubmit={handleSignup} className="space-y-5">
+          <p className="text-[#0047FF] mb-2 font-medium text-[15px]">Create an Account</p>
+          <h2 className="text-4xl lg:text-[42px] font-bold font-poppins text-gray-900 mb-10 leading-tight">
+            Welcome to<br/>ByteSpace
+          </h2>
+          
+          <form onSubmit={handleSignup} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
               <input 
                 type="text" 
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF]"
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF] text-[15px]"
                 placeholder="Jamie Davis"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -66,10 +72,10 @@ const Signup = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
               <input 
                 type="email" 
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF]"
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF] text-[15px]"
                 placeholder="designer@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -77,30 +83,31 @@ const Signup = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
               <input 
                 type="password" 
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF]"
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF] text-[15px] tracking-widest"
                 placeholder="********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
-            <div className="flex justify-end pt-4">
+            <div className="flex justify-end pt-2">
                <button 
                 type="submit" 
-                className="bg-[#D4FF00] text-black font-semibold py-3.5 px-9 rounded-full hover:bg-[#bce600] transition-colors"
+                className="bg-[#D4FF00] text-black font-semibold py-3.5 px-10 rounded-full hover:bg-[#bce600] transition-colors text-[15px]"
               >
                 Continue
               </button>
             </div>
           </form>
 
-          <p className="mt-12 text-center text-[15px] text-gray-600">
+          <div className="mt-16 text-center text-[14px] text-gray-500">
             Already have an account? <Link to="/login" className="text-[#0047FF] hover:underline font-medium">Login</Link>
-          </p>
+          </div>
         </div>
+
       </div>
     </div>
   );
