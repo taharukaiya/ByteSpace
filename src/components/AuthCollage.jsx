@@ -6,9 +6,9 @@ import { FiStar } from 'react-icons/fi';
 import imgData from '../assets/images/the Power of Big Data.jpg';
 import imgDigital from '../assets/images/Build Digital Asset.jpg';
 
-import cone1 from '../assets/images/cone-1.png';
-import cone2 from '../assets/images/cone-2.png';
-import cone3 from '../assets/images/cone-3.png';
+import donut from '../assets/images/donut.png';
+import noodle from '../assets/images/noodle.png';
+import pyramid from '../assets/images/pyramid.png';
 
 const AuthCollage = () => {
   return (
@@ -52,14 +52,14 @@ const AuthCollage = () => {
       </div>
 
       {/* Floating Shapes */}
-      {/* Green Ring */}
-      <img src={cone1} alt="Decoration" className="absolute top-10 left-4 z-20 w-24 object-contain" />
+      {/* Green Donut */}
+      <img src={donut} alt="Donut decoration" className="absolute top-[-10px] left-[15px] z-20 w-28 object-contain drop-shadow-xl" />
       
-      {/* White Squiggle */}
-      <img src={cone2} alt="Decoration" className="absolute bottom-36 right-0 z-10 w-28 object-contain" />
+      {/* White Noodle / Squiggle */}
+      <img src={noodle} alt="Noodle decoration" className="absolute bottom-[100px] right-[-30px] z-30 w-[140px] object-contain drop-shadow-xl" />
       
       {/* Green Pyramid */}
-      <img src={cone3} alt="Decoration" className="absolute bottom-8 left-[-10px] z-20 w-28 object-contain" />
+      <img src={pyramid} alt="Pyramid decoration" className="absolute bottom-[20px] left-[-30px] z-20 w-36 object-contain drop-shadow-xl" />
 
     </div>
   );
