@@ -24,7 +24,7 @@ const Navbar = ({ variant = 'solid' }) => {
         <div className="hidden md:flex gap-8 text-[15px] font-medium absolute left-1/2 transform -translate-x-1/2">
           <Link to="/" className="hover:text-[#D4FF00] transition-colors">Home</Link>
           <Link to="/search" className="hover:text-[#D4FF00] transition-colors">Courses</Link>
-          <Link to="/" className="hover:text-[#D4FF00] transition-colors">Creators</Link>
+          <Link to="/creators" className="hover:text-[#D4FF00] transition-colors">Creators</Link>
         </div>
         
         {/* Desktop Right items */}
@@ -52,7 +52,7 @@ const Navbar = ({ variant = 'solid' }) => {
         <div className="md:hidden absolute top-full left-0 w-full bg-[#0047FF] border-b border-white/10 shadow-lg flex flex-col items-center py-6 gap-6 text-white font-medium z-40">
           <Link to="/" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Home</Link>
           <Link to="/search" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Courses</Link>
-          <Link to="/" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Creators</Link>
+          <Link to="/creators" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Creators</Link>
           <div className="w-11/12 h-px bg-white/20 my-2"></div>
           <Link to="/login" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
           <Link to="/signup" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Join Us</Link>

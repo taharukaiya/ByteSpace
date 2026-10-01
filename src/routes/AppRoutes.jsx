@@ -9,6 +9,7 @@ import CourseDetails from '../pages/CourseDetails';
 import CourseLessons from '../pages/CourseLessons';
 import CourseReviews from '../pages/CourseReviews';
 import CreatorProfile from '../pages/CreatorProfile';
+import Creators from '../pages/Creators';
 import NotFound from '../pages/NotFound';
 
 const AppRoutes = () => {
@@ -22,6 +23,7 @@ const AppRoutes = () => {
           <Route path="/course/:id" element={<CourseDetails />} />
           <Route path="/course/:id/lessons" element={<CourseLessons />} />
           <Route path="/course/:id/reviews" element={<CourseReviews />} />
+          <Route path="/creators" element={<Creators />} />
           <Route path="/creator/:id" element={<CreatorProfile />} />
         </Route>
 
