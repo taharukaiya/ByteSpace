@@ -17,6 +17,9 @@ import noodle          from '../assets/images/noodle.png';
 import donut           from '../assets/images/donut.png';
 import pyramid         from '../assets/images/pyramid.png';
 import cylinder        from '../assets/images/cylinder.png';
+import avatarSarah     from '../assets/images/sarah.png';
+import avatarJames     from '../assets/images/james.png';
+import avatarAlex      from '../assets/images/alex.png';
 
 // Category icons
 import iconDesign   from '../assets/images/design.svg';
@@ -63,9 +66,27 @@ const PATHS = [
 const LOGOS = [logo1, logo2, logo3, logo4, logo5];
 
 const TESTIMONIALS = [
-  { name:'Linda Jones', role:'UI/UX Designer',   text:'ByteSpace transformed my career. The courses are top-notch and incredibly practical. My design skills have reached a whole new level thanks to the expert instructors.', rating:5 },
-  { name:'Maria L',     role:'Software Engineer', text:"I can't recommend ByteSpace enough! The courses are comprehensive and engaging. I've learned more here than in years of formal education. ByteSpace is a game-changer!", rating:5 },
-  { name:'Phy D',       role:'Marketing Manager', text:"I've tried many e-learning platforms, but ByteSpace stands out. The course quality, instructor expertise, and the community support have exceeded my expectations.", rating:5 },
+  {
+    name: 'Sarah M.',
+    role: 'Enthusiastic Learner',
+    roleColor: '#7C5CF6',
+    avatar: avatarSarah,
+    text: "ByteSpace has transformed my approach to learning. The diverse range of courses and the quality of content provided by creators have exceeded my expectations. The platform truly fosters a sense of community and lifelong learning.",
+  },
+  {
+    name: 'James L.',
+    role: 'Lifelong Learner',
+    roleColor: '#0047FF',
+    avatar: avatarJames,
+    text: "I've tried several online learning platforms, and ByteSpace stands out for its vibrant community and the variety of courses available. The easy navigation and engaging content make it a go-to platform for continuous skill development.",
+  },
+  {
+    name: 'Alex B.',
+    role: 'Inspired Creator',
+    roleColor: '#16A34A',
+    avatar: avatarAlex,
+    text: "As a creator, ByteSpace has been a game-changer for me. The Course Editor is user-friendly, and the support from the community is incredible. It's fulfilling to see my courses making a positive impact on learners globally.",
+  },
 ];
 
 // ── CSS filter shorthands ─────────────────────────────────────────────────────
@@ -406,34 +427,52 @@ export default function Landing() {
       </section>
 
       {/* ═══════════════════════════ TESTIMONIALS ════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white">
+      <section
+        className="py-16 md:py-24"
+        style={{ background:'linear-gradient(135deg,#dce8ff 0%,#e8f5e0 50%,#f0faf0 100%)' }}
+      >
         <div className="w-11/12 lg:w-10/12 mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-[36px] font-bold font-poppins text-gray-900">
-              Discover What Our<br />Community is Saying
-            </h2>
+
+          {/* ── Two-column header ── */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 mb-14">
+            {/* Left: heading */}
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl md:text-[40px] font-bold font-poppins text-gray-900 leading-tight">
+                Discover What Our<br />Community Is Saying
+              </h2>
+            </div>
+            {/* Right: description */}
+            <div className="lg:w-1/2 flex items-center">
+              <p className="text-gray-500 text-[14px] md:text-[15px] leading-relaxed">
+                At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have experienced the transformative journey of learning and creating on our platform. Explore testimonials that reflect the diverse perspectives of enthusiastic learners and accomplished creators.
+              </p>
+            </div>
           </div>
+
+          {/* ── Three testimonial cards ── */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map(({ name, role, text, rating }) => (
-              <div key={name} className="bg-[#F9F9F9] rounded-[20px] p-6 flex flex-col gap-4 border border-gray-100">
-                <div className="flex gap-1">
-                  {Array.from({ length: rating }).map((_, i) => (
-                    <FiStar key={i} className="text-[#D4FF00] fill-[#D4FF00] text-[16px]" />
-                  ))}
-                </div>
-                <p className="text-gray-600 text-[13px] md:text-[14px] leading-relaxed flex-1">{text}</p>
-                <div className="flex items-center gap-3 pt-3 border-t border-gray-200">
-                  <div className="w-10 h-10 rounded-full bg-[#D4FF00] flex items-center justify-center font-bold text-gray-900 text-[14px] flex-shrink-0">
-                    {name.charAt(0)}
-                  </div>
+            {TESTIMONIALS.map(({ name, role, roleColor, avatar, text }) => (
+              <div key={name} className="bg-white rounded-[20px] p-6 flex flex-col gap-4 shadow-sm">
+                {/* Avatar + name + role */}
+                <div className="flex items-center gap-3">
+                  <img
+                    src={avatar}
+                    alt={name}
+                    className="w-14 h-14 rounded-full object-cover flex-shrink-0"
+                  />
                   <div>
-                    <p className="font-bold text-gray-900 text-[14px] font-poppins">{name}</p>
-                    <p className="text-gray-400 text-[12px]">{role}</p>
+                    <p className="font-bold text-gray-900 text-[15px] font-poppins">{name}</p>
+                    <p className="text-[13px] font-medium" style={{ color: roleColor }}>{role}</p>
                   </div>
                 </div>
+                {/* Quote */}
+                <p className="text-gray-500 text-[13px] md:text-[14px] leading-relaxed">
+                  "{text}"
+                </p>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
