@@ -314,7 +314,7 @@ export default function Landing() {
               {/* Group container hugs the image size */}
               <div className="relative inline-block">
                 {/* Student image */}
-                <img src={guyLaptop} alt="Student" className="relative z-20 h-[320px] md:h-[420px] object-contain" />
+                <img src={guyLaptop} alt="Student" className="relative z-20 h-[320px] md:h-[420px] object-contain drop-shadow-2xl" />
 
                 {/* Green noodle top-right */}
                 <img src={noodle} alt="" aria-hidden
@@ -355,7 +355,7 @@ export default function Landing() {
             <div className="lg:w-1/2 flex justify-center py-10">
               <div className="relative inline-block">
                 {/* Girl image */}
-                <img src={girlHeadphones} alt="Creator with headphones" className="relative z-20 h-[340px] md:h-[460px] object-contain" />
+                <img src={girlHeadphones} alt="Creator with headphones" className="relative z-20 h-[340px] md:h-[460px] object-contain drop-shadow-2xl" />
 
                 {/* Green noodle (BEHIND girl) */}
                 <img src={noodle} alt="" aria-hidden
