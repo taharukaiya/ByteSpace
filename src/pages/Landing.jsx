@@ -108,12 +108,12 @@ const Landing = () => {
              <span className="text-blue-300">Hero Image Placeholder</span>
              
              {/* Happy Students floating card */}
-             <div className="absolute bottom-4 left-10 bg-white p-4 rounded-2xl shadow-xl flex flex-col gap-2 z-20">
-                <div className="text-black font-bold text-lg font-poppins">Happy Students</div>
-                <div className="text-gray-500 font-medium text-sm flex items-center -mt-1 mb-2">
-                  4.5 (240) <FiStar className="ml-1 text-[#D4FF00] fill-[#D4FF00]" />
+             <div className="absolute bottom-4 left-10 bg-[#D4FF00] p-4 rounded-3xl shadow-xl flex flex-col gap-1 z-20 border border-[#cbe500]">
+                <div className="text-gray-900 font-bold text-lg font-poppins">Happy Students</div>
+                <div className="text-gray-900 font-bold text-sm flex items-center mb-2">
+                  4.5 <span className="text-gray-700 font-medium mx-1 text-xs">(240)</span> <FiStar className="ml-1 text-[#0047FF] fill-[#0047FF]" />
                 </div>
-                <StudentEllipse avatarCount={7} countText="2K+" size="sm" />
+                <StudentEllipse avatarCount={7} countText="2K+" size="sm" variant="dark" />
              </div>
         </div>
       </section>
@@ -211,12 +211,12 @@ const Landing = () => {
       <section className="py-20 px-8 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-16">
         <div className="md:w-1/2 relative">
            <div className="w-full h-[500px] bg-gray-200 rounded-3xl overflow-hidden"></div>
-           <div className="absolute bottom-10 right-10 bg-white p-4 rounded-2xl shadow-xl flex flex-col gap-2 z-20">
-              <div className="text-black font-bold text-lg font-poppins">Happy Students</div>
-              <div className="text-gray-500 font-medium text-sm flex items-center -mt-1 mb-2">
-                4.5 (240) <FiStar className="ml-1 text-[#D4FF00] fill-[#D4FF00]" />
+           <div className="absolute bottom-10 right-10 bg-[#D4FF00] p-4 rounded-3xl shadow-xl flex flex-col gap-1 z-20 border border-[#cbe500]">
+              <div className="text-gray-900 font-bold text-lg font-poppins">Happy Students</div>
+              <div className="text-gray-900 font-bold text-sm flex items-center mb-2">
+                4.5 <span className="text-gray-700 font-medium mx-1 text-xs">(240)</span> <FiStar className="ml-1 text-[#0047FF] fill-[#0047FF]" />
               </div>
-              <StudentEllipse avatarCount={7} countText="2K+" size="sm" />
+              <StudentEllipse avatarCount={7} countText="2K+" size="sm" variant="dark" />
            </div>
         </div>
         <div className="md:w-1/2">

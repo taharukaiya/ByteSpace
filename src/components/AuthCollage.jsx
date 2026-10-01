@@ -14,36 +14,8 @@ const AuthCollage = () => {
   return (
     <div className="relative w-[450px] h-[550px] mt-16 scale-90 lg:scale-100 origin-top-left font-sans pointer-events-none">
       
-      {/* SVG Filters for coloring the 3D shapes */}
-      <svg width="0" height="0" className="absolute">
-        <filter id="green-tint" colorInterpolationFilters="sRGB">
-          {/* Multiplies the grayscale values by the exact RGB of #D4FB20 (R:212, G:251, B:32) */}
-          <feColorMatrix 
-            type="matrix" 
-            values="
-              0.831 0 0 0 0
-              0 0.984 0 0 0
-              0 0 0.125 0 0
-              0 0 0 1 0
-            " 
-          />
-        </filter>
-        <filter id="white-tint" colorInterpolationFilters="sRGB">
-          {/* Boosts brightness to make the gray noodle white, while keeping shadows */}
-          <feColorMatrix 
-            type="matrix" 
-            values="
-              1.8 0 0 0 0
-              0 1.8 0 0 0
-              0 0 1.8 0 0
-              0 0 0 1 0
-            " 
-          />
-        </filter>
-      </svg>
-
       {/* Back Card (Build Digital Asset) */}
-      <div className="absolute top-12 left-[-20px] w-[320px] transform -rotate-6 opacity-90">
+      <div className="absolute top-12 left-[10px] w-[320px] transform -rotate-6 opacity-95">
         <CourseCard 
             title="Build Digital Asset"
             author="purepearl studio"
@@ -57,7 +29,7 @@ const AuthCollage = () => {
       </div>
 
       {/* Front Card (The Power of Big Data) */}
-      <div className="absolute top-0 left-16 w-[340px] z-10 shadow-2xl rounded-[28px]">
+      <div className="absolute top-[30px] left-[60px] w-[340px] z-10 shadow-2xl rounded-[28px]">
         <CourseCard 
             title="the Power of Big Data"
             author="purepearl studio"
@@ -71,12 +43,12 @@ const AuthCollage = () => {
       </div>
 
       {/* Happy Students Card */}
-      <div className="absolute bottom-16 right-[-20px] bg-[#D4FF00] p-5 rounded-2xl shadow-xl flex flex-col gap-2 z-20 w-[240px]">
-        <div className="text-gray-900 font-bold text-[17px] font-poppins tracking-wide">Happy Students</div>
-        <div className="text-gray-800 font-medium text-[13px] flex items-center -mt-1 mb-3">
-          4.5 <span className="text-gray-600 font-normal mx-1">(240)</span> <FiStar className="ml-1 text-[#0047FF] fill-[#0047FF] text-sm" />
+      <div className="absolute bottom-[40px] right-[-10px] bg-[#D4FF00] p-5 rounded-3xl shadow-xl flex flex-col gap-1.5 z-20 w-[250px] border border-[#cbe500]">
+        <div className="text-gray-900 font-bold text-[18px] font-poppins tracking-wide">Happy Students</div>
+        <div className="text-gray-900 font-bold text-[14px] flex items-center mb-3">
+          4.5 <span className="text-gray-700 font-medium mx-1 text-[13px]">(240)</span> <FiStar className="ml-1 text-[#0047FF] fill-[#0047FF] text-[15px]" />
         </div>
-        <StudentEllipse avatarCount={7} countText="2K+" size="md" />
+        <StudentEllipse avatarCount={7} countText="2K+" size="md" variant="dark" />
       </div>
 
       {/* Floating Shapes */}
@@ -84,24 +56,21 @@ const AuthCollage = () => {
       <img 
         src={donut} 
         alt="Donut decoration" 
-        className="absolute top-[-10px] left-[15px] z-20 w-28 object-contain" 
-        style={{ filter: 'url(#green-tint) drop-shadow(0 10px 15px rgba(0,0,0,0.15))' }}
+        className="absolute top-[-10px] left-[20px] z-20 w-32 object-contain" 
       />
       
       {/* White Noodle / Squiggle */}
       <img 
         src={noodle} 
         alt="Noodle decoration" 
-        className="absolute bottom-[100px] right-[-30px] z-30 w-[140px] object-contain" 
-        style={{ filter: 'url(#white-tint) drop-shadow(0 10px 15px rgba(0,0,0,0.15))' }}
+        className="absolute bottom-[110px] right-[-30px] z-30 w-[140px] object-contain transform rotate-12" 
       />
       
       {/* Green Pyramid */}
       <img 
         src={pyramid} 
         alt="Pyramid decoration" 
-        className="absolute bottom-[20px] left-[-30px] z-20 w-36 object-contain" 
-        style={{ filter: 'url(#green-tint) drop-shadow(0 10px 15px rgba(0,0,0,0.15))' }}
+        className="absolute bottom-[-10px] left-[10px] z-20 w-[150px] object-contain" 
       />
 
     </div>

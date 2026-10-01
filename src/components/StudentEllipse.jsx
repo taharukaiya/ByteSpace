@@ -13,13 +13,13 @@ const ALL_AVATARS = [
   ellipse5, ellipse6, ellipse7
 ];
 
-const StudentEllipse = ({ avatarCount = 4, countText = "26+", size = "md" }) => {
+const StudentEllipse = ({ avatarCount = 4, countText = "26+", size = "md", variant = "green" }) => {
   // size can be 'sm' (for course card) or 'lg' (for happy students card)
   const avatarsToShow = ALL_AVATARS.slice(0, avatarCount);
   
   const sizeClasses = {
-    sm: "w-8 h-8",
-    md: "w-10 h-10",
+    sm: "w-[28px] h-[28px] md:w-[32px] md:h-[32px]",
+    md: "w-[36px] h-[36px] md:w-[42px] md:h-[42px]",
     lg: "w-12 h-12"
   };
   
@@ -27,21 +27,34 @@ const StudentEllipse = ({ avatarCount = 4, countText = "26+", size = "md" }) => 
 
   return (
     <div className="flex items-center">
-      <div className="flex -space-x-3 md:-space-x-4">
+      <div className="flex -space-x-3">
         {avatarsToShow.map((avatar, idx) => (
           <img 
             key={idx} 
             src={avatar} 
             alt={`Student ${idx + 1}`} 
-            className={`${circleClass} rounded-full border-2 border-white object-cover`}
+            className={`${circleClass} rounded-full object-cover relative`}
+            style={{ zIndex: 20 - idx }}
           />
         ))}
         
-        {/* Green Ellipse */}
-        <div className={`relative ${circleClass} rounded-full border-2 border-white flex items-center justify-center font-bold text-black text-xs`}>
-           <img src={greenEllipse} alt="More students" className="absolute inset-0 w-full h-full object-cover" />
-           <span className="relative z-10">{countText}</span>
-        </div>
+        {/* Final Circle */}
+        {variant === 'green' ? (
+          <div 
+            className={`relative ${circleClass} rounded-full flex items-center justify-center font-bold text-black text-[11px] md:text-xs`}
+            style={{ zIndex: 10 }}
+          >
+             <img src={greenEllipse} alt="More students" className="absolute inset-0 w-full h-full object-cover rounded-full" />
+             <span className="relative z-10">{countText}</span>
+          </div>
+        ) : (
+          <div 
+            className={`relative ${circleClass} rounded-full flex items-center justify-center font-semibold text-white text-[11px] md:text-xs bg-[#242424]`}
+            style={{ zIndex: 10 }}
+          >
+             <span className="relative z-10">{countText}</span>
+          </div>
+        )}
       </div>
     </div>
   );
