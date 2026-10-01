@@ -12,7 +12,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0047FF] font-sans overflow-x-hidden flex flex-col relative">
+    <div className="min-h-screen bg-[#0047FF] font-sans flex flex-col relative">
       
       {/* Grid Background */}
       <div 
