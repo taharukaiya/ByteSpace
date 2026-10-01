@@ -14,6 +14,34 @@ const AuthCollage = () => {
   return (
     <div className="relative w-[450px] h-[550px] mt-16 scale-90 lg:scale-100 origin-top-left font-sans pointer-events-none">
       
+      {/* SVG Filters for coloring the 3D shapes */}
+      <svg width="0" height="0" className="absolute">
+        <filter id="green-tint" colorInterpolationFilters="sRGB">
+          {/* Multiplies the grayscale values by the exact RGB of #D4FB20 (R:212, G:251, B:32) */}
+          <feColorMatrix 
+            type="matrix" 
+            values="
+              0.831 0 0 0 0
+              0 0.984 0 0 0
+              0 0 0.125 0 0
+              0 0 0 1 0
+            " 
+          />
+        </filter>
+        <filter id="white-tint" colorInterpolationFilters="sRGB">
+          {/* Boosts brightness to make the gray noodle white, while keeping shadows */}
+          <feColorMatrix 
+            type="matrix" 
+            values="
+              1.8 0 0 0 0
+              0 1.8 0 0 0
+              0 0 1.8 0 0
+              0 0 0 1 0
+            " 
+          />
+        </filter>
+      </svg>
+
       {/* Back Card (Build Digital Asset) */}
       <div className="absolute top-12 left-[-20px] w-[320px] transform -rotate-6 opacity-90">
         <CourseCard 
@@ -53,13 +81,28 @@ const AuthCollage = () => {
 
       {/* Floating Shapes */}
       {/* Green Donut */}
-      <img src={donut} alt="Donut decoration" className="absolute top-[-10px] left-[15px] z-20 w-28 object-contain drop-shadow-xl" />
+      <img 
+        src={donut} 
+        alt="Donut decoration" 
+        className="absolute top-[-10px] left-[15px] z-20 w-28 object-contain" 
+        style={{ filter: 'url(#green-tint) drop-shadow(0 10px 15px rgba(0,0,0,0.15))' }}
+      />
       
       {/* White Noodle / Squiggle */}
-      <img src={noodle} alt="Noodle decoration" className="absolute bottom-[100px] right-[-30px] z-30 w-[140px] object-contain drop-shadow-xl" />
+      <img 
+        src={noodle} 
+        alt="Noodle decoration" 
+        className="absolute bottom-[100px] right-[-30px] z-30 w-[140px] object-contain" 
+        style={{ filter: 'url(#white-tint) drop-shadow(0 10px 15px rgba(0,0,0,0.15))' }}
+      />
       
       {/* Green Pyramid */}
-      <img src={pyramid} alt="Pyramid decoration" className="absolute bottom-[20px] left-[-30px] z-20 w-36 object-contain drop-shadow-xl" />
+      <img 
+        src={pyramid} 
+        alt="Pyramid decoration" 
+        className="absolute bottom-[20px] left-[-30px] z-20 w-36 object-contain" 
+        style={{ filter: 'url(#green-tint) drop-shadow(0 10px 15px rgba(0,0,0,0.15))' }}
+      />
 
     </div>
   );
