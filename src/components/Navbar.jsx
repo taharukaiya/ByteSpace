@@ -31,16 +31,16 @@ const Navbar = ({ variant = 'solid' }) => {
         <div className="hidden md:flex items-center gap-6 text-[15px] font-medium relative z-10">
           <Link to="/login" className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
           <Link to="/signup" className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
-          <button className="hover:text-[#D4FF00] transition-colors ml-2">
+          <Link to="/search" className="hover:text-[#D4FF00] transition-colors ml-2">
             <FiShoppingBag size={20} />
-          </button>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-4 relative z-50">
-          <button className="hover:text-[#D4FF00] transition-colors">
+          <Link to="/search" className="hover:text-[#D4FF00] transition-colors">
             <FiShoppingBag size={20} />
-          </button>
+          </Link>
           <button onClick={() => setIsOpen(!isOpen)} className="text-white hover:text-[#D4FF00]">
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
