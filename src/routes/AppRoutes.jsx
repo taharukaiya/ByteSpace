@@ -28,8 +28,8 @@ const AppRoutes = () => {
         {/* Routes without MainLayout wrapper */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        
-        {/* 404 handles its own Layout to perfectly match grid design */}
+
+        {/* 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

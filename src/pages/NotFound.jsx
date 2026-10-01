@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 const NotFound = () => {
   return (
-    <div className="flex flex-col min-h-screen font-sans bg-[#0047FF]">
+    <div className="flex flex-col min-h-screen font-sans bg-[#0047FF] overflow-x-hidden">
       {/* Grid Background */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
@@ -22,11 +22,11 @@ const NotFound = () => {
       <Navbar variant="transparent" />
 
       {/* Main 404 Content */}
-      <div className="relative flex-grow flex flex-col items-center justify-center z-10 w-full px-4 pb-32 pt-10">
+      <div className="relative flex-grow flex flex-col items-center justify-center z-10 w-full px-4 pb-20 pt-8 lg:pb-32 lg:pt-10">
         
         {/* Giant 404 Background Text */}
         <h1 
-          className="text-[220px] md:text-[340px] lg:text-[420px] font-bold font-poppins leading-[0.75] select-none tracking-tight text-center"
+          className="text-[140px] sm:text-[200px] md:text-[280px] lg:text-[420px] font-bold font-poppins leading-[0.8] select-none tracking-tight text-center py-2 overflow-visible"
           style={{
             background: 'linear-gradient(180deg, #D4FF00 0%, rgba(212, 255, 0, 0) 100%)',
             WebkitBackgroundClip: 'text',
@@ -40,19 +40,19 @@ const NotFound = () => {
         </h1>
         
         {/* Foreground Title overlaying bottom of 404 */}
-        <h2 className="text-[32px] sm:text-[40px] md:text-[56px] lg:text-[68px] font-bold font-poppins text-white leading-[1.1] text-center w-full max-w-5xl tracking-normal -mt-8 md:-mt-16 relative z-10">
+        <h2 className="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[68px] font-bold font-poppins text-white leading-[1.1] text-center w-full max-w-5xl tracking-normal -mt-6 sm:-mt-8 md:-mt-12 lg:-mt-16 relative z-10">
           The page you are looking<br/>for doesn’t exist
         </h2>
 
         {/* Subtitle */}
-        <p className="text-white/80 mt-8 mb-10 text-[14px] md:text-[16px] font-sans font-normal text-center max-w-lg mx-auto relative z-10">
+        <p className="text-white/80 mt-6 md:mt-8 mb-8 md:mb-10 text-[14px] md:text-[16px] font-sans font-normal text-center max-w-lg mx-auto relative z-10 px-4">
           Try to use a correct url or go back to homepage to start again
         </p>
 
         {/* CTA Button */}
         <Link 
           to="/"
-          className="relative z-10 bg-[#D4FF00] text-black px-9 py-3.5 rounded-full font-semibold text-[15px] hover:bg-[#bce600] transition-colors duration-300 shadow-lg"
+          className="relative z-10 bg-[#D4FF00] text-black px-8 py-3 lg:px-9 lg:py-3.5 rounded-full font-semibold text-[14px] lg:text-[15px] hover:bg-[#bce600] transition-colors duration-300 shadow-lg"
         >
           Back to Home
         </Link>
