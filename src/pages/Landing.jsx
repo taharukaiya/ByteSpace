@@ -207,7 +207,7 @@ export default function Landing() {
                 <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
                 <p className="text-gray-900 font-bold text-[34px] font-poppins leading-none">55%</p>
                 <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
-                  <div className="h-full bg-[#D4FF00] rounded-full" style={{ width:'55%' }} />
+                  <div className="h-full bg-[#D4FF00] rounded-full" style={{ width: '55%' }} />
                 </div>
               </div>
             </div>
@@ -363,7 +363,7 @@ export default function Landing() {
                   style={{ filter: filterGreen }} />
 
                 {/* Total Revenue card (top-left, BEHIND girl) */}
-                <div className="absolute left-[-10%] top-[15%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
+                <div className="absolute left-[-0%] top-[15%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
                   <p className="text-white/70 text-[10px] md:text-[11px]">Total Revenue</p>
                   <p className="text-white/60 text-[9px] md:text-[10px]">July, 105</p>
                   <p className="font-bold text-[20px] md:text-[24px] font-poppins mt-0.5">$120.29</p>
@@ -373,7 +373,7 @@ export default function Landing() {
                 </div>
 
                 {/* Year to Date card (mid-left, BEHIND girl) */}
-                <div className="absolute left-[-15%] top-[45%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
+                <div className="absolute left-[-5%] top-[45%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
                   <p className="text-white/70 text-[10px] md:text-[11px]">Year to Date</p>
                   <p className="text-white/60 text-[9px] md:text-[10px]">2023</p>
                   <p className="font-bold text-[20px] md:text-[24px] font-poppins mt-0.5 mb-2">$1,200.38</p>
@@ -424,25 +424,25 @@ export default function Landing() {
         }}
       >
         {/* ── Decorative Shapes (Matching Figma exactly) ── */}
-        
+
         {/* Top Left: Green Noodle */}
         <img src={noodle} alt="" aria-hidden className="absolute left-[-2%] top-[-5%] w-[18%] pointer-events-none z-0" style={{ filter: filterGreen }} />
-        
+
         {/* Mid Left: White Noodle */}
         <img src={noodle} alt="" aria-hidden className="absolute left-[12%] top-[18%] w-[10%] pointer-events-none rotate-[45deg] z-0" style={{ filter: filterWhite, opacity: 0.9 }} />
-        
+
         {/* Bottom Left: White Pyramid */}
         <img src={pyramid} alt="" aria-hidden className="absolute left-[2%] bottom-[5%] w-[12%] pointer-events-none rotate-[-15deg] z-0" style={{ filter: filterWhite, opacity: 0.95 }} />
-        
+
         {/* Bottom Mid-Left: Green Donut */}
         <img src={donut} alt="" aria-hidden className="absolute left-[8%] bottom-[-15%] w-[20%] pointer-events-none z-0" style={{ filter: filterGreen }} />
-        
+
         {/* Top Right: Green Pyramid */}
         <img src={pyramid} alt="" aria-hidden className="absolute right-[22%] top-[10%] w-[8%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} />
-        
+
         {/* Mid Right: Massive White Cylinder */}
         <img src={cylinder} alt="" aria-hidden className="absolute right-[-5%] top-[15%] w-[22%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterWhite, opacity: 0.95 }} />
-        
+
         {/* Bottom Right: Green Noodle */}
         <img src={noodle} alt="" aria-hidden className="absolute right-[2%] bottom-[-15%] w-[18%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} />
 
