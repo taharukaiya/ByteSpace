@@ -110,76 +110,80 @@ export default function Landing() {
           backgroundSize:'120px 120px',
         }}
       >
-        {/* ─── Decorative shapes — exactly as in Figma ─────────────────── */}
+        {/* ─── Hero Content Wrapper (w-10/12 container) ────────────────── */}
+        <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto">
+          
+          {/* ─── Decorative shapes (anchored to container boundaries) ─── */}
+          
+          {/* LEFT – large GREEN noodle (half-out) */}
+          <img src={noodle} alt="" aria-hidden
+            className="absolute left-[-5%] md:left-[-120px] top-[0%] w-[180px] lg:w-[280px] pointer-events-none hidden sm:block z-0"
+            style={{ filter: filterGreen }} />
 
-        {/* LEFT – large GREEN noodle */}
-        <img src={noodle} alt="" aria-hidden
-          className="absolute left-[-2%] md:left-[2%] top-[10%] w-[180px] lg:w-[260px] pointer-events-none hidden sm:block z-20"
-          style={{ filter: filterGreen }} />
+          {/* LEFT – smaller WHITE noodle */}
+          <img src={noodle} alt="" aria-hidden
+            className="absolute left-[8%] md:left-[20px] top-[25%] w-[80px] lg:w-[100px] pointer-events-none hidden md:block rotate-[15deg] z-0"
+            style={{ filter: filterWhite, opacity:0.9 }} />
 
-        {/* LEFT – smaller WHITE noodle */}
-        <img src={noodle} alt="" aria-hidden
-          className="absolute left-[12%] md:left-[16%] top-[35%] w-[80px] lg:w-[110px] pointer-events-none hidden md:block rotate-[15deg] z-0"
-          style={{ filter: filterWhite, opacity:0.9 }} />
+          {/* LEFT-BOTTOM – large WHITE donut ring (overlapping) */}
+          <img src={donut} alt="" aria-hidden
+            className="absolute left-[-2%] md:left-[-30px] bottom-[15%] w-[160px] lg:w-[220px] pointer-events-none hidden md:block z-30"
+            style={{ filter: filterWhite, opacity:0.95 }} />
 
-        {/* LEFT-BOTTOM – large WHITE donut ring */}
-        <img src={donut} alt="" aria-hidden
-          className="absolute left-[2%] md:left-[8%] bottom-[5%] w-[160px] lg:w-[220px] pointer-events-none hidden md:block z-0"
-          style={{ filter: filterWhite, opacity:0.95 }} />
+          {/* RIGHT-TOP – WHITE pyramid / triangle */}
+          <img src={pyramid} alt="" aria-hidden
+            className="absolute right-[8%] md:right-[40px] top-[10%] w-[100px] lg:w-[140px] pointer-events-none hidden md:block z-0"
+            style={{ filter: filterWhite, opacity:0.95 }} />
 
-        {/* RIGHT-TOP – WHITE pyramid / triangle */}
-        <img src={pyramid} alt="" aria-hidden
-          className="absolute right-[12%] md:right-[18%] top-[12%] w-[100px] lg:w-[150px] pointer-events-none hidden md:block z-20"
-          style={{ filter: filterWhite, opacity:0.95 }} />
+          {/* FAR-RIGHT – GREEN / lime cylinder (half-out) */}
+          <img src={cylinder} alt="" aria-hidden
+            className="absolute right-[-5%] md:right-[-120px] top-[0%] w-[160px] lg:w-[240px] pointer-events-none hidden lg:block z-30"
+            style={{ filter: filterGreen }} />
 
-        {/* FAR-RIGHT – GREEN / lime cylinder */}
-        <img src={cylinder} alt="" aria-hidden
-          className="absolute right-[-2%] md:right-[2%] top-[5%] w-[140px] lg:w-[200px] pointer-events-none hidden lg:block z-20"
-          style={{ filter: filterGreen }} />
+          {/* RIGHT-BOTTOM – WHITE noodle squiggle */}
+          <img src={noodle} alt="" aria-hidden
+            className="absolute right-[0%] md:right-[0px] bottom-[20%] w-[130px] lg:w-[180px] pointer-events-none hidden md:block rotate-[10deg] z-0"
+            style={{ filter: filterWhite, opacity:0.9 }} />
 
-        {/* RIGHT-BOTTOM – WHITE noodle squiggle */}
-        <img src={noodle} alt="" aria-hidden
-          className="absolute right-[2%] md:right-[8%] bottom-[15%] w-[130px] lg:w-[180px] pointer-events-none hidden md:block rotate-[10deg] z-0"
-          style={{ filter: filterWhite, opacity:0.9 }} />
+          {/* ─── Text content ─────────────────────────────────────────────── */}
+          <div className="relative z-40 text-center">
+            <h1 className="text-white text-4xl sm:text-5xl lg:text-[56px] font-bold font-poppins leading-tight max-w-3xl mx-auto">
+              Get Access to Hundreds<br className="hidden sm:block" /> Courses Available
+            </h1>
+            <p className="text-white/80 mt-5 text-[14px] md:text-[16px] max-w-xl mx-auto leading-relaxed">
+              Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
+            </p>
 
-        {/* ─── Text content ─────────────────────────────────────────────── */}
-        <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto text-center">
-          <h1 className="text-white text-4xl sm:text-5xl lg:text-[56px] font-bold font-poppins leading-tight max-w-3xl mx-auto">
-            Get Access to Hundreds<br className="hidden sm:block" /> Courses Available
-          </h1>
-          <p className="text-white/80 mt-5 text-[14px] md:text-[16px] max-w-xl mx-auto leading-relaxed">
-            Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
-          </p>
-
-          {/* Search bar */}
-          <div className="mt-8 flex items-center bg-white rounded-full px-4 py-1.5 max-w-lg mx-auto shadow-lg relative z-30">
-            <FiSearch className="text-gray-400 text-lg flex-shrink-0 ml-1" />
-            <input
-              className="flex-1 px-3 py-2 text-[14px] text-gray-700 focus:outline-none bg-transparent"
-              placeholder="Course, topic, creator"
-            />
-            <button className="bg-[#D4FF00] text-black font-semibold text-[14px] px-6 py-2.5 rounded-full hover:bg-[#c8f200] transition-colors flex-shrink-0">
-              Search
-            </button>
+            {/* Search bar */}
+            <div className="mt-8 flex items-center bg-white rounded-full px-4 py-1.5 max-w-lg mx-auto shadow-lg">
+              <FiSearch className="text-gray-400 text-lg flex-shrink-0 ml-1" />
+              <input
+                className="flex-1 px-3 py-2 text-[14px] text-gray-700 focus:outline-none bg-transparent"
+                placeholder="Course, topic, creator"
+              />
+              <button className="bg-[#D4FF00] text-black font-semibold text-[14px] px-6 py-2.5 rounded-full hover:bg-[#c8f200] transition-colors flex-shrink-0">
+                Search
+              </button>
+            </div>
           </div>
 
           {/* ─── Hero image area ──────────────────────────────────────── */}
           <div className="mt-12 flex justify-center px-4 relative z-20">
             {/* The huge green semi-circle container */}
             <div
-              className="relative bg-[#D4FF00] w-full max-w-[900px] flex justify-center items-end"
+              className="relative bg-[#D4FF00] w-full max-w-[850px] flex justify-center items-end"
               style={{
                 aspectRatio: '2/1',
                 borderTopLeftRadius: '2000px',
                 borderTopRightRadius: '2000px',
               }}
             >
-              {/* Student image (breaks out of the top heavily to compensate for transparent padding) */}
+              {/* Student image (scaled down to fit nicely, anchoring to bottom) */}
               <img
                 src={guyLaptop}
                 alt="Student with laptop"
-                className="absolute bottom-[-5%] z-10 object-contain object-bottom pointer-events-none"
-                style={{ height: '145%' }}
+                className="absolute bottom-[-1%] z-10 object-contain object-bottom pointer-events-none"
+                style={{ height: '115%' }}
               />
 
               {/* Floating card – UI/UX Design (left) */}
