@@ -167,11 +167,11 @@ export default function Landing() {
           <div className="mt-12 flex justify-center px-4">
             {/* The huge green semi-circle container */}
             <div
-              className="relative bg-[#D4FF00] w-full max-w-[800px] flex justify-center items-end"
+              className="relative bg-[#D4FF00] w-full max-w-[1000px] flex justify-center items-end"
               style={{
                 aspectRatio: '2/1',
-                borderTopLeftRadius: '1000px',
-                borderTopRightRadius: '1000px',
+                borderTopLeftRadius: '2000px',
+                borderTopRightRadius: '2000px',
               }}
             >
               {/* Student image (breaks out of the top slightly) */}
