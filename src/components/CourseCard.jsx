@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FiStar } from 'react-icons/fi';
 import { BiBarChartAlt2 } from 'react-icons/bi';
 import StudentEllipse from './StudentEllipse';
@@ -13,10 +14,11 @@ const CourseCard = ({
   duration,
   comments,
   studentsText = "26+",
-  imageSrc
+  imageSrc,
+  courseId = '1',
 }) => {
   return (
-    <div className="bg-white border border-gray-100 rounded-[28px] p-4 hover:shadow-xl transition-shadow duration-300 font-sans">
+    <Link to={`/course/${courseId}`} className="block bg-white border border-gray-100 rounded-[28px] p-4 hover:shadow-xl transition-shadow duration-300 font-sans">
       
       {/* Image with overlay pills */}
       <div className="relative mb-5 rounded-2xl overflow-hidden aspect-video">
@@ -68,7 +70,7 @@ const CourseCard = ({
         </div>
       </div>
 
-    </div>
+    </Link>
   );
 };
 
