@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-white py-16 px-8 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+    <footer className="w-full bg-white py-16 border-t border-gray-100">
+      <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col md:flex-row justify-between gap-12">
         {/* Left side */}
         <div className="md:w-1/3">
           <Link to="/" className="flex items-center gap-2 mb-6">
@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-sans">
+      <div className="w-11/12 lg:w-10/12 mx-auto mt-16 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-sans">
         <p>@ 2023 ByteSpace. All rights reserved.</p>
         <div className="flex gap-6 mt-4 md:mt-0">
           <Link to="/" className="hover:text-[#0047FF]">Privacy Policy</Link>
