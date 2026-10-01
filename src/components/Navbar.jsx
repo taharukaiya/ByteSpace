@@ -7,7 +7,13 @@ const Navbar = ({ variant = 'solid' }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <nav className={`w-full sticky top-0 z-50 ${isTransparent ? 'bg-transparent' : 'bg-[#0047FF] border-b border-white/10'}`}>
+    <nav 
+      className={`w-full sticky top-0 z-50 ${isTransparent ? 'bg-transparent' : 'bg-[#0047FF] border-b border-white/10'}`}
+      style={!isTransparent ? {
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
+        backgroundSize: '120px 120px',
+      } : {}}
+    >
       <div className="w-11/12 lg:w-10/12 mx-auto py-6 flex justify-between items-center text-white relative">
         <Link to="/" className="flex items-center gap-2 relative z-50">
           <img src="/logo.svg" alt="Logo" className="h-6" />
