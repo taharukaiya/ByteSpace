@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '../services/firebase';
 import AuthCollage from '../components/AuthCollage';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     console.log('Login', email, password);
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      console.log('Logged in user:', result.user);
+      navigate('/');
+    } catch (error) {
+      console.error('Google Login Error:', error.message);
+      alert('Failed to log in with Google: ' + error.message);
+    }
   };
 
   return (
@@ -107,14 +122,12 @@ const Login = () => {
 
               {/* Social */}
               <div className="mt-6 flex justify-center gap-4">
-                {/* Facebook */}
-                <button className="w-[52px] h-[52px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="black">
-                    <path d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47 14 5.5 16 5.5H17.5V2.14C17.174 2.097 15.943 2 14.643 2C11.928 2 10 3.657 10 6.7V9.5H7V13.5H10V22H14V13.5Z" />
-                  </svg>
-                </button>
                 {/* Google */}
-                <button className="w-[52px] h-[52px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <button 
+                  type="button"
+                  onClick={handleGoogleLogin}
+                  className="w-[52px] h-[52px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M21.805 10.023H12.2v3.977h5.451c-.467 2.446-2.556 3.754-5.451 3.754-3.313 0-6-2.686-6-6s2.687-6 6-6c1.466 0 2.8.504 3.833 1.33l2.939-2.94C17.318 2.942 14.86 2 12.2 2 6.677 2 2.2 6.477 2.2 12s4.477 10 10 10c5.523 0 9.8-4.477 9.8-10 0-.66-.067-1.31-.195-1.977Z" fill="black"/>
                   </svg>
