@@ -11,10 +11,12 @@ import CourseReviews from '../pages/CourseReviews';
 import CreatorProfile from '../pages/CreatorProfile';
 import Creators from '../pages/Creators';
 import NotFound from '../pages/NotFound';
+import DynamicTitle from '../components/DynamicTitle';
 
 const AppRoutes = () => {
   return (
     <Router>
+      <DynamicTitle />
       <Routes>
         {/* Routes with Navbar and Footer */}
         <Route element={<MainLayout />}>
