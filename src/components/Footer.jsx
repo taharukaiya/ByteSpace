@@ -2,72 +2,70 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-white py-16 px-8 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+    <footer className="w-full bg-white py-16 border-t border-gray-100">
+      <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col md:flex-row justify-between gap-16 lg:gap-24">
         {/* Left side */}
-        <div className="md:w-1/3">
-          <Link to="/" className="text-2xl font-bold flex items-center gap-2 mb-4 text-black">
-            <span className="text-[#D4FF00]">b</span> ByteSpace
+        <div className="md:w-2/5">
+          <Link to="/" className="flex items-center gap-2 mb-6">
+            <img src="/logo.svg" alt="Logo" className="h-6" />
+            <span className="text-2xl font-bold text-gray-900 font-poppins tracking-wide">ByteSpace</span>
           </Link>
-          <p className="text-gray-600 text-sm mb-6">
+          <p className="text-gray-500 text-[15px] mb-8 font-sans leading-relaxed pr-4">
             Stay Up to date with our latest features and releases by joining our newsletter.
           </p>
           <form className="flex gap-2 mb-4" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="flex-grow border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-[#0047FF]"
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-grow border border-gray-200 rounded-full px-5 py-3 text-[15px] focus:outline-none focus:border-[#0047FF] font-sans"
             />
-            <button className="bg-[#D4FF00] text-black px-6 py-2 rounded-full text-sm font-semibold hover:bg-[#bce600]">
+            <button className="bg-[#D4FF00] text-black px-8 py-3 rounded-full text-[15px] font-semibold hover:bg-[#bce600] font-sans transition-colors">
               Search
             </button>
           </form>
-          <p className="text-xs text-gray-400">
+          <p className="text-[13px] text-gray-400 font-sans pr-4 leading-relaxed">
             By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
           </p>
         </div>
 
         {/* Right side - Links */}
-        <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+        <div className="md:w-3/5 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 text-[15px] font-sans pt-2">
           <div>
-            <h4 className="font-semibold mb-4 text-gray-800">Browse</h4>
-            <ul className="space-y-3 text-gray-500">
-              <li><Link to="/">Featured Courses</Link></li>
-              <li><Link to="/">Featured Categories</Link></li>
-              <li><Link to="/">Business</Link></li>
-              <li><Link to="/">IT</Link></li>
-              <li><Link to="/">Design</Link></li>
+            <ul className="space-y-4 text-gray-500">
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Featured Courses</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Featured Categories</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Business</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">IT</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Design</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4 text-gray-800 hidden md:block">&nbsp;</h4>
-            <ul className="space-y-3 text-gray-500">
-              <li><Link to="/">Development</Link></li>
-              <li><Link to="/">Marketing</Link></li>
-              <li><Link to="/">Photography</Link></li>
-              <li><Link to="/">Finance</Link></li>
-              <li><Link to="/">Sport</Link></li>
+            <ul className="space-y-4 text-gray-500">
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Development</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Marketing</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Photography</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Finance</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Sport</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4 text-gray-800">Platform</h4>
-            <ul className="space-y-3 text-gray-500">
-              <li><Link to="/">Become a Creator</Link></li>
-              <li><Link to="/">Affiliate Program</Link></li>
-              <li><Link to="/">Contact</Link></li>
-              <li><Link to="/">Help</Link></li>
-              <li><Link to="/">About</Link></li>
+            <ul className="space-y-4 text-gray-500">
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Become a Creator</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Affiliate Program</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Contact</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Help</Link></li>
+              <li><Link to="/" className="hover:text-[#0047FF] transition-colors">About</Link></li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+      <div className="w-11/12 lg:w-10/12 mx-auto mt-20 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-[14px] text-gray-500 font-sans">
         <p>@ 2023 ByteSpace. All rights reserved.</p>
-        <div className="flex gap-6 mt-4 md:mt-0">
-          <Link to="/">Privacy Policy</Link>
-          <Link to="/">Terms of Service</Link>
-          <Link to="/">Cookies Settings</Link>
+        <div className="flex gap-8 mt-4 md:mt-0">
+          <Link to="/" className="hover:text-[#0047FF] transition-colors">Privacy Policy</Link>
+          <Link to="/" className="hover:text-[#0047FF] transition-colors">Terms of Service</Link>
+          <Link to="/" className="hover:text-[#0047FF] transition-colors">Cookies Settings</Link>
         </div>
       </div>
     </footer>
