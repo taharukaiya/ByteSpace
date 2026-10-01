@@ -117,32 +117,32 @@ export default function Landing() {
           
           {/* LEFT – large GREEN noodle (half-out) */}
           <img src={noodle} alt="" aria-hidden
-            className="absolute left-[-5%] md:left-[-120px] top-[0%] w-[180px] lg:w-[280px] pointer-events-none hidden sm:block z-0"
+            className="absolute left-[-12%] top-[0%] w-[25%] pointer-events-none z-0"
             style={{ filter: filterGreen }} />
 
           {/* LEFT – smaller WHITE noodle */}
           <img src={noodle} alt="" aria-hidden
-            className="absolute left-[8%] md:left-[20px] top-[25%] w-[80px] lg:w-[100px] pointer-events-none hidden md:block rotate-[15deg] z-0"
+            className="absolute left-[3%] top-[25%] w-[9%] pointer-events-none rotate-[15deg] z-0"
             style={{ filter: filterWhite, opacity:0.9 }} />
 
           {/* LEFT-BOTTOM – large WHITE donut ring (overlapping) */}
           <img src={donut} alt="" aria-hidden
-            className="absolute left-[-2%] md:left-[-30px] bottom-[15%] w-[160px] lg:w-[220px] pointer-events-none hidden md:block z-30"
+            className="absolute left-[-3%] bottom-[15%] w-[20%] pointer-events-none z-30"
             style={{ filter: filterWhite, opacity:0.95 }} />
 
           {/* RIGHT-TOP – WHITE pyramid / triangle */}
           <img src={pyramid} alt="" aria-hidden
-            className="absolute right-[8%] md:right-[40px] top-[10%] w-[100px] lg:w-[140px] pointer-events-none hidden md:block z-0"
+            className="absolute right-[5%] top-[10%] w-[14%] pointer-events-none z-0"
             style={{ filter: filterWhite, opacity:0.95 }} />
 
           {/* FAR-RIGHT – GREEN / lime cylinder (half-out) */}
           <img src={cylinder} alt="" aria-hidden
-            className="absolute right-[-5%] md:right-[-120px] top-[0%] w-[160px] lg:w-[240px] pointer-events-none hidden lg:block z-30"
+            className="absolute right-[-12%] top-[0%] w-[22%] pointer-events-none z-30"
             style={{ filter: filterGreen }} />
 
           {/* RIGHT-BOTTOM – WHITE noodle squiggle */}
           <img src={noodle} alt="" aria-hidden
-            className="absolute right-[0%] md:right-[0px] bottom-[20%] w-[130px] lg:w-[180px] pointer-events-none hidden md:block rotate-[10deg] z-0"
+            className="absolute right-[-2%] bottom-[20%] w-[15%] pointer-events-none rotate-[10deg] z-0"
             style={{ filter: filterWhite, opacity:0.9 }} />
 
           {/* ─── Text content ─────────────────────────────────────────────── */}
