@@ -429,7 +429,7 @@ export default function Landing() {
       {/* ═══════════════════════════ TESTIMONIALS ════════════════════════════ */}
       <section
         className="py-16 md:py-24"
-        style={{ background:'linear-gradient(135deg,#dce8ff 0%,#e8f5e0 50%,#f0faf0 100%)' }}
+        style={{ background: 'radial-gradient(circle at 0% 100%, #e0e8ff 0%, transparent 50%), radial-gradient(circle at 100% 0%, #dcfc9a 0%, transparent 50%), #f4f6fa' }}
       >
         <div className="w-11/12 lg:w-10/12 mx-auto">
 
