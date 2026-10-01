@@ -273,136 +273,139 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ══════════════════════════ PROFESSIONAL GROWTH ══════════════════════ */}
-      <section
-        className="py-16 md:py-24 overflow-hidden"
-        style={{ background: 'radial-gradient(circle at 0% 0%, #cce0ff 0%, transparent 50%), radial-gradient(circle at 100% 0%, rgba(212,255,0,0.35) 0%, transparent 50%), #f4f7ff' }}
+      {/* ══════════════════════════ COMBINED GROWTH & CREATE SECTIONS ══════════════════════ */}
+      <div
+        className="overflow-hidden"
+        style={{
+          background: 'radial-gradient(circle at 10% 20%, #cce0ff 0%, transparent 35%), radial-gradient(circle at 90% 30%, rgba(212,255,0,0.35) 0%, transparent 30%), radial-gradient(circle at 10% 80%, rgba(212,255,0,0.35) 0%, transparent 30%), radial-gradient(circle at 90% 80%, #cce0ff 0%, transparent 30%), #f8faff',
+        }}
       >
-        <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-
-          {/* Left: text + stats */}
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-[38px] font-bold font-poppins text-gray-900 leading-tight">
-              Your Path to Professional<br />Growth Starts Here!
-            </h2>
-            <p className="text-gray-500 text-[14px] md:text-[15px] mt-5 leading-relaxed max-w-lg">
-              Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
-            </p>
-            <div className="flex gap-10 mt-10">
-              {[['12K','Students'],['70+','Courses'],['16','Creators']].map(([num,lbl]) => (
-                <div key={lbl}>
-                  <p className="text-[#0047FF] font-bold text-[30px] md:text-[34px] font-poppins leading-none">{num}</p>
-                  <p className="text-gray-500 text-[13px] mt-1">{lbl}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: student + floating cards + green noodle */}
-          <div className="lg:w-1/2 relative flex justify-center items-end min-h-[360px]">
-            {/* Green noodle top-right */}
-            <img src={noodle} alt="" aria-hidden
-              className="absolute top-[0px] right-[0px] w-[70px] z-30 pointer-events-none hidden sm:block"
-              style={{ filter: filterGreen }} />
-
-            {/* Student image (IN FRONT of the course card) */}
-            <img src={guyLaptop} alt="Student"
-              className="relative z-20 h-[320px] md:h-[400px] object-contain" />
-
-            {/* Floating mini course card (BEHIND student) */}
-            <div className="absolute left-[-10px] sm:left-[-20px] bottom-[40px] z-10 w-[160px] md:w-[180px] bg-white rounded-2xl p-3 shadow-xl">
-              <div className="rounded-xl overflow-hidden mb-2" style={{ aspectRatio:'16/9' }}>
-                <img src={imgFigma} alt="" className="w-full h-full object-cover" />
-              </div>
-              <p className="font-bold text-gray-900 text-[11px] font-poppins leading-snug">Learn Figma fr...</p>
-              <p className="text-gray-400 text-[10px]">by purepearl studio</p>
-              <div className="flex items-center gap-1 mt-1.5">
-                <BiBarChartAlt2 className="text-gray-400 text-[11px]" />
-                <span className="text-gray-500 text-[10px]">Beginner</span>
-              </div>
-              <p className="text-[#0047FF] font-bold text-[13px] mt-1">$25<span className="text-gray-400 font-normal text-[10px]">/lifetime</span></p>
-            </div>
-
-            {/* Learning Progress floating card */}
-            <div className="absolute right-[-10px] sm:right-[-20px] top-[30px] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl" style={{ minWidth:140 }}>
-              <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
-              <p className="text-gray-900 font-bold text-[28px] font-poppins leading-none">55%</p>
-              <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
-                <div className="h-full bg-[#D4FF00] rounded-full" style={{ width:'55%' }} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════ CREATE & MANAGE ═══════════════════════════ */}
-      <section
-        className="py-16 md:py-24 overflow-hidden"
-        style={{ background: 'radial-gradient(circle at 0% 100%, rgba(212,255,0,0.35) 0%, transparent 50%), radial-gradient(circle at 100% 100%, #cce0ff 0%, transparent 50%), #f4f7ff' }}
-      >
-        <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
-
-          {/* Left: girl image + floating cards */}
-          <div className="lg:w-1/2 relative flex justify-center items-end min-h-[420px]">
-            {/* Green noodle (BEHIND girl) */}
-            <img src={noodle} alt="" aria-hidden
-              className="absolute right-[5%] top-[50%] w-[90px] z-10 pointer-events-none hidden sm:block"
-              style={{ filter: filterGreen }} />
-
-            {/* Girl image */}
-            <img src={girlHeadphones} alt="Creator with headphones"
-              className="relative z-20 h-[360px] md:h-[440px] object-contain" />
-
-            {/* Total Revenue card (top-left, BEHIND girl) */}
-            <div className="absolute left-[-10px] sm:left-[-30px] top-[40px] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 shadow-xl text-white" style={{ minWidth:150 }}>
-              <p className="text-white/70 text-[10px]">Total Revenue</p>
-              <p className="text-white/60 text-[9px]">July, 105</p>
-              <p className="font-bold text-[22px] font-poppins mt-0.5">$120.29</p>
-              <div className="mt-2 w-full h-1 bg-blue-400/40 rounded-full">
-                <div className="h-full bg-[#D4FF00] rounded-full" style={{ width:'75%' }} />
-              </div>
-            </div>
-
-            {/* Year to Date card (mid-left, BEHIND girl) */}
-            <div className="absolute left-[-20px] sm:left-[-50px] top-[160px] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 shadow-xl text-white" style={{ minWidth:150 }}>
-              <p className="text-white/70 text-[10px]">Year to Date</p>
-              <p className="text-white/60 text-[9px]">2023</p>
-              <p className="font-bold text-[22px] font-poppins mt-0.5 mb-2">$1,200.38</p>
-              <div className="inline-block bg-[#D4FF00] text-black text-[10px] font-bold px-2 py-0.5 rounded-full">
-                +12%
-              </div>
-            </div>
-
-            {/* Happy Students card (bottom, IN FRONT of girl) */}
-            <div className="absolute bottom-[20px] right-[-10px] sm:right-[-20px] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl text-left">
-              <p className="font-bold text-gray-900 text-[13px] font-poppins mb-1">Happy Students</p>
-              <p className="text-gray-500 text-[11px] flex items-center gap-1 mb-2">
-                4.5 <span className="text-gray-400">(240)</span>
-                <FiStar className="text-[#D4FF00] fill-[#D4FF00] text-[11px]" />
+        {/* ── Professional Growth ── */}
+        <section className="py-16 md:py-24">
+          <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+            {/* Left: text + stats */}
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl md:text-[38px] font-bold font-poppins text-gray-900 leading-tight">
+                Your Path to Professional<br />Growth Starts Here!
+              </h2>
+              <p className="text-gray-500 text-[14px] md:text-[15px] mt-5 leading-relaxed max-w-lg">
+                Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
               </p>
-              <StudentEllipse avatarCount={5} countText="2K+" size="sm" variant="dark" />
+              <div className="flex gap-10 mt-10">
+                {[['12K','Students'],['70+','Courses'],['16','Creators']].map(([num,lbl]) => (
+                  <div key={lbl}>
+                    <p className="text-[#0047FF] font-bold text-[30px] md:text-[34px] font-poppins leading-none">{num}</p>
+                    <p className="text-gray-500 text-[13px] mt-1">{lbl}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: grouped student + floating cards */}
+            <div className="lg:w-1/2 flex justify-center py-10">
+              {/* Group container hugs the image size */}
+              <div className="relative inline-block">
+                {/* Student image */}
+                <img src={guyLaptop} alt="Student" className="relative z-20 h-[320px] md:h-[420px] object-contain" />
+
+                {/* Green noodle top-right */}
+                <img src={noodle} alt="" aria-hidden
+                  className="absolute top-[0%] right-[-10%] w-[60px] md:w-[70px] z-30 pointer-events-none hidden sm:block"
+                  style={{ filter: filterGreen }} />
+
+                {/* Floating mini course card (BEHIND student) */}
+                <div className="absolute left-[-25%] bottom-[10%] z-10 w-[160px] md:w-[190px] bg-white rounded-2xl p-3 shadow-xl">
+                  <div className="rounded-xl overflow-hidden mb-2" style={{ aspectRatio:'16/9' }}>
+                    <img src={imgFigma} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <p className="font-bold text-gray-900 text-[11px] md:text-[12px] font-poppins leading-snug">Learn Figma fr...</p>
+                  <p className="text-gray-400 text-[10px] md:text-[11px]">by purepearl studio</p>
+                  <div className="flex items-center gap-1 mt-1.5">
+                    <BiBarChartAlt2 className="text-gray-400 text-[11px]" />
+                    <span className="text-gray-500 text-[10px]">Beginner</span>
+                  </div>
+                  <p className="text-[#0047FF] font-bold text-[13px] mt-1">$25<span className="text-gray-400 font-normal text-[10px]">/lifetime</span></p>
+                </div>
+
+                {/* Learning Progress floating card */}
+                <div className="absolute right-[-15%] top-[15%] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl w-[140px] md:w-[160px]">
+                  <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
+                  <p className="text-gray-900 font-bold text-[28px] md:text-[32px] font-poppins leading-none">55%</p>
+                  <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
+                    <div className="h-full bg-[#D4FF00] rounded-full" style={{ width:'55%' }} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
 
-          {/* Right: text + checklist */}
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-[38px] font-bold font-poppins text-gray-900 leading-tight">
-              Create & Manage<br />Courses Easily.
-            </h2>
-            <p className="text-gray-500 text-[14px] md:text-[15px] mt-5 leading-relaxed max-w-lg">
-              ByteSpace supports individuals or entities in the creation, publication, and administration of educational courses.
-            </p>
-            <ul className="mt-8 space-y-4">
-              {['Share Your Expertise','Monetize Your Passion','Flexibility and Autonomy','Build a Community'].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-gray-700 font-medium text-[14px] md:text-[15px]">
-                  <FiCheckCircle className="text-[#0047FF] text-[20px] flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+        {/* ── Create & Manage ── */}
+        <section className="py-16 md:py-24">
+          <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-20">
+            {/* Left: grouped girl image + floating cards */}
+            <div className="lg:w-1/2 flex justify-center py-10">
+              <div className="relative inline-block">
+                {/* Girl image */}
+                <img src={girlHeadphones} alt="Creator with headphones" className="relative z-20 h-[340px] md:h-[460px] object-contain" />
+
+                {/* Green noodle (BEHIND girl) */}
+                <img src={noodle} alt="" aria-hidden
+                  className="absolute right-[-5%] top-[35%] w-[80px] md:w-[90px] z-10 pointer-events-none hidden sm:block rotate-12"
+                  style={{ filter: filterGreen }} />
+
+                {/* Total Revenue card (top-left, BEHIND girl) */}
+                <div className="absolute left-[-25%] top-[10%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
+                  <p className="text-white/70 text-[10px] md:text-[11px]">Total Revenue</p>
+                  <p className="text-white/60 text-[9px] md:text-[10px]">July, 105</p>
+                  <p className="font-bold text-[20px] md:text-[24px] font-poppins mt-0.5">$120.29</p>
+                  <div className="mt-2 w-full h-1 bg-blue-400/40 rounded-full">
+                    <div className="h-full bg-[#D4FF00] rounded-full" style={{ width:'75%' }} />
+                  </div>
+                </div>
+
+                {/* Year to Date card (mid-left, BEHIND girl) */}
+                <div className="absolute left-[-35%] top-[40%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
+                  <p className="text-white/70 text-[10px] md:text-[11px]">Year to Date</p>
+                  <p className="text-white/60 text-[9px] md:text-[10px]">2023</p>
+                  <p className="font-bold text-[20px] md:text-[24px] font-poppins mt-0.5 mb-2">$1,200.38</p>
+                  <div className="inline-block bg-[#D4FF00] text-black text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    +12%
+                  </div>
+                </div>
+
+                {/* Happy Students card (bottom, IN FRONT of girl) */}
+                <div className="absolute bottom-[-5%] right-[-15%] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl text-left w-[170px] md:w-[190px]">
+                  <p className="font-bold text-gray-900 text-[13px] md:text-[14px] font-poppins mb-1">Happy Students</p>
+                  <p className="text-gray-500 text-[11px] md:text-[12px] flex items-center gap-1 mb-2">
+                    4.5 <span className="text-gray-400">(240)</span>
+                    <FiStar className="text-[#D4FF00] fill-[#D4FF00] text-[11px]" />
+                  </p>
+                  <StudentEllipse avatarCount={5} countText="2K+" size="sm" variant="dark" />
+                </div>
+              </div>
+            </div>
+
+            {/* Right: text + checklist */}
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl md:text-[38px] font-bold font-poppins text-gray-900 leading-tight">
+                Create & Manage<br />Courses Easily.
+              </h2>
+              <p className="text-gray-500 text-[14px] md:text-[15px] mt-5 leading-relaxed max-w-lg">
+                ByteSpace supports individuals or entities in the creation, publication, and administration of educational courses.
+              </p>
+              <ul className="mt-8 space-y-4">
+                {['Share Your Expertise','Monetize Your Passion','Flexibility and Autonomy','Build a Community'].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-gray-700 font-medium text-[14px] md:text-[15px]">
+                    <FiCheckCircle className="text-[#0047FF] text-[20px] flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* ════════════════════════════ UNLOCK POTENTIAL CTA ═══════════════════ */}
       <section
