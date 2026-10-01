@@ -77,19 +77,19 @@ const AuthCollage = () => {
       </div>
 
       {/* Happy Students Card */}
-      <div className="absolute bottom-[20px] right-[-50px] bg-[#D4FF00] p-5 rounded-3xl shadow-xl flex flex-col gap-1.5 z-40 w-[260px] border border-[#cbe500]">
-        <div className="text-gray-900 font-bold text-[18px] font-poppins tracking-wide">Happy Students</div>
-        <div className="text-gray-900 font-bold text-[14px] flex items-center mb-3">
-          4.5 <span className="text-gray-700 font-medium mx-1 text-[13px]">(240)</span> <FiStar className="ml-1 text-[#0047FF] fill-[#0047FF] text-[15px]" />
+      <div className="absolute bottom-[20px] right-[-60px] bg-[#D4FF00] p-6 rounded-3xl shadow-xl flex flex-col gap-2 z-40 w-[270px]">
+        <div className="text-gray-900 font-semibold text-[20px] font-poppins tracking-wide">Happy Students</div>
+        <div className="text-gray-900 font-bold text-[15px] flex items-center mb-3">
+          4.5 <span className="text-gray-500 font-normal mx-1.5 text-[14px]">(240)</span> <FiStar className="text-[#0047FF] fill-[#0047FF] text-[16px] -mt-0.5" />
         </div>
-        <StudentEllipse avatarCount={7} countText="2K+" size="md" variant="dark" />
+        <StudentEllipse avatarCount={7} countText="2K+" size="lg" variant="dark" />
       </div>
 
       {/* White Noodle / Squiggle */}
       <img 
         src={noodle} 
         alt="Noodle decoration" 
-        className="absolute bottom-[90px] right-[-80px] z-50 w-[140px] object-contain transform rotate-[30deg]" 
+        className="absolute bottom-[90px] right-[-90px] z-50 w-[140px] object-contain transform rotate-[30deg]" 
         style={{ filter: 'url(#white-tint) drop-shadow(0 15px 15px rgba(0,0,0,0.2))' }}
       />
       

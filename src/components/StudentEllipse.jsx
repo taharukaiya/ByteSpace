@@ -20,7 +20,7 @@ const StudentEllipse = ({ avatarCount = 4, countText = "26+", size = "md", varia
   const sizeClasses = {
     sm: "w-[28px] h-[28px] md:w-[32px] md:h-[32px]",
     md: "w-[36px] h-[36px] md:w-[42px] md:h-[42px]",
-    lg: "w-12 h-12"
+    lg: "w-[44px] h-[44px] md:w-[48px] md:h-[48px]"
   };
   
   const circleClass = sizeClasses[size] || sizeClasses.md;
@@ -33,7 +33,7 @@ const StudentEllipse = ({ avatarCount = 4, countText = "26+", size = "md", varia
             key={idx} 
             src={avatar} 
             alt={`Student ${idx + 1}`} 
-            className={`${circleClass} rounded-full object-cover relative`}
+            className={`${circleClass} rounded-full object-cover relative flex-shrink-0`}
             style={{ zIndex: 20 - idx }}
           />
         ))}
@@ -41,18 +41,18 @@ const StudentEllipse = ({ avatarCount = 4, countText = "26+", size = "md", varia
         {/* Final Circle */}
         {variant === 'green' ? (
           <div 
-            className={`relative ${circleClass} rounded-full flex items-center justify-center font-bold text-black text-[11px] md:text-xs`}
+            className={`relative ${circleClass} rounded-full flex items-center justify-center font-bold text-black text-[11px] md:text-xs flex-shrink-0`}
             style={{ zIndex: 10 }}
           >
              <img src={greenEllipse} alt="More students" className="absolute inset-0 w-full h-full object-cover rounded-full" />
-             <span className="relative z-10">{countText}</span>
+             <span className="relative z-10 pl-1">{countText}</span>
           </div>
         ) : (
           <div 
-            className={`relative ${circleClass} rounded-full flex items-center justify-center font-semibold text-white text-[11px] md:text-xs bg-[#242424]`}
+            className={`relative ${circleClass} rounded-full flex items-center justify-center font-semibold text-white text-[11px] md:text-xs bg-[#242424] flex-shrink-0`}
             style={{ zIndex: 10 }}
           >
-             <span className="relative z-10">{countText}</span>
+             <span className="relative z-10 pl-1">{countText}</span>
           </div>
         )}
       </div>
