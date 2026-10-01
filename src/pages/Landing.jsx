@@ -114,33 +114,33 @@ export default function Landing() {
 
         {/* LEFT – large GREEN noodle */}
         <img src={noodle} alt="" aria-hidden
-          className="absolute left-[2%] md:left-[5%] top-[10%] w-[140px] lg:w-[200px] pointer-events-none hidden sm:block"
+          className="absolute left-[-2%] md:left-[2%] top-[10%] w-[180px] lg:w-[260px] pointer-events-none hidden sm:block z-20"
           style={{ filter: filterGreen }} />
 
         {/* LEFT – smaller WHITE noodle */}
         <img src={noodle} alt="" aria-hidden
-          className="absolute left-[10%] md:left-[15%] top-[45%] w-[70px] lg:w-[90px] pointer-events-none hidden md:block rotate-[15deg]"
-          style={{ filter: filterWhite, opacity:0.85 }} />
+          className="absolute left-[12%] md:left-[16%] top-[35%] w-[80px] lg:w-[110px] pointer-events-none hidden md:block rotate-[15deg] z-0"
+          style={{ filter: filterWhite, opacity:0.9 }} />
 
         {/* LEFT-BOTTOM – large WHITE donut ring */}
         <img src={donut} alt="" aria-hidden
-          className="absolute left-[5%] md:left-[10%] bottom-[5%] w-[140px] lg:w-[180px] pointer-events-none hidden md:block"
-          style={{ filter: filterWhite, opacity:0.9 }} />
+          className="absolute left-[2%] md:left-[8%] bottom-[5%] w-[160px] lg:w-[220px] pointer-events-none hidden md:block z-0"
+          style={{ filter: filterWhite, opacity:0.95 }} />
 
         {/* RIGHT-TOP – WHITE pyramid / triangle */}
         <img src={pyramid} alt="" aria-hidden
-          className="absolute right-[15%] md:right-[20%] top-[15%] w-[80px] lg:w-[110px] pointer-events-none hidden md:block"
-          style={{ filter: filterWhite, opacity:0.9 }} />
+          className="absolute right-[12%] md:right-[18%] top-[12%] w-[100px] lg:w-[150px] pointer-events-none hidden md:block z-20"
+          style={{ filter: filterWhite, opacity:0.95 }} />
 
         {/* FAR-RIGHT – GREEN / lime cylinder */}
         <img src={cylinder} alt="" aria-hidden
-          className="absolute right-[2%] md:right-[5%] top-[5%] w-[100px] lg:w-[150px] pointer-events-none hidden lg:block"
+          className="absolute right-[-2%] md:right-[2%] top-[5%] w-[140px] lg:w-[200px] pointer-events-none hidden lg:block z-20"
           style={{ filter: filterGreen }} />
 
         {/* RIGHT-BOTTOM – WHITE noodle squiggle */}
         <img src={noodle} alt="" aria-hidden
-          className="absolute right-[5%] md:right-[10%] bottom-[20%] w-[100px] lg:w-[130px] pointer-events-none hidden md:block rotate-[10deg]"
-          style={{ filter: filterWhite, opacity:0.85 }} />
+          className="absolute right-[2%] md:right-[8%] bottom-[15%] w-[130px] lg:w-[180px] pointer-events-none hidden md:block rotate-[10deg] z-0"
+          style={{ filter: filterWhite, opacity:0.9 }} />
 
         {/* ─── Text content ─────────────────────────────────────────────── */}
         <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto text-center">
@@ -152,7 +152,7 @@ export default function Landing() {
           </p>
 
           {/* Search bar */}
-          <div className="mt-8 flex items-center bg-white rounded-full px-4 py-1.5 max-w-lg mx-auto shadow-lg">
+          <div className="mt-8 flex items-center bg-white rounded-full px-4 py-1.5 max-w-lg mx-auto shadow-lg relative z-30">
             <FiSearch className="text-gray-400 text-lg flex-shrink-0 ml-1" />
             <input
               className="flex-1 px-3 py-2 text-[14px] text-gray-700 focus:outline-none bg-transparent"
@@ -164,32 +164,32 @@ export default function Landing() {
           </div>
 
           {/* ─── Hero image area ──────────────────────────────────────── */}
-          <div className="mt-12 flex justify-center px-4">
+          <div className="mt-12 flex justify-center px-4 relative z-20">
             {/* The huge green semi-circle container */}
             <div
-              className="relative bg-[#D4FF00] w-full max-w-[1000px] flex justify-center items-end"
+              className="relative bg-[#D4FF00] w-full max-w-[900px] flex justify-center items-end"
               style={{
                 aspectRatio: '2/1',
                 borderTopLeftRadius: '2000px',
                 borderTopRightRadius: '2000px',
               }}
             >
-              {/* Student image (breaks out of the top slightly) */}
+              {/* Student image (breaks out of the top heavily to compensate for transparent padding) */}
               <img
                 src={guyLaptop}
                 alt="Student with laptop"
-                className="absolute bottom-0 z-10 object-contain object-bottom pointer-events-none"
-                style={{ height: '115%' }}
+                className="absolute bottom-[-5%] z-10 object-contain object-bottom pointer-events-none"
+                style={{ height: '145%' }}
               />
 
               {/* Floating card – UI/UX Design (left) */}
-              <div className="absolute left-[-2%] md:left-[5%] top-[30%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
+              <div className="absolute left-[0%] md:left-[8%] top-[25%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
                 <p className="font-bold text-gray-900 text-[13px] font-poppins">UI/UX Design</p>
                 <p className="text-gray-400 text-[11px] mt-0.5">200 Courses → 1000+ Students</p>
               </div>
 
               {/* Floating card – Happy Students */}
-              <div className="absolute left-[-5%] md:left-[0%] bottom-[15%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
+              <div className="absolute left-[-2%] md:left-[5%] bottom-[12%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
                 <p className="font-bold text-gray-900 text-[13px] font-poppins mb-1">Happy Students</p>
                 <p className="text-gray-600 text-[11px] flex items-center gap-1 mb-2">
                   4.5 <span className="text-gray-400">(240)</span>
@@ -199,7 +199,7 @@ export default function Landing() {
               </div>
 
               {/* Floating card – Learning Progress (right) */}
-              <div className="absolute right-[-2%] md:right-[5%] top-[40%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[145px]">
+              <div className="absolute right-[0%] md:right-[8%] top-[35%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[145px]">
                 <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
                 <p className="text-gray-900 font-bold text-[34px] font-poppins leading-none">55%</p>
                 <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
