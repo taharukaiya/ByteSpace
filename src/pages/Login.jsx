@@ -28,41 +28,43 @@ const Login = () => {
       ></div>
 
       {/* Top Logo */}
-      <div className="relative z-20 w-11/12 lg:w-10/12 mx-auto pt-10 pb-4">
+      <div className="relative z-20 w-11/12 lg:w-10/12 mx-auto pt-6 md:pt-10 pb-2 md:pb-4">
         <Link to="/">
-          <img src="/logo.svg" alt="Logo" className="h-8" />
+          <img src="/logo.svg" alt="Logo" className="h-6 md:h-8" />
         </Link>
       </div>
 
-      <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto flex-grow flex flex-col md:flex-row items-center justify-between pb-16 pt-4 gap-12">
+      <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto flex-grow flex flex-col xl:flex-row items-center justify-between pb-10 md:pb-16 pt-2 md:pt-4 gap-8 md:gap-12">
         
         {/* Left Side - Text & Collage */}
-        <div className="w-full md:w-1/2 flex flex-col">
-          <h1 className="text-white text-3xl font-bold font-poppins mb-6">
+        <div className="w-full xl:w-1/2 flex flex-col items-center xl:items-start text-center xl:text-left">
+          <h1 className="text-white text-3xl md:text-4xl font-bold font-poppins mb-4 md:mb-6">
             Sign in with ease
           </h1>
-          <p className="text-blue-100/90 max-w-md text-[15px] leading-relaxed font-sans font-light">
+          <p className="text-blue-100/90 max-w-md text-[14px] md:text-[15px] leading-relaxed font-sans font-light">
             Experience a seamless and efficient sign-in process that
             grants you instant access to a world of knowledge.
           </p>
 
-          <AuthCollage />
+          <div className="hidden sm:block w-full max-w-[450px] mx-auto xl:mx-0 flex-shrink-0 h-[380px] md:h-[450px] lg:h-[550px] overflow-hidden sm:overflow-visible">
+            <AuthCollage />
+          </div>
         </div>
 
         {/* Right Side - Form Card */}
-        <div className="w-full md:w-[480px] bg-white rounded-[32px] p-10 lg:p-12 shadow-2xl relative z-30">
+        <div className="w-full max-w-[480px] bg-white rounded-[24px] md:rounded-[32px] p-6 sm:p-10 lg:p-12 shadow-2xl relative z-30 mx-auto xl:mx-0">
           
-          <p className="text-[#0047FF] mb-2 font-medium text-[15px]">Sign In</p>
-          <h2 className="text-4xl lg:text-[42px] font-bold font-poppins text-gray-900 mb-10 leading-tight">
+          <p className="text-[#0047FF] mb-2 font-medium text-[14px] md:text-[15px]">Sign In</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold font-poppins text-gray-900 mb-8 md:mb-10 leading-tight">
             Welcome Back
           </h2>
           
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-4 md:space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5 md:mb-2">Email</label>
               <input 
                 type="email" 
-                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF] text-[15px]"
+                className="w-full px-4 py-3 md:py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF] text-[14px] md:text-[15px]"
                 placeholder="designer@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -70,10 +72,10 @@ const Login = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5 md:mb-2">Password</label>
               <input 
                 type="password" 
-                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF] text-[15px] tracking-widest"
+                className="w-full px-4 py-3 md:py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#0047FF] focus:ring-1 focus:ring-[#0047FF] text-[14px] md:text-[15px] tracking-widest"
                 placeholder="********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -83,7 +85,7 @@ const Login = () => {
             <div className="flex justify-end pt-2">
                <button 
                 type="submit" 
-                className="bg-[#D4FF00] text-black font-semibold py-3.5 px-10 rounded-full hover:bg-[#bce600] transition-colors text-[15px]"
+                className="bg-[#D4FF00] text-black font-semibold py-3 md:py-3.5 px-8 md:px-10 rounded-full hover:bg-[#bce600] transition-colors text-[14px] md:text-[15px] w-full sm:w-auto"
               >
                 Sign In
               </button>
@@ -102,13 +104,12 @@ const Login = () => {
 
           {/* Social Logins */}
           <div className="mt-8 flex justify-center gap-5">
-             <button className="w-[50px] h-[50px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 transition-colors">
-                {/* SVG for Facebook can be used, but text as fallback matches previous */}
+             <button className="w-[45px] h-[45px] md:w-[50px] md:h-[50px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 transition-colors">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
                   <path d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47 14 5.5 16 5.5H17.5V2.14C17.174 2.097 15.943 2 14.643 2C11.928 2 10 3.657 10 6.7V9.5H7V13.5H10V22H14V13.5Z" />
                 </svg>
              </button>
-             <button className="w-[50px] h-[50px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 transition-colors">
+             <button className="w-[45px] h-[45px] md:w-[50px] md:h-[50px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 transition-colors">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 12.23C21 11.45 20.93 10.73 20.81 10H12.2V14.16H17.21C17.03 15.42 16.29 16.5 15.19 17.24V20H18.06C19.8 18.39 21 15.54 21 12.23Z" fill="black" stroke="none" />
                   <path d="M12.2 21C14.67 21 16.73 20.17 18.06 18.72L15.19 15.96C14.47 16.45 13.43 16.78 12.2 16.78C9.8 16.78 7.76 15.16 7.03 12.98H4.07V15.79C5.55 18.73 8.64 21 12.2 21Z" fill="black" stroke="none" />
@@ -118,7 +119,7 @@ const Login = () => {
              </button>
           </div>
 
-          <div className="mt-12 text-center text-[14px] text-gray-500">
+          <div className="mt-10 md:mt-12 text-center text-[13px] md:text-[14px] text-gray-500">
             New user? <Link to="/signup" className="text-[#0047FF] hover:underline font-medium">Create an account</Link>
           </div>
         </div>
