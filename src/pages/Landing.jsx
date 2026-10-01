@@ -423,9 +423,28 @@ export default function Landing() {
           backgroundSize: '120px 120px',
         }}
       >
-        <img src={noodle} alt="" aria-hidden className="absolute left-6 top-6 w-20 pointer-events-none hidden md:block" style={{ filter: filterGreen }} />
-        <img src={pyramid} alt="" aria-hidden className="absolute right-12 bottom-8 w-16 pointer-events-none hidden md:block" style={{ filter: filterGreen }} />
-        <img src={noodle} alt="" aria-hidden className="absolute right-16 top-4 w-16 pointer-events-none hidden md:block rotate-45" style={{ filter: filterWhite, opacity: 0.6 }} />
+        {/* ── Decorative Shapes (Matching Figma exactly) ── */}
+        
+        {/* Top Left: Green Noodle */}
+        <img src={noodle} alt="" aria-hidden className="absolute left-[-2%] top-[-5%] w-[18%] pointer-events-none z-0" style={{ filter: filterGreen }} />
+        
+        {/* Mid Left: White Noodle */}
+        <img src={noodle} alt="" aria-hidden className="absolute left-[12%] top-[18%] w-[10%] pointer-events-none rotate-[45deg] z-0" style={{ filter: filterWhite, opacity: 0.9 }} />
+        
+        {/* Bottom Left: White Pyramid */}
+        <img src={pyramid} alt="" aria-hidden className="absolute left-[2%] bottom-[5%] w-[12%] pointer-events-none rotate-[-15deg] z-0" style={{ filter: filterWhite, opacity: 0.95 }} />
+        
+        {/* Bottom Mid-Left: Green Donut */}
+        <img src={donut} alt="" aria-hidden className="absolute left-[8%] bottom-[-15%] w-[20%] pointer-events-none z-0" style={{ filter: filterGreen }} />
+        
+        {/* Top Right: Green Pyramid */}
+        <img src={pyramid} alt="" aria-hidden className="absolute right-[22%] top-[10%] w-[8%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} />
+        
+        {/* Mid Right: Massive White Cylinder */}
+        <img src={cylinder} alt="" aria-hidden className="absolute right-[-5%] top-[15%] w-[22%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterWhite, opacity: 0.95 }} />
+        
+        {/* Bottom Right: Green Noodle */}
+        <img src={noodle} alt="" aria-hidden className="absolute right-[2%] bottom-[-15%] w-[18%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} />
 
         <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto text-center">
           <h2 className="text-white text-3xl md:text-[42px] font-bold font-poppins leading-tight max-w-2xl mx-auto">
