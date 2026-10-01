@@ -5,29 +5,29 @@ import CourseCard from '../components/CourseCard';
 import StudentEllipse from '../components/StudentEllipse';
 
 // ── Images ───────────────────────────────────────────────────────────────────
-import imgFigma        from '../assets/images/Learn Figma from Basic.jpg';
-import imgDigital      from '../assets/images/Build Digital Asset.jpg';
-import imgData         from '../assets/images/the Power of Big Data.jpg';
+import imgFigma from '../assets/images/Learn Figma from Basic.jpg';
+import imgDigital from '../assets/images/Build Digital Asset.jpg';
+import imgData from '../assets/images/the Power of Big Data.jpg';
 import imgProductivity from '../assets/images/Balancing Productivity and Self-Care.jpg';
-import imgMoney        from '../assets/images/Mastering Money Management.jpg';
-import imgStartup      from '../assets/images/From Idea to Startup Success.jpg';
-import guyLaptop       from '../assets/images/guy-holding-laptop.png';
-import girlHeadphones  from '../assets/images/girl-in-headphones.png';
-import noodle          from '../assets/images/noodle.png';
-import donut           from '../assets/images/donut.png';
-import pyramid         from '../assets/images/pyramid.png';
-import cylinder        from '../assets/images/cylinder.png';
-import avatarSarah     from '../assets/images/sarah.png';
-import avatarJames     from '../assets/images/james.png';
-import avatarAlex      from '../assets/images/alex.png';
+import imgMoney from '../assets/images/Mastering Money Management.jpg';
+import imgStartup from '../assets/images/From Idea to Startup Success.jpg';
+import guyLaptop from '../assets/images/guy-holding-laptop.png';
+import girlHeadphones from '../assets/images/girl-in-headphones.png';
+import noodle from '../assets/images/noodle.png';
+import donut from '../assets/images/donut.png';
+import pyramid from '../assets/images/pyramid.png';
+import cylinder from '../assets/images/cylinder.png';
+import avatarSarah from '../assets/images/sarah.png';
+import avatarJames from '../assets/images/james.png';
+import avatarAlex from '../assets/images/alex.png';
 
 // Category icons
-import iconDesign   from '../assets/images/design.svg';
-import iconDev      from '../assets/images/development.svg';
-import iconIT       from '../assets/images/itandsoftware.svg';
+import iconDesign from '../assets/images/design.svg';
+import iconDev from '../assets/images/development.svg';
+import iconIT from '../assets/images/itandsoftware.svg';
 import iconBusiness from '../assets/images/business.svg';
 import iconMarketing from '../assets/images/marketing.svg';
-import iconPhoto    from '../assets/images/photography.svg';
+import iconPhoto from '../assets/images/photography.svg';
 
 // Logoipsum
 import logo1 from '../assets/images/logoipsum-1.svg';
@@ -38,29 +38,29 @@ import logo5 from '../assets/images/logoipsum-5.svg';
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 const COURSES = [
-  { title:'Learn Figma from Basic',               author:'purepearl studio', rating:4.5, price:25, lessons:17, duration:'2 hours 16 mins', comments:59, imageSrc:imgFigma },
-  { title:'Build Digital Asset',                  author:'purepearl studio', rating:4.5, price:25, lessons:17, duration:'2 hours 16 mins', comments:59, imageSrc:imgDigital },
-  { title:'the Power of Big Data',                author:'purepearl studio', rating:4.5, price:25, lessons:17, duration:'2 hours 16 mins', comments:59, imageSrc:imgData },
-  { title:'Balancing Productivity and Self-Care', author:'purepearl studio', rating:4.5, price:25, lessons:17, duration:'2 hours 16 mins', comments:59, imageSrc:imgProductivity },
-  { title:'Mastering Money Management',           author:'purepearl studio', rating:4.5, price:25, lessons:17, duration:'2 hours 16 mins', comments:59, imageSrc:imgMoney },
-  { title:'From Idea to Startup Success',         author:'purepearl studio', rating:4.5, price:25, lessons:17, duration:'2 hours 16 mins', comments:59, imageSrc:imgStartup },
+  { title: 'Learn Figma from Basic', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgFigma },
+  { title: 'Build Digital Asset', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgDigital },
+  { title: 'the Power of Big Data', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgData },
+  { title: 'Balancing Productivity and Self-Care', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgProductivity },
+  { title: 'Mastering Money Management', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgMoney },
+  { title: 'From Idea to Startup Success', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgStartup },
 ];
 
 const CATEGORIES = [
-  'Featured','Music','Drawing & Painting','Marketing','Animation',
-  'Social Media','UI/UX Design','Creative Marketing','Digital Illustration',
-  'Film & Video','Crafts','Freelance & Entrepreneurship',
-  'Graphic Design','Photography','Productivity','Web Development',
-  'Data Science','Cooking','+ More',
+  'Featured', 'Music', 'Drawing & Painting', 'Marketing', 'Animation',
+  'Social Media', 'UI/UX Design', 'Creative Marketing', 'Digital Illustration',
+  'Film & Video', 'Crafts', 'Freelance & Entrepreneurship',
+  'Graphic Design', 'Photography', 'Productivity', 'Web Development',
+  'Data Science', 'Cooking', '+ More',
 ];
 
 const PATHS = [
-  { icon:iconDesign,    label:'Design' },
-  { icon:iconDev,       label:'Development' },
-  { icon:iconIT,        label:'IT & Software' },
-  { icon:iconBusiness,  label:'Business' },
-  { icon:iconMarketing, label:'Marketing' },
-  { icon:iconPhoto,     label:'Photography' },
+  { icon: iconDesign, label: 'Design' },
+  { icon: iconDev, label: 'Development' },
+  { icon: iconIT, label: 'IT & Software' },
+  { icon: iconBusiness, label: 'Business' },
+  { icon: iconMarketing, label: 'Marketing' },
+  { icon: iconPhoto, label: 'Photography' },
 ];
 
 const LOGOS = [logo1, logo2, logo3, logo4, logo5];
@@ -106,15 +106,15 @@ export default function Landing() {
       <section
         className="relative bg-[#0047FF] overflow-hidden pt-16 pb-0"
         style={{
-          backgroundImage:`linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
-          backgroundSize:'120px 120px',
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
+          backgroundSize: '120px 120px',
         }}
       >
         {/* ─── Hero Content Wrapper (w-10/12 container) ────────────────── */}
         <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto">
-          
+
           {/* ─── Decorative shapes (anchored to container boundaries) ─── */}
-          
+
           {/* LEFT – large GREEN noodle (half-out) */}
           <img src={noodle} alt="" aria-hidden
             className="absolute left-[-12%] top-[0%] w-[25%] pointer-events-none z-0"
@@ -123,17 +123,17 @@ export default function Landing() {
           {/* LEFT – smaller WHITE noodle */}
           <img src={noodle} alt="" aria-hidden
             className="absolute left-[3%] top-[25%] w-[9%] pointer-events-none rotate-[15deg] z-0"
-            style={{ filter: filterWhite, opacity:0.9 }} />
+            style={{ filter: filterWhite, opacity: 0.9 }} />
 
           {/* LEFT-BOTTOM – large WHITE donut ring (overlapping) */}
           <img src={donut} alt="" aria-hidden
             className="absolute left-[-3%] bottom-[15%] w-[20%] pointer-events-none z-30"
-            style={{ filter: filterWhite, opacity:0.95 }} />
+            style={{ filter: filterWhite, opacity: 0.95 }} />
 
           {/* RIGHT-TOP – WHITE pyramid / triangle */}
           <img src={pyramid} alt="" aria-hidden
             className="absolute right-[5%] top-[10%] w-[14%] pointer-events-none z-0"
-            style={{ filter: filterWhite, opacity:0.95 }} />
+            style={{ filter: filterWhite, opacity: 0.95 }} />
 
           {/* FAR-RIGHT – GREEN / lime cylinder (half-out) */}
           <img src={cylinder} alt="" aria-hidden
@@ -143,7 +143,7 @@ export default function Landing() {
           {/* RIGHT-BOTTOM – WHITE noodle squiggle */}
           <img src={noodle} alt="" aria-hidden
             className="absolute right-[-2%] bottom-[20%] w-[15%] pointer-events-none rotate-[10deg] z-0"
-            style={{ filter: filterWhite, opacity:0.9 }} />
+            style={{ filter: filterWhite, opacity: 0.9 }} />
 
           {/* ─── Text content ─────────────────────────────────────────────── */}
           <div className="relative z-40 text-center">
@@ -187,13 +187,13 @@ export default function Landing() {
               />
 
               {/* Floating card – UI/UX Design (left) */}
-              <div className="absolute left-[0%] md:left-[8%] top-[25%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
+              <div className="absolute left-[-5%] sm:left-[0%] md:left-[8%] top-[25%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left scale-[0.6] sm:scale-100 origin-left min-w-[150px]">
                 <p className="font-bold text-gray-900 text-[13px] font-poppins">UI/UX Design</p>
                 <p className="text-gray-400 text-[11px] mt-0.5">200 Courses → 1000+ Students</p>
               </div>
 
               {/* Floating card – Happy Students */}
-              <div className="absolute left-[-2%] md:left-[5%] bottom-[12%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[150px]">
+              <div className="absolute left-[-8%] sm:left-[-2%] md:left-[5%] bottom-[12%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left scale-[0.6] sm:scale-100 origin-bottom-left min-w-[150px]">
                 <p className="font-bold text-gray-900 text-[13px] font-poppins mb-1">Happy Students</p>
                 <p className="text-gray-600 text-[11px] flex items-center gap-1 mb-2">
                   4.5 <span className="text-gray-400">(240)</span>
@@ -203,7 +203,7 @@ export default function Landing() {
               </div>
 
               {/* Floating card – Learning Progress (right) */}
-              <div className="absolute right-[0%] md:right-[8%] top-[35%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left hidden sm:block min-w-[145px]">
+              <div className="absolute right-[-5%] sm:right-[0%] md:right-[8%] top-[35%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left scale-[0.6] sm:scale-100 origin-right min-w-[145px]">
                 <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
                 <p className="text-gray-900 font-bold text-[34px] font-poppins leading-none">55%</p>
                 <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
@@ -219,7 +219,7 @@ export default function Landing() {
       <section className="bg-[#F4F4F4] py-8 border-b border-gray-200">
         <div className="w-11/12 lg:w-10/12 mx-auto flex flex-wrap justify-center items-center gap-8 md:gap-16">
           {LOGOS.map((src, i) => (
-            <img key={i} src={src} alt={`Partner ${i+1}`} className="h-7 md:h-8 opacity-50 grayscale hover:opacity-80 hover:grayscale-0 transition" />
+            <img key={i} src={src} alt={`Partner ${i + 1}`} className="h-7 md:h-8 opacity-50 grayscale hover:opacity-80 hover:grayscale-0 transition" />
           ))}
         </div>
       </section>
@@ -242,11 +242,10 @@ export default function Landing() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-full text-[13px] font-medium transition-colors ${
-                  activeCategory === cat
-                    ? 'bg-[#D4FF00] text-gray-900 font-semibold'
-                    : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
-                }`}
+                className={`px-5 py-2 rounded-full text-[13px] font-medium transition-colors ${activeCategory === cat
+                  ? 'bg-[#D4FF00] text-gray-900 font-semibold'
+                  : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                  }`}
               >
                 {cat}
               </button>
@@ -290,7 +289,7 @@ export default function Landing() {
         }}
       >
         {/* ── Professional Growth ── */}
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:pt-16 md:pb-4">
           <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
             {/* Left: text + stats */}
             <div className="lg:w-1/2">
@@ -301,7 +300,7 @@ export default function Landing() {
                 Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
               </p>
               <div className="flex gap-10 mt-10">
-                {[['12K','Students'],['70+','Courses'],['16','Creators']].map(([num,lbl]) => (
+                {[['12K', 'Students'], ['70+', 'Courses'], ['16', 'Creators']].map(([num, lbl]) => (
                   <div key={lbl}>
                     <p className="text-[#0047FF] font-bold text-[30px] md:text-[34px] font-poppins leading-none">{num}</p>
                     <p className="text-gray-500 text-[13px] mt-1">{lbl}</p>
@@ -324,7 +323,7 @@ export default function Landing() {
 
                 {/* Floating mini course card (BEHIND student) */}
                 <div className="absolute left-[-10%] bottom-[15%] z-10 w-[160px] md:w-[190px] bg-white rounded-2xl p-3 shadow-xl">
-                  <div className="rounded-xl overflow-hidden mb-2" style={{ aspectRatio:'16/9' }}>
+                  <div className="rounded-xl overflow-hidden mb-2" style={{ aspectRatio: '16/9' }}>
                     <img src={imgFigma} alt="" className="w-full h-full object-cover" />
                   </div>
                   <p className="font-bold text-gray-900 text-[11px] md:text-[12px] font-poppins leading-snug">Learn Figma fr...</p>
@@ -341,7 +340,7 @@ export default function Landing() {
                   <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
                   <p className="text-gray-900 font-bold text-[28px] md:text-[32px] font-poppins leading-none">55%</p>
                   <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
-                    <div className="h-full bg-[#D4FF00] rounded-full" style={{ width:'55%' }} />
+                    <div className="h-full bg-[#D4FF00] rounded-full" style={{ width: '55%' }} />
                   </div>
                 </div>
               </div>
@@ -350,7 +349,7 @@ export default function Landing() {
         </section>
 
         {/* ── Create & Manage ── */}
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:py-5">
           <div className="w-11/12 lg:w-10/12 mx-auto flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-20">
             {/* Left: grouped girl image + floating cards */}
             <div className="lg:w-1/2 flex justify-center py-10">
@@ -369,7 +368,7 @@ export default function Landing() {
                   <p className="text-white/60 text-[9px] md:text-[10px]">July, 105</p>
                   <p className="font-bold text-[20px] md:text-[24px] font-poppins mt-0.5">$120.29</p>
                   <div className="mt-2 w-full h-1 bg-blue-400/40 rounded-full">
-                    <div className="h-full bg-[#D4FF00] rounded-full" style={{ width:'75%' }} />
+                    <div className="h-full bg-[#D4FF00] rounded-full" style={{ width: '75%' }} />
                   </div>
                 </div>
 
@@ -404,7 +403,7 @@ export default function Landing() {
                 ByteSpace supports individuals or entities in the creation, publication, and administration of educational courses.
               </p>
               <ul className="mt-8 space-y-4">
-                {['Share Your Expertise','Monetize Your Passion','Flexibility and Autonomy','Build a Community'].map((item) => (
+                {['Share Your Expertise', 'Monetize Your Passion', 'Flexibility and Autonomy', 'Build a Community'].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-gray-700 font-medium text-[14px] md:text-[15px]">
                     <FiCheckCircle className="text-[#0047FF] text-[20px] flex-shrink-0" />
                     {item}
@@ -420,13 +419,13 @@ export default function Landing() {
       <section
         className="relative py-20 md:py-28 overflow-hidden bg-[#0047FF]"
         style={{
-          backgroundImage:`linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
-          backgroundSize:'120px 120px',
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
+          backgroundSize: '120px 120px',
         }}
       >
-        <img src={noodle} alt="" aria-hidden className="absolute left-6 top-6 w-20 pointer-events-none hidden md:block" style={{ filter:filterGreen }} />
-        <img src={pyramid} alt="" aria-hidden className="absolute right-12 bottom-8 w-16 pointer-events-none hidden md:block" style={{ filter:filterGreen }} />
-        <img src={noodle} alt="" aria-hidden className="absolute right-16 top-4 w-16 pointer-events-none hidden md:block rotate-45" style={{ filter:filterWhite, opacity:0.6 }} />
+        <img src={noodle} alt="" aria-hidden className="absolute left-6 top-6 w-20 pointer-events-none hidden md:block" style={{ filter: filterGreen }} />
+        <img src={pyramid} alt="" aria-hidden className="absolute right-12 bottom-8 w-16 pointer-events-none hidden md:block" style={{ filter: filterGreen }} />
+        <img src={noodle} alt="" aria-hidden className="absolute right-16 top-4 w-16 pointer-events-none hidden md:block rotate-45" style={{ filter: filterWhite, opacity: 0.6 }} />
 
         <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto text-center">
           <h2 className="text-white text-3xl md:text-[42px] font-bold font-poppins leading-tight max-w-2xl mx-auto">
