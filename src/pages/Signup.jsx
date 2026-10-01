@@ -14,7 +14,7 @@ const Signup = () => {
 
   return (
     <div
-      className="min-h-screen xl:h-screen bg-[#0047FF] font-sans relative flex flex-col xl:overflow-hidden"
+      className="min-h-screen bg-[#0047FF] font-sans relative flex flex-col"
       style={{
         backgroundImage: `
           linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px),
