@@ -1,5 +1,78 @@
 import React from 'react';
 import { FiSearch, FiChevronRight, FiPlay, FiStar, FiUser, FiCheckCircle } from 'react-icons/fi';
+import CourseCard from '../components/CourseCard';
+import StudentEllipse from '../components/StudentEllipse';
+
+// Import course images
+import imgFigma from '../assets/images/Learn Figma from Basic.jpg';
+import imgDigital from '../assets/images/Build Digital Asset.jpg';
+import imgData from '../assets/images/the Power of Big Data.jpg';
+import imgProductivity from '../assets/images/Balancing Productivity and Self-Care.jpg';
+import imgMoney from '../assets/images/Mastering Money Management.jpg';
+import imgStartup from '../assets/images/From Idea to Startup Success.jpg';
+
+const COURSES = [
+  {
+    title: "Learn Figma from Basic",
+    author: "purepearl studio",
+    rating: 4.5,
+    price: 25,
+    lessons: 17,
+    duration: "2 hours 16 mins",
+    comments: 59,
+    imageSrc: imgFigma
+  },
+  {
+    title: "Build Digital Asset",
+    author: "purepearl studio",
+    rating: 4.5,
+    price: 25,
+    lessons: 17,
+    duration: "2 hours 16 mins",
+    comments: 59,
+    imageSrc: imgDigital
+  },
+  {
+    title: "the Power of Big Data",
+    author: "purepearl studio",
+    rating: 4.5,
+    price: 25,
+    lessons: 17,
+    duration: "2 hours 16 mins",
+    comments: 59,
+    imageSrc: imgData
+  },
+  {
+    title: "Balancing Productivity and...",
+    author: "purepearl studio",
+    rating: 4.5,
+    price: 25,
+    lessons: 17,
+    duration: "2 hours 16 mins",
+    comments: 59,
+    imageSrc: imgProductivity
+  },
+  {
+    title: "Mastering Money Manage...",
+    author: "purepearl studio",
+    rating: 4.5,
+    price: 25,
+    lessons: 17,
+    duration: "2 hours 16 mins",
+    comments: 59,
+    imageSrc: imgMoney
+  },
+  {
+    title: "From Idea to Startup Succ...",
+    author: "purepearl studio",
+    rating: 4.5,
+    price: 25,
+    lessons: 17,
+    duration: "2 hours 16 mins",
+    comments: 59,
+    imageSrc: imgStartup
+  }
+];
 
 const Landing = () => {
   return (
@@ -33,6 +106,15 @@ const Landing = () => {
         {/* Placeholder for Hero Image */}
         <div className="mt-16 mx-auto w-full max-w-3xl h-80 bg-blue-800 rounded-t-full relative z-10 border-4 border-[#D4FF00] flex items-center justify-center">
              <span className="text-blue-300">Hero Image Placeholder</span>
+             
+             {/* Happy Students floating card */}
+             <div className="absolute bottom-4 left-10 bg-white p-4 rounded-2xl shadow-xl flex flex-col gap-2 z-20">
+                <div className="text-black font-bold text-lg font-poppins">Happy Students</div>
+                <div className="text-gray-500 font-medium text-sm flex items-center -mt-1 mb-2">
+                  4.5 (240) <FiStar className="ml-1 text-[#D4FF00] fill-[#D4FF00]" />
+                </div>
+                <StudentEllipse avatarCount={7} countText="2K+" size="sm" />
+             </div>
         </div>
       </section>
 
@@ -48,16 +130,16 @@ const Landing = () => {
       {/* Categories & Courses */}
       <section className="py-20 px-8 max-w-7xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">Discover Your Passion,<br/>Build Your Skills</h2>
-        <p className="text-gray-500 mb-10 max-w-2xl mx-auto">
+        <p className="text-gray-500 mb-10 max-w-2xl mx-auto leading-relaxed">
           At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life.
         </p>
 
         {/* Categories Pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
           {['Featured', 'Music', 'Drawing & Painting', 'Marketing', 'Animation', 'Social Media', 'UI/UX Design', 'Creative Marketing', 'Digital Illustration', 'Film & Video', 'Crafts', 'Freelance & Entrepreneurship', 'Graphic Design', 'Photography', 'Productivity', 'Web Development', 'Data Science', 'Cooking', '+ More'].map((cat, idx) => (
             <button 
               key={idx} 
-              className={`px-5 py-2 rounded-full text-sm font-medium transition ${idx === 0 ? 'bg-[#D4FF00] text-black' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+              className={`px-6 py-2.5 rounded-full text-[14px] font-medium transition ${idx === 0 ? 'bg-[#D4FF00] text-black shadow-sm' : 'bg-gray-50 text-gray-600 border border-gray-200 hover:bg-gray-100'}`}
             >
               {cat}
             </button>
@@ -66,30 +148,8 @@ const Landing = () => {
 
         {/* Course Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-          {[
-            { title: "Learn Figma from Basic", author: "purepearl studio", rating: 4.5, price: 25 },
-            { title: "Build Digital Asset", author: "purepearl studio", rating: 4.5, price: 25 },
-            { title: "the Power of Big Data", author: "purepearl studio", rating: 4.5, price: 25 },
-            { title: "Balancing Productivity and...", author: "purepearl studio", rating: 4.5, price: 25 },
-            { title: "Mastering Money Manage...", author: "purepearl studio", rating: 4.5, price: 25 },
-            { title: "From Idea to Startup Succ...", author: "purepearl studio", rating: 4.5, price: 25 },
-          ].map((course, idx) => (
-            <div key={idx} className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition bg-white p-4">
-              <div className="bg-gray-200 h-48 rounded-xl mb-4"></div>
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-lg">{course.title}</h3>
-                <div className="flex items-center text-yellow-500 font-bold">
-                  {course.rating} <FiStar className="ml-1" />
-                </div>
-              </div>
-              <p className="text-gray-500 text-sm mb-4">by {course.author}</p>
-              <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
-                <div className="font-bold text-xl">${course.price}<span className="text-sm font-normal text-gray-500">/lifetime</span></div>
-                <div className="flex -space-x-2">
-                  {[1,2,3,4].map(i => <div key={i} className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white"></div>)}
-                </div>
-              </div>
-            </div>
+          {COURSES.map((course, idx) => (
+            <CourseCard key={idx} {...course} />
           ))}
         </div>
       </section>
@@ -136,7 +196,7 @@ const Landing = () => {
         </div>
         <div className="md:w-1/2 relative">
            <div className="w-full h-[500px] bg-gray-200 rounded-3xl overflow-hidden relative">
-             <div className="absolute top-10 right-10 w-48 bg-white p-4 rounded-xl shadow-xl">
+             <div className="absolute top-10 right-10 w-48 bg-white p-4 rounded-xl shadow-xl z-20">
                <div className="text-sm text-gray-500 mb-1">Learning Progress</div>
                <div className="text-3xl font-bold">55%</div>
                <div className="w-full bg-gray-200 h-2 rounded-full mt-2">
@@ -151,14 +211,12 @@ const Landing = () => {
       <section className="py-20 px-8 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-16">
         <div className="md:w-1/2 relative">
            <div className="w-full h-[500px] bg-gray-200 rounded-3xl overflow-hidden"></div>
-           <div className="absolute bottom-10 right-10 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4">
-              <div className="flex -space-x-2">
-                  {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white"></div>)}
+           <div className="absolute bottom-10 right-10 bg-white p-4 rounded-2xl shadow-xl flex flex-col gap-2 z-20">
+              <div className="text-black font-bold text-lg font-poppins">Happy Students</div>
+              <div className="text-gray-500 font-medium text-sm flex items-center -mt-1 mb-2">
+                4.5 (240) <FiStar className="ml-1 text-[#D4FF00] fill-[#D4FF00]" />
               </div>
-              <div>
-                <div className="font-bold text-sm">Happy Students</div>
-                <div className="text-xs text-yellow-500 flex items-center">4.5 <FiStar className="ml-1"/></div>
-              </div>
+              <StudentEllipse avatarCount={7} countText="2K+" size="sm" />
            </div>
         </div>
         <div className="md:w-1/2">
