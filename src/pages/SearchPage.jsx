@@ -3,11 +3,12 @@ import { FiSearch, FiChevronDown, FiFilter } from 'react-icons/fi';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import CourseCard from '../components/CourseCard';
 
-import imgFigma from '../assets/images/balancing Productivity.jpg';
-import imgMoney from '../assets/images/Mastering Money.jpg';
-import imgStartup from '../assets/images/From Idea to Startup.jpg';
-import imgData from '../assets/images/the Power of Big Data.jpg';
+import imgFigma from '../assets/images/Learn Figma from Basic.jpg';
 import imgDigital from '../assets/images/Build Digital Asset.jpg';
+import imgData from '../assets/images/the Power of Big Data.jpg';
+import imgProductivity from '../assets/images/Balancing Productivity and Self-Care.jpg';
+import imgMoney from '../assets/images/Mastering Money Management.jpg';
+import imgStartup from '../assets/images/From Idea to Startup Success.jpg';
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,9 +18,9 @@ const SearchPage = () => {
     { title: 'Learn Figma from Basic', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgFigma },
     { title: 'Build Digital Asset', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgDigital },
     { title: 'the Power of Big Data', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgData },
-    { title: 'Balancing Productivity an...', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgMoney },
-    { title: 'Mastering Money Manage...', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgStartup },
-    { title: 'From Idea to Startup Succ...', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgData },
+    { title: 'Balancing Productivity an...', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgProductivity },
+    { title: 'Mastering Money Manage...', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgMoney },
+    { title: 'From Idea to Startup Succ...', author: 'purepearl studio', rating: 4.5, price: 25, lessons: 17, duration: '2 hours 16 mins', comments: 59, imageSrc: imgStartup },
   ];
 
   const courses = [...baseCourses, ...baseCourses, ...baseCourses]; // 18 items
