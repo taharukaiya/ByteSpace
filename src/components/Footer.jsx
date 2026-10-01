@@ -14,9 +14,9 @@ const Footer = () => {
             Stay Up to date with our latest features and releases by joining our newsletter.
           </p>
           <form className="flex gap-2 mb-4" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
+            <input
+              type="email"
+              placeholder="Enter your email"
               className="flex-grow border border-gray-200 rounded-full px-5 py-3 text-[15px] focus:outline-none focus:border-[#0047FF] font-sans"
             />
             <button className="bg-[#D4FF00] text-black px-8 py-3 rounded-full text-[15px] font-semibold hover:bg-[#bce600] font-sans transition-colors">
@@ -31,7 +31,6 @@ const Footer = () => {
         {/* Right side - Links */}
         <div className="md:w-3/5 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 text-[15px] font-sans pt-2">
           <div>
-            <h4 className="font-bold mb-6 text-gray-900">Browse</h4>
             <ul className="space-y-4 text-gray-500">
               <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Featured Courses</Link></li>
               <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Featured Categories</Link></li>
@@ -41,7 +40,6 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h4 className="font-bold mb-6 text-gray-900 hidden md:block">&nbsp;</h4>
             <ul className="space-y-4 text-gray-500">
               <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Development</Link></li>
               <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Marketing</Link></li>
@@ -51,7 +49,6 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h4 className="font-bold mb-6 text-gray-900">Platform</h4>
             <ul className="space-y-4 text-gray-500">
               <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Become a Creator</Link></li>
               <li><Link to="/" className="hover:text-[#0047FF] transition-colors">Affiliate Program</Link></li>
