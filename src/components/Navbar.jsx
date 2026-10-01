@@ -1,10 +1,30 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiShoppingBag, FiMenu, FiX } from 'react-icons/fi';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from '../services/firebase';
 
 const Navbar = ({ variant = 'solid' }) => {
   const isTransparent = variant === 'transparent';
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
   
   return (
     <nav 
@@ -29,8 +49,16 @@ const Navbar = ({ variant = 'solid' }) => {
         
         {/* Desktop Right items */}
         <div className="hidden md:flex items-center gap-6 text-[15px] font-medium relative z-10">
-          <Link to="/login" className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
-          <Link to="/signup" className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
+          {user ? (
+            <button onClick={handleLogout} className="hover:text-[#D4FF00] transition-colors font-medium">
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link to="/login" className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
+              <Link to="/signup" className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
+            </>
+          )}
           <Link to="/search" className="hover:text-[#D4FF00] transition-colors ml-2">
             <FiShoppingBag size={20} />
           </Link>
@@ -54,8 +82,16 @@ const Navbar = ({ variant = 'solid' }) => {
           <Link to="/search" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Courses</Link>
           <Link to="/creators" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Creators</Link>
           <div className="w-11/12 h-px bg-white/20 my-2"></div>
-          <Link to="/login" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
-          <Link to="/signup" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
+          {user ? (
+            <button onClick={() => { handleLogout(); setIsOpen(false); }} className="hover:text-[#D4FF00] transition-colors font-medium">
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link to="/login" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
+              <Link to="/signup" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
+            </>
+          )}
         </div>
       )}
     </nav>
