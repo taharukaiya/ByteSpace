@@ -74,6 +74,7 @@ export const CartProvider = ({ children }) => {
 
   const logout = useCallback(async () => {
     await signOut(auth);
+    setCartIds([]);
   }, []);
 
   const updateProfileMock = useCallback(async (updates) => {
