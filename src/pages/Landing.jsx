@@ -101,8 +101,11 @@ export default function Landing() {
     <div className="font-sans">
 
       {/* ════════════════════════════════════ HERO ═══════════════════════════ */}
-      <section className="relative live-bg overflow-hidden pt-16 md:pt-24 pb-0 border-b-[8px] border-[#D4FF00]">
-        {/* Grid Overlay */}
+      <section className="relative pt-16 md:pt-24 pb-0 border-b-[8px] border-[#D4FF00]">
+        {/* Background layer */}
+        <div className="absolute inset-0 live-bg z-0" />
+        
+        {/* Grid Overlay - Outside overflow-hidden so background-attachment: fixed works */}
         <div 
           className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
           style={{
@@ -111,7 +114,9 @@ export default function Landing() {
             animationDelay: `-${(Date.now() % 10000) / 1000}s`
           }}
         />
-        <div className="absolute inset-0 pointer-events-none z-0">
+
+        {/* Particles Wrapper with overflow-hidden */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           {[...Array(15)].map((_, i) => (
             <div 
               key={i} 

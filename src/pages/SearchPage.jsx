@@ -35,8 +35,11 @@ const SearchPage = () => {
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col">
       {/* ── HERO SECTION ── */}
-      <section className="w-full live-bg pt-12 pb-16 relative overflow-hidden">
-        {/* Grid Overlay */}
+      <section className="w-full pt-12 pb-16 relative">
+        {/* Background layer */}
+        <div className="absolute inset-0 live-bg z-0" />
+        
+        {/* Grid Overlay - Outside overflow-hidden so background-attachment: fixed works */}
         <div 
           className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
           style={{
@@ -45,8 +48,9 @@ const SearchPage = () => {
             animationDelay: `-${(Date.now() % 10000) / 1000}s`
           }}
         />
-        {/* Particles */}
-        <div className="absolute inset-0 pointer-events-none z-0">
+
+        {/* Particles Wrapper with overflow-hidden */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           {[...Array(10)].map((_, i) => (
             <div 
               key={i} 
