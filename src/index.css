@@ -48,18 +48,9 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #0047FF;
 }
 
-@keyframes panGrid {
-  0% {
-    background-position: 0px 0px;
-  }
-  100% {
-    background-position: 120px 120px;
-  }
-}
-
 .live-grid {
   background-attachment: fixed !important;
-  animation: panGrid 10s linear infinite;
+  background-position: var(--grid-pos, 0px 0px) !important;
 }
 
 @keyframes floatAnim {
