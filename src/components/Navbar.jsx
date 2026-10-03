@@ -32,13 +32,19 @@ const Navbar = ({ variant = 'solid' }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
+      onAnimationComplete={(definition) => {
+        // Clear transform to fix background-attachment: fixed bug in CSS
+        if (definition.y === 0) {
+          document.querySelector('nav').style.transform = 'none';
+        }
+      }}
       className={`w-full sticky top-0 z-50 ${isTransparent ? 'bg-transparent' : 'live-bg'}`}
     >
       {!isTransparent && (
         <div 
           className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
             backgroundSize: '120px 120px',
           }}
         />
