@@ -17,7 +17,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const { login } = useCart();
+  const { login, loginWithGoogle } = useCart();
 
   // Memoize particle values to prevent layout shift/flicker on keystrokes
   const particles = React.useMemo(() => {
@@ -42,8 +42,14 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    setError('Google login is disabled in mock mode. Please use email/password.');
+  const handleGoogleLogin = async () => {
+    setError('');
+    try {
+      await loginWithGoogle();
+      navigate(location.state?.from || '/');
+    } catch (err) {
+      setError(err.message || 'Google login failed.');
+    }
   };
 
   return (
