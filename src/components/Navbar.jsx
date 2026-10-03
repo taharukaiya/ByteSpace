@@ -4,8 +4,21 @@ import { FiShoppingBag, FiMenu, FiX } from 'react-icons/fi';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../services/firebase';
 import { motion } from 'framer-motion';
+import { useCart } from '../context/CartContext';
+
+const CartLink = ({ count, className = '' }) => (
+  <Link to="/cart" aria-label="Cart" className={`relative hover:text-[#D4FF00] transition-colors ${className}`}>
+    <FiShoppingBag size={20} />
+    {count > 0 && (
+      <span className="absolute -top-2 -right-2.5 bg-[#D4FF00] text-black text-[10px] font-bold min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center">
+        {count}
+      </span>
+    )}
+  </Link>
+);
 
 const Navbar = ({ variant = 'solid' }) => {
+  const { cartIds } = useCart();
   const isTransparent = variant === 'transparent';
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
@@ -68,16 +81,12 @@ const Navbar = ({ variant = 'solid' }) => {
               <Link to="/signup" className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
             </>
           )}
-          <Link to="/search" className="hover:text-[#D4FF00] transition-colors ml-2">
-            <FiShoppingBag size={20} />
-          </Link>
+          <CartLink count={cartIds.length} className="ml-2" />
         </div>
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-4 relative z-50">
-          <Link to="/search" className="hover:text-[#D4FF00] transition-colors">
-            <FiShoppingBag size={20} />
-          </Link>
+          <CartLink count={cartIds.length} />
           <button onClick={() => setIsOpen(!isOpen)} className="text-white hover:text-[#D4FF00]">
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>

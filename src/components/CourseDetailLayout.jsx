@@ -8,6 +8,7 @@ import { MdVideoLibrary, MdWorkspacePremium } from 'react-icons/md';
 import { RiCustomerService2Fill } from 'react-icons/ri';
 import { motion } from 'framer-motion';
 import { COURSES, CREATORS } from '../data/mockData';
+import { useCart } from '../context/CartContext';
 
 import playIcon from '../assets/images/play-icon.svg';
 import shareIcon from '../assets/images/share-icon.svg';
@@ -22,8 +23,16 @@ const LESSONS_LIST = [
 const CourseDetailLayout = ({ children, courseId = '1' }) => {
   const course = COURSES.find(c => c.id === parseInt(courseId)) || COURSES[0];
   const creator = CREATORS.find(c => c.id === course.authorId) || CREATORS[0];
+  const { user, addToCart } = useCart();
+  const navigate = useNavigate();
 
   if (!course) return <Navigate to="/search" />;
+
+  const handleEnroll = () => {
+    addToCart(course.id);
+    if (user) navigate('/cart');
+    else navigate('/login', { state: { from: '/cart' } });
+  };
 
   return (
     <div className="min-h-screen bg-white font-sans">
@@ -58,7 +67,7 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
             />
           ))}
         </div>
-        <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto">
+        <div className="relative z-20 w-11/12 lg:w-10/12 mx-auto">
           {/* Title row */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
@@ -134,6 +143,7 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
                 <span className="text-gray-400 text-[13px]">/lifetime</span>
               </div>
               <motion.button 
+                onClick={handleEnroll}
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                 className="w-full bg-[#D4FF00] text-black font-bold text-[15px] py-3.5 rounded-full hover:bg-[#c8f200] transition-colors"
               >

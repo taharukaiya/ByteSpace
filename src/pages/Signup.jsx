@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../services/firebase';
 import { motion } from 'framer-motion';
@@ -10,6 +10,7 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const Signup = () => {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       console.log('Signed up user:', result.user);
-      navigate('/');
+      navigate(location.state?.from || '/');
     } catch (error) {
       console.error('Google Signup Error:', error.message);
       alert('Failed to sign up with Google: ' + error.message);

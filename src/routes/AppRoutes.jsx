@@ -12,9 +12,13 @@ import CreatorProfile from '../pages/CreatorProfile';
 import Creators from '../pages/Creators';
 import NotFound from '../pages/NotFound';
 import DynamicTitle from '../components/DynamicTitle';
+import Cart from '../pages/Cart';
+import Checkout from '../pages/Checkout';
+import { CartProvider } from '../context/CartContext';
 
 const AppRoutes = () => {
   return (
+    <CartProvider>
     <Router>
       <DynamicTitle />
       <Routes>
@@ -27,6 +31,8 @@ const AppRoutes = () => {
           <Route path="/course/:id/reviews" element={<CourseReviews />} />
           <Route path="/creators" element={<Creators />} />
           <Route path="/creator/:id" element={<CreatorProfile />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Route>
 
         {/* Routes without MainLayout wrapper */}
@@ -37,6 +43,7 @@ const AppRoutes = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
+    </CartProvider>
   );
 };
 
