@@ -28,13 +28,15 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* ── Blue Hero Header ── */}
-      <section
-        className="live-bg overflow-hidden pt-8 pb-0 relative"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
-          backgroundSize: '120px 120px',
-        }}
-      >
+      <section className="live-bg overflow-hidden pt-8 pb-0 relative">
+        {/* Grid Overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-0 opacity-50"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
+            backgroundSize: '120px 120px',
+          }}
+        />
         <div className="absolute inset-0 pointer-events-none z-0">
           {[...Array(10)].map((_, i) => (
             <div 

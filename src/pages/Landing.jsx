@@ -101,13 +101,15 @@ export default function Landing() {
     <div className="font-sans">
 
       {/* ════════════════════════════════════ HERO ═══════════════════════════ */}
-      <section
-        className="relative live-bg overflow-hidden pt-16 pb-0"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
-          backgroundSize: '120px 120px',
-        }}
-      >
+      <section className="relative live-bg overflow-hidden pt-16 pb-0">
+        {/* Grid Overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-0 opacity-50"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
+            backgroundSize: '120px 120px',
+          }}
+        />
         <div className="absolute inset-0 pointer-events-none z-0">
           {[...Array(15)].map((_, i) => (
             <div 
@@ -538,13 +540,15 @@ export default function Landing() {
       </div>
 
       {/* ════════════════════════════ UNLOCK POTENTIAL CTA ═══════════════════ */}
-      <section
-        className="relative py-20 md:py-28 overflow-hidden live-bg"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
-          backgroundSize: '120px 120px',
-        }}
-      >
+      <section className="relative py-20 md:py-28 overflow-hidden live-bg">
+        {/* Grid Overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-0 opacity-50"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
+            backgroundSize: '120px 120px',
+          }}
+        />
         <div className="absolute inset-0 pointer-events-none z-0">
           {[...Array(10)].map((_, i) => (
             <div 
