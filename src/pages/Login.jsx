@@ -31,14 +31,14 @@ const Login = () => {
     }));
   }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      login(email, password);
+      await login(email, password);
       navigate(location.state?.from || '/');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'An error occurred during login.');
     }
   };
 

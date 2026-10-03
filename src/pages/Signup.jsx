@@ -32,14 +32,14 @@ const Signup = () => {
     }));
   }, []);
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      register(name, email, password);
+      await register(name, email, password);
       navigate(location.state?.from || '/');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'An error occurred during signup.');
     }
   };
 
