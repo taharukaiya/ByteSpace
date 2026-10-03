@@ -45,10 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .live-bg {
-  background: linear-gradient(135deg, #0047FF, #1a5cff, #003deb, #0047FF);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  background-attachment: fixed;
+  background-color: #0047FF;
 }
 
 @keyframes panGrid {
@@ -61,6 +58,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .live-grid {
+  background-attachment: fixed !important;
   animation: panGrid 10s linear infinite;
 }
 

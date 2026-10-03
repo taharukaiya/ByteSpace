@@ -32,7 +32,7 @@ const Navbar = ({ variant = 'solid' }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`w-full sticky top-0 z-50 ${isTransparent ? 'bg-transparent' : 'live-bg border-b border-white/10'}`}
+      className={`w-full sticky top-0 z-50 ${isTransparent ? 'bg-transparent' : 'live-bg'}`}
     >
       {!isTransparent && (
         <div 
