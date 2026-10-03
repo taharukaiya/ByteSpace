@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FiShoppingBag, FiMenu, FiX } from 'react-icons/fi';
 import { signOut } from 'firebase/auth';
 import { auth } from '../services/firebase';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import Avatar from './Avatar';
 
@@ -74,42 +74,60 @@ const Navbar = ({ variant = 'solid' }) => {
         
         {/* Desktop Right items */}
         <div className="hidden md:flex items-center gap-6 text-[15px] font-medium relative z-10">
-          {user ? (
-            <div className="relative" ref={menuRef}>
-              <button
-                onClick={() => setMenuOpen((o) => !o)}
-                aria-label="Account menu"
-                className="flex items-center rounded-full focus:outline-none hover:opacity-90 transition-opacity"
-              >
-                <Avatar user={user} size={36} />
-              </button>
-              {menuOpen && (
-                <div className="absolute right-0 top-full mt-3 w-60 bg-white text-gray-800 rounded-2xl shadow-2xl border border-gray-100 py-2 z-50">
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <p className="font-semibold text-[14px] truncate">{user.displayName || 'My Account'}</p>
-                    <p className="text-[12px] text-gray-400 truncate">{user.email}</p>
-                  </div>
-                  <Link to="/profile" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Edit Profile</Link>
-                  <Link to="/profile?tab=security" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Change Password</Link>
-                  <Link to="/profile?tab=transactions" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Transactions</Link>
-                  <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="w-full text-left px-4 py-2.5 text-[14px] text-red-500 hover:bg-gray-50 border-t border-gray-100 mt-1">
-                    Logout
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
+          {!user && (
             <>
               <Link to="/login" className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
               <Link to="/signup" className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
             </>
           )}
           <CartLink count={cartIds.length} className="ml-2" />
+          {user && (
+            <div className="relative" ref={menuRef}>
+              <motion.button
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.94 }}
+                onClick={() => setMenuOpen((o) => !o)}
+                aria-label="Account menu"
+                aria-expanded={menuOpen}
+                className={`flex items-center rounded-full focus:outline-none transition-shadow ${menuOpen ? 'ring-2 ring-[#D4FF00] ring-offset-2 ring-offset-[#0047FF]' : ''}`}
+              >
+                <Avatar user={user} size={30} />
+              </motion.button>
+              <AnimatePresence>
+                {menuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                    transition={{ duration: 0.16 }}
+                    style={{ transformOrigin: 'top right' }}
+                    className="absolute right-0 top-full mt-4 w-60 bg-white text-gray-800 rounded-2xl shadow-2xl border border-gray-100 py-2 z-50"
+                  >
+                    <div className="px-4 py-3 border-b border-gray-100">
+                      <p className="font-semibold text-[14px] truncate">{user.displayName || 'My Account'}</p>
+                      <p className="text-[12px] text-gray-400 truncate">{user.email}</p>
+                    </div>
+                    <Link to="/profile" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Edit Profile</Link>
+                    <Link to="/profile?tab=security" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Change Password</Link>
+                    <Link to="/profile?tab=transactions" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Transactions</Link>
+                    <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="w-full text-left px-4 py-2.5 text-[14px] text-red-500 hover:bg-gray-50 border-t border-gray-100 mt-1">
+                      Logout
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )}
         </div>
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-4 relative z-50">
           <CartLink count={cartIds.length} />
+          {user && (
+            <Link to="/profile" aria-label="Profile">
+              <Avatar user={user} size={28} />
+            </Link>
+          )}
           <button onClick={() => setIsOpen(!isOpen)} className="text-white hover:text-[#D4FF00]">
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
@@ -117,8 +135,15 @@ const Navbar = ({ variant = 'solid' }) => {
       </div>
 
       {/* Mobile Menu Overlay */}
+      <AnimatePresence>
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[#0047FF] border-b border-white/10 shadow-lg flex flex-col items-center py-6 gap-6 text-white font-medium z-40">
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.2 }}
+          className="md:hidden absolute top-full left-0 w-full bg-[#0047FF] border-b border-white/10 shadow-lg flex flex-col items-center py-6 gap-6 text-white font-medium z-40"
+        >
           <Link to="/" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Home</Link>
           <Link to="/search" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Courses</Link>
           <Link to="/creators" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Creators</Link>
@@ -139,8 +164,9 @@ const Navbar = ({ variant = 'solid' }) => {
               <Link to="/signup" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
             </>
           )}
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

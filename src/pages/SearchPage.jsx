@@ -1,122 +1,196 @@
-import React, { useState } from 'react';
-import { FiSearch, FiChevronDown, FiFilter } from 'react-icons/fi';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FiChevronDown, FiSliders, FiCheck } from 'react-icons/fi';
+import { BiBarChartAlt2 } from 'react-icons/bi';
+import { LuLayoutGrid } from 'react-icons/lu';
+import { HiOutlineBars3BottomLeft } from 'react-icons/hi2';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { motion, AnimatePresence } from 'framer-motion';
 import CourseCard from '../components/CourseCard';
 import { COURSES, CATEGORIES } from '../data/mockData';
 
+const LEVELS = ['All Level', 'Beginner', 'Intermediate', 'Advanced'];
+const FILTERS = ['All Courses', 'Popular Only'];
+const SORTS = ['Most relevant', 'Top rated', 'Price: Low to High', 'Price: High to Low'];
+
+/** Pill dropdown that matches the Figma filter buttons */
+const PillDropdown = ({ icon: Icon, label, options, value, onChange, align = 'left', variant = 'outline' }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const close = (e) => ref.current && !ref.current.contains(e.target) && setOpen(false);
+    document.addEventListener('mousedown', close);
+    return () => document.removeEventListener('mousedown', close);
+  }, []);
+
+  const styles =
+    variant === 'accent'
+      ? 'bg-[#D4FF00] text-black hover:bg-[#c8f200] border-transparent font-semibold'
+      : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 font-medium';
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className={`flex items-center gap-2 border rounded-full px-4 py-2 text-[13px] transition-colors whitespace-nowrap ${styles}`}
+      >
+        {Icon && <Icon size={14} />}
+        {label}
+        <FiChevronDown size={14} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+            transition={{ duration: 0.15 }}
+            className={`absolute top-full mt-2 min-w-[180px] bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-30 max-h-64 overflow-y-auto ${
+              align === 'right' ? 'right-0' : 'left-0'
+            }`}
+          >
+            {options.map((opt) => (
+              <li key={opt}>
+                <button
+                  onClick={() => { onChange(opt); setOpen(false); }}
+                  className="w-full flex items-center justify-between gap-4 px-4 py-2 text-[13px] text-gray-700 hover:bg-gray-50 text-left"
+                >
+                  {opt}
+                  {value === opt && <FiCheck size={14} className="text-[#0047FF]" />}
+                </button>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const SearchPage = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('Featured');
-  
-  // Filter States
-  const levels = ['All Level', 'Beginner', 'Intermediate', 'Advanced'];
-  const [levelIndex, setLevelIndex] = useState(0);
-  const [showPopularOnly, setShowPopularOnly] = useState(false);
+  const [level, setLevel] = useState('All Level');
+  const [filter, setFilter] = useState('All Courses');
+  const [sort, setSort] = useState('Most relevant');
 
-  // Derive filtered courses
   const filteredCourses = COURSES.filter((course) => {
-    // 1. Search filter
-    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          course.author.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    // 2. Category filter (Featured means show all for demo purposes, otherwise match category)
+    const q = searchQuery.toLowerCase();
+    const matchesSearch = course.title.toLowerCase().includes(q) || course.author.toLowerCase().includes(q);
     const matchesCategory = activeCategory === 'Featured' || course.category === activeCategory;
-    
-    // 3. Level filter
-    const activeLevelText = levels[levelIndex];
-    const matchesLevel = activeLevelText === 'All Level' || course.level === activeLevelText || course.level === 'All Levels';
-    
-    // 4. Popular filter
-    const matchesPopular = showPopularOnly ? course.popular === true : true;
-
+    const matchesLevel = level === 'All Level' || course.level === level || course.level === 'All Levels';
+    const matchesPopular = filter === 'Popular Only' ? course.popular === true : true;
     return matchesSearch && matchesCategory && matchesLevel && matchesPopular;
+  }).sort((a, b) => {
+    if (sort === 'Top rated') return b.rating - a.rating;
+    if (sort === 'Price: Low to High') return a.price - b.price;
+    if (sort === 'Price: High to Low') return b.price - a.price;
+    return 0;
   });
 
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col">
       {/* ── HERO SECTION ── */}
-      <section className="w-full pt-12 pb-16 relative">
-        {/* Particles Wrapper with overflow-hidden */}
+      <section className="w-full pt-12 pb-16 md:pb-20 relative">
+        <div className="absolute inset-0 live-bg z-0" />
+        <div
+          className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
+            backgroundSize: '120px 120px',
+          }}
+        />
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           {[...Array(10)].map((_, i) => (
-            <div 
-              key={i} 
-              className="particle" 
+            <div
+              key={i}
+              className="particle"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${80 + Math.random() * 40}%`,
                 width: `${10 + Math.random() * 20}px`,
                 height: `${10 + Math.random() * 20}px`,
                 animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${10 + Math.random() * 10}s`
-              }} 
+                animationDuration: `${10 + Math.random() * 10}s`,
+              }}
             />
           ))}
         </div>
         <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto text-center flex flex-col items-center">
-          <h1 className="text-white text-3xl md:text-[36px] font-bold font-poppins mb-8">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-white text-3xl md:text-[36px] font-bold font-poppins mb-8"
+          >
             Find Your Next Course
-          </h1>
+          </motion.h1>
 
-          {/* Search Bar */}
-          <div className="w-full max-w-2xl bg-white rounded-full flex items-center p-1.5 shadow-lg pl-4">
-            <FiSearch className="text-gray-400 text-lg flex-shrink-0" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="w-full max-w-2xl flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
+          >
             <input
               type="text"
-              placeholder="Search by course title or author..."
-              className="flex-grow px-3 py-2 text-[14px] text-gray-800 focus:outline-none bg-transparent"
+              placeholder="Search"
+              className="flex-grow bg-white rounded-full px-6 py-3 text-[14px] text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-white/30 transition-shadow"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button className="bg-[#D4FF00] text-black font-semibold text-[13px] px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-[#c8f200] transition-colors flex-shrink-0">
-              Courses
-            </button>
-          </div>
+            <PillDropdown
+              variant="accent"
+              label="Courses"
+              options={['Courses', 'Creators']}
+              value="Courses"
+              align="right"
+              onChange={(v) => v === 'Creators' && navigate('/creators')}
+            />
+          </motion.div>
         </div>
       </section>
 
       {/* ── FILTERS & CATEGORIES ── */}
-      <section className="w-11/12 lg:w-10/12 mx-auto pt-8 pb-8">
-        {/* Top Filters Row */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+      <section className="w-11/12 lg:w-10/12 mx-auto pt-8 pb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="flex flex-wrap justify-between items-center gap-3 mb-6"
+        >
           <div className="flex flex-wrap items-center gap-3">
-            <button 
-              onClick={() => { setSearchQuery(''); setActiveCategory('Featured'); setLevelIndex(0); setShowPopularOnly(false); }}
-              className="flex items-center gap-2 border border-gray-200 rounded-full px-5 py-2 text-[13px] font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-            >
-              <FiFilter size={14} /> Clear Filters
-            </button>
-            <button 
-              onClick={() => setLevelIndex((prev) => (prev + 1) % levels.length)}
-              className="flex items-center gap-2 border border-gray-200 rounded-full px-5 py-2 text-[13px] font-medium text-blue-600 hover:bg-blue-50 transition-colors border-blue-200"
-            >
-              {levels[levelIndex]} <FiChevronDown size={14} />
-            </button>
+            <PillDropdown icon={FiSliders} label={filter === 'All Courses' ? 'Filter' : filter} options={FILTERS} value={filter} onChange={setFilter} />
+            <PillDropdown icon={BiBarChartAlt2} label={level === 'All Level' ? 'Level' : level} options={LEVELS} value={level} onChange={setLevel} />
+            <PillDropdown
+              icon={LuLayoutGrid}
+              label={activeCategory === 'Featured' ? 'Category' : activeCategory}
+              options={CATEGORIES}
+              value={activeCategory}
+              onChange={setActiveCategory}
+            />
           </div>
-          <div>
-            <button 
-              onClick={() => setShowPopularOnly(!showPopularOnly)}
-              className={`flex items-center gap-2 border rounded-full px-5 py-2 text-[13px] font-medium transition-colors ${showPopularOnly ? 'border-blue-600 bg-blue-600 text-white' : 'border-gray-200 text-gray-700 hover:bg-gray-50'}`}
-            >
-              <FiFilter size={14} className="rotate-180" /> {showPopularOnly ? 'Popular Only' : 'Most Popular'} <FiChevronDown size={14} />
-            </button>
-          </div>
-        </div>
+          <PillDropdown icon={HiOutlineBars3BottomLeft} label={sort} options={SORTS} value={sort} onChange={setSort} align="right" />
+        </motion.div>
 
-        {/* Categories Badges */}
         <div className="flex flex-wrap items-center gap-2.5">
-          {CATEGORIES.map((cat) => (
-            <button
+          {CATEGORIES.map((cat, i) => (
+            <motion.button
               key={cat}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.25 + i * 0.03 }}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 rounded-full text-[12px] font-medium transition-colors ${
-                activeCategory === cat 
-                  ? 'bg-[#D4FF00] text-black border border-[#D4FF00]' 
-                  : 'bg-transparent border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'
+                activeCategory === cat ? 'bg-[#D4FF00] text-black' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
         </div>
       </section>
@@ -128,14 +202,24 @@ const SearchPage = () => {
             No courses found matching your filters.
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10">
-            {filteredCourses.map((course) => (
-              <CourseCard key={course.id} {...course} courseId={course.id} />
-            ))}
-          </div>
+          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10">
+            <AnimatePresence mode="popLayout">
+              {filteredCourses.map((course, i) => (
+                <motion.div
+                  key={course.id}
+                  layout
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.35, delay: Math.min(i, 8) * 0.04 }}
+                >
+                  <CourseCard {...course} courseId={course.id} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         )}
-        
-        {/* Pagination */}
+
         {filteredCourses.length > 0 && (
           <div className="mt-16 flex justify-center items-center gap-2">
             <button className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 cursor-not-allowed">

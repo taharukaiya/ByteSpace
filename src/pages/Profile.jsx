@@ -194,37 +194,49 @@ const Profile = () => {
             backgroundSize: '120px 120px',
           }}
         />
-        <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto flex items-center gap-5" key={profileVersion}>
-          <Avatar user={user} size={72} />
-          <div>
-            <h1 className="text-white text-2xl md:text-3xl font-bold font-poppins">{user.displayName || 'My Account'}</h1>
-            <p className="text-white/80 text-sm">{user.email}</p>
-          </div>
+        <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto flex items-center gap-4 md:gap-5 min-w-0" key={profileVersion}>
+          <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 260, damping: 18 }}>
+            <Avatar user={user} size={64} className="!ring-2 !ring-white/60" />
+          </motion.div>
+          <motion.div initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }} className="min-w-0">
+            <h1 className="text-white text-xl sm:text-2xl md:text-3xl font-bold font-poppins truncate">{user.displayName || 'My Account'}</h1>
+            <p className="text-white/80 text-[13px] sm:text-sm truncate">{user.email}</p>
+          </motion.div>
         </div>
       </section>
 
-      <div className="w-11/12 lg:w-10/12 mx-auto py-10 flex flex-col md:flex-row gap-8 items-start">
-        <div className="w-full md:w-60 bg-white rounded-2xl border border-gray-100 p-3 flex md:flex-col gap-1 overflow-x-auto">
+      <div className="w-11/12 lg:w-10/12 mx-auto py-6 md:py-10 flex flex-col md:flex-row gap-5 md:gap-8 items-stretch md:items-start">
+        <div className="w-full md:w-60 md:flex-shrink-0 bg-white rounded-2xl border border-gray-100 p-2 md:p-3 flex md:flex-col gap-1 md:sticky md:top-28">
           {TABS.map(({ key, label, icon: Icon }) => (
             <button
               key={key}
               onClick={() => setParams({ tab: key })}
-              className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-[14px] font-medium whitespace-nowrap transition-colors ${
-                tab === key ? 'bg-[#D4FF00] text-black' : 'text-gray-600 hover:bg-gray-50'
+              className={`relative flex-1 md:flex-none flex items-center justify-center md:justify-start gap-2 md:gap-2.5 px-2 sm:px-4 py-2.5 md:py-3 rounded-xl text-[12px] sm:text-[14px] font-medium whitespace-nowrap transition-colors ${
+                tab === key ? 'text-black' : 'text-gray-600 hover:bg-gray-50'
               }`}
             >
-              <Icon size={16} /> {label}
+              {tab === key && (
+                <motion.span
+                  layoutId="profile-tab-pill"
+                  className="absolute inset-0 bg-[#D4FF00] rounded-xl"
+                  transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2 md:gap-2.5">
+                <Icon size={16} className="flex-shrink-0" /> {label}
+              </span>
             </button>
           ))}
         </div>
 
         <motion.div
           key={tab}
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex-1 w-full bg-white rounded-2xl border border-gray-100 p-6 sm:p-8"
+          transition={{ duration: 0.3 }}
+          className="flex-1 w-full min-w-0 bg-white rounded-2xl border border-gray-100 p-5 sm:p-8"
         >
-          <h2 className="font-bold text-gray-900 font-poppins text-xl mb-6">
+          <h2 className="font-bold text-gray-900 font-poppins text-lg sm:text-xl mb-5 sm:mb-6">
             {TABS.find((t) => t.key === tab).label}
           </h2>
           {tab === 'profile' && <ProfileTab user={user} refreshUser={refreshUser} />}

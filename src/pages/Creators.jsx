@@ -34,6 +34,14 @@ const Creators = () => {
     <div className="min-h-screen bg-white font-sans flex flex-col">
       {/* ── HERO SECTION ── */}
       <section className="w-full pt-12 pb-16 relative">
+        <div className="absolute inset-0 live-bg z-0" />
+        <div
+          className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
+            backgroundSize: '120px 120px',
+          }}
+        />
         {/* Particles Wrapper with overflow-hidden */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           {[...Array(10)].map((_, i) => (
