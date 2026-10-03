@@ -99,19 +99,19 @@ const Navbar = ({ variant = 'solid' }) => {
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     transition={{ duration: 0.2, type: "spring", bounce: 0.3 }}
                     style={{ transformOrigin: 'top right' }}
-                    className="absolute right-0 top-full mt-4 w-[260px] bg-white text-gray-800 rounded-[24px] shadow-2xl border border-gray-100 py-3 z-50 overflow-hidden"
+                    className="absolute right-0 top-full mt-4 w-[280px] bg-white text-gray-800 rounded-[32px] shadow-2xl py-2 z-50 overflow-hidden"
                   >
-                    <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50">
-                      <p className="font-bold text-gray-900 text-[15px] font-poppins truncate">{user.displayName || 'My Account'}</p>
-                      <p className="text-[13px] text-gray-500 truncate mt-0.5">{user.email}</p>
+                    <div className="px-8 pt-6 pb-4 border-b border-gray-100 bg-white">
+                      <p className="font-bold text-gray-900 text-[18px] font-poppins truncate">{user.displayName || 'My Account'}</p>
+                      <p className="text-[14px] text-gray-500 truncate mt-1">{user.email}</p>
                     </div>
                     <div className="py-2">
-                      <Link to="/profile" onClick={() => setMenuOpen(false)} className="block px-6 py-3 text-[14px] font-medium text-gray-700 hover:text-[#0047FF] hover:bg-blue-50 transition-colors">Edit Profile</Link>
-                      <Link to="/profile?tab=security" onClick={() => setMenuOpen(false)} className="block px-6 py-3 text-[14px] font-medium text-gray-700 hover:text-[#0047FF] hover:bg-blue-50 transition-colors">Change Password</Link>
-                      <Link to="/profile?tab=transactions" onClick={() => setMenuOpen(false)} className="block px-6 py-3 text-[14px] font-medium text-gray-700 hover:text-[#0047FF] hover:bg-blue-50 transition-colors">Transactions</Link>
+                      <Link to="/profile" onClick={() => setMenuOpen(false)} className="block px-8 py-3.5 text-[15px] font-medium text-gray-700 hover:text-[#0047FF] hover:bg-blue-50/50 transition-colors">Edit Profile</Link>
+                      <Link to="/profile?tab=security" onClick={() => setMenuOpen(false)} className="block px-8 py-3.5 text-[15px] font-medium text-gray-700 hover:text-[#0047FF] hover:bg-blue-50/50 transition-colors">Change Password</Link>
+                      <Link to="/profile?tab=transactions" onClick={() => setMenuOpen(false)} className="block px-8 py-3.5 text-[15px] font-medium text-gray-700 hover:text-[#0047FF] hover:bg-blue-50/50 transition-colors">Transactions</Link>
                     </div>
                     <div className="border-t border-gray-100 py-2">
-                      <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="w-full text-left px-6 py-3 text-[14px] font-bold text-red-500 hover:bg-red-50 transition-colors">
+                      <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="w-full text-left px-8 py-4 text-[15px] font-bold text-red-500 hover:bg-red-50/50 transition-colors">
                         Logout
                       </button>
                     </div>
@@ -152,10 +152,6 @@ const Navbar = ({ variant = 'solid' }) => {
           <div className="w-11/12 h-px bg-white/20 my-2"></div>
           {user ? (
             <>
-              <Link to="/profile" onClick={() => setIsOpen(false)} className="flex items-center gap-2 hover:text-[#D4FF00] transition-colors">
-                <Avatar user={user} size={32} /> My Profile
-              </Link>
-              <Link to="/profile?tab=transactions" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Transactions</Link>
               <button onClick={() => { handleLogout(); setIsOpen(false); }} className="hover:text-[#D4FF00] transition-colors font-medium">
                 Logout
               </button>
