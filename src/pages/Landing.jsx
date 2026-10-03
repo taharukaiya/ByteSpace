@@ -230,7 +230,7 @@ export default function Landing() {
 
               <motion.div 
                 initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.8, type: "spring" }}
-                className="absolute left-[-5%] sm:left-[0%] md:left-[8%] top-[25%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left min-w-[150px]"
+                className="hidden sm:block absolute left-[0%] md:left-[8%] top-[25%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left min-w-[150px]"
               >
                 <p className="font-bold text-gray-900 text-[13px] font-poppins">UI/UX Design</p>
                 <p className="text-gray-400 text-[11px] mt-0.5">200 Courses → 1000+ Students</p>
@@ -238,7 +238,7 @@ export default function Landing() {
 
               <motion.div 
                 initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1, type: "spring" }}
-                className="absolute left-[-8%] sm:left-[-2%] md:left-[5%] bottom-[12%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left min-w-[150px]"
+                className="hidden sm:block absolute left-[-2%] md:left-[5%] bottom-[12%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left min-w-[150px]"
               >
                 <p className="font-bold text-gray-900 text-[13px] font-poppins mb-1">Happy Students</p>
                 <p className="text-gray-600 text-[11px] flex items-center gap-1 mb-2">
@@ -250,7 +250,7 @@ export default function Landing() {
 
               <motion.div 
                 initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.2, type: "spring" }}
-                className="absolute right-[-5%] sm:right-[0%] md:right-[8%] top-[35%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left min-w-[145px]"
+                className="hidden sm:block absolute right-[0%] md:right-[8%] top-[35%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left min-w-[145px]"
               >
                 <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
                 <p className="text-gray-900 font-bold text-[34px] font-poppins leading-none">55%</p>
@@ -451,7 +451,7 @@ export default function Landing() {
                   style={{ filter: filterGreen }} />
 
                 {/* Floating mini course card (BEHIND student) */}
-                <div className="absolute left-[-10%] bottom-[15%] z-10 w-[160px] md:w-[190px] bg-white rounded-2xl p-3 shadow-xl">
+                <div className="absolute left-[0%] sm:left-[-10%] bottom-[15%] z-10 w-[160px] md:w-[190px] bg-white rounded-2xl p-3 shadow-xl">
                   <div className="rounded-xl overflow-hidden mb-2" style={{ aspectRatio: '16/9' }}>
                     <img src={imgFigma} alt="" className="w-full h-full object-cover" />
                   </div>
@@ -465,7 +465,7 @@ export default function Landing() {
                 </div>
 
                 {/* Learning Progress floating card */}
-                <div className="absolute right-[-5%] top-[25%] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl w-[140px] md:w-[160px]">
+                <div className="absolute right-[0%] sm:right-[-5%] top-[25%] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl w-[140px] md:w-[160px]">
                   <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
                   <p className="text-gray-900 font-bold text-[28px] md:text-[32px] font-poppins leading-none">55%</p>
                   <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
@@ -492,7 +492,7 @@ export default function Landing() {
                   style={{ filter: filterGreen }} />
 
                 {/* Total Revenue card (top-left, BEHIND girl) */}
-                <div className="absolute left-[-0%] top-[15%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
+                <div className="absolute left-[2%] sm:left-[-0%] top-[15%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
                   <p className="text-white/70 text-[10px] md:text-[11px]">Total Revenue</p>
                   <p className="text-white/60 text-[9px] md:text-[10px]">July, 105</p>
                   <p className="font-bold text-[20px] md:text-[24px] font-poppins mt-0.5">$120.29</p>
@@ -502,7 +502,7 @@ export default function Landing() {
                 </div>
 
                 {/* Year to Date card (mid-left, BEHIND girl) */}
-                <div className="absolute left-[-5%] top-[45%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
+                <div className="absolute left-[2%] sm:left-[-5%] top-[45%] z-10 bg-[#0047FF] rounded-2xl px-4 py-3 md:py-4 shadow-xl text-white w-[140px] md:w-[160px]">
                   <p className="text-white/70 text-[10px] md:text-[11px]">Year to Date</p>
                   <p className="text-white/60 text-[9px] md:text-[10px]">2023</p>
                   <p className="font-bold text-[20px] md:text-[24px] font-poppins mt-0.5 mb-2">$1,200.38</p>
@@ -512,7 +512,7 @@ export default function Landing() {
                 </div>
 
                 {/* Happy Students card (bottom, IN FRONT of girl) */}
-                <div className="absolute bottom-[5%] right-[-5%] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl text-left w-[170px] md:w-[190px]">
+                <div className="absolute bottom-[5%] right-[2%] sm:right-[-5%] z-30 bg-white rounded-2xl px-4 py-3 shadow-xl text-left w-[170px] md:w-[190px]">
                   <p className="font-bold text-gray-900 text-[13px] md:text-[14px] font-poppins mb-1">Happy Students</p>
                   <p className="text-gray-500 text-[11px] md:text-[12px] flex items-center gap-1 mb-2">
                     4.5 <span className="text-gray-400">(240)</span>
