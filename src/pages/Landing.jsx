@@ -102,31 +102,75 @@ export default function Landing() {
 
       {/* ════════════════════════════════════ HERO ═══════════════════════════ */}
       <section
-        className="relative bg-[#0047FF] overflow-hidden pt-16 pb-0"
+        className="relative live-bg overflow-hidden pt-16 pb-0"
         style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
           backgroundSize: '120px 120px',
         }}
       >
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {[...Array(15)].map((_, i) => (
+            <div 
+              key={i} 
+              className="particle" 
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${80 + Math.random() * 40}%`,
+                width: `${10 + Math.random() * 20}px`,
+                height: `${10 + Math.random() * 20}px`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${10 + Math.random() * 10}s`
+              }} 
+            />
+          ))}
+        </div>
+
         <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto">
 
           {/* ─── Decorative shapes ─── */}
-          <motion.img 
-            initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 1 }}
-            src={noodle} alt="" aria-hidden className="absolute left-[-12%] top-[0%] w-[25%] pointer-events-none z-0" style={{ filter: filterGreen }} 
-          />
-          <motion.img 
-            initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }}
-            src={donut} alt="" aria-hidden className="absolute left-[-3%] bottom-[15%] w-[20%] pointer-events-none z-30" style={{ filter: filterWhite, opacity: 0.95 }} 
-          />
-          <motion.img 
-            initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 0.95 }} transition={{ duration: 0.8, delay: 0.4 }}
-            src={pyramid} alt="" aria-hidden className="absolute right-[5%] top-[10%] w-[14%] pointer-events-none z-0" style={{ filter: filterWhite }} 
-          />
-          <motion.img 
-            initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.1 }}
-            src={cylinder} alt="" aria-hidden className="absolute right-[-12%] top-[0%] w-[22%] pointer-events-none z-30" style={{ filter: filterGreen }} 
-          />
+          <motion.div
+            animate={{ y: [0, -20, 0], rotate: [0, -3, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute left-[-12%] top-[0%] w-[25%] pointer-events-none z-0"
+          >
+            <motion.img 
+              initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 1 }}
+              src={noodle} alt="" aria-hidden className="w-full h-full" style={{ filter: filterGreen }} 
+            />
+          </motion.div>
+          
+          <motion.div
+            animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+            className="absolute left-[-3%] bottom-[15%] w-[20%] pointer-events-none z-30"
+          >
+            <motion.img 
+              initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }}
+              src={donut} alt="" aria-hidden className="w-full h-full" style={{ filter: filterWhite, opacity: 0.95 }} 
+            />
+          </motion.div>
+          
+          <motion.div
+            animate={{ y: [0, -25, 0], rotate: [0, -5, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+            className="absolute right-[5%] top-[10%] w-[14%] pointer-events-none z-0"
+          >
+            <motion.img 
+              initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 0.95 }} transition={{ duration: 0.8, delay: 0.4 }}
+              src={pyramid} alt="" aria-hidden className="w-full h-full" style={{ filter: filterWhite }} 
+            />
+          </motion.div>
+          
+          <motion.div
+            animate={{ y: [0, -20, 0], rotate: [0, 4, 0] }}
+            transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+            className="absolute right-[-12%] top-[0%] w-[22%] pointer-events-none z-30"
+          >
+            <motion.img 
+              initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.1 }}
+              src={cylinder} alt="" aria-hidden className="w-full h-full" style={{ filter: filterGreen }} 
+            />
+          </motion.div>
 
           {/* ─── Text content ─────────────────────────────────────────────── */}
           <motion.div 
@@ -495,55 +539,114 @@ export default function Landing() {
 
       {/* ════════════════════════════ UNLOCK POTENTIAL CTA ═══════════════════ */}
       <section
-        className="relative py-20 md:py-28 overflow-hidden bg-[#0047FF]"
+        className="relative py-20 md:py-28 overflow-hidden live-bg"
         style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
           backgroundSize: '120px 120px',
         }}
       >
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {[...Array(10)].map((_, i) => (
+            <div 
+              key={i} 
+              className="particle" 
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${80 + Math.random() * 40}%`,
+                width: `${10 + Math.random() * 20}px`,
+                height: `${10 + Math.random() * 20}px`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${10 + Math.random() * 10}s`
+              }} 
+            />
+          ))}
+        </div>
+
         {/* ── Decorative Shapes (Matching Figma exactly) ── */}
 
         {/* Top Left: Green Noodle */}
-        <motion.img 
-          initial={{ x: -50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
-          src={noodle} alt="" aria-hidden className="absolute left-[-2%] top-[-5%] w-[18%] pointer-events-none z-0" style={{ filter: filterGreen }} 
-        />
+        <motion.div
+          animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute left-[-2%] top-[-5%] w-[18%] pointer-events-none z-0"
+        >
+          <motion.img 
+            initial={{ x: -50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
+            src={noodle} alt="" aria-hidden className="w-full h-full" style={{ filter: filterGreen }} 
+          />
+        </motion.div>
 
         {/* Mid Left: White Noodle */}
-        <motion.img 
-          initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 0.9 }} transition={{ duration: 0.8, delay: 0.2 }} viewport={{ once: true }}
-          src={noodle} alt="" aria-hidden className="absolute left-[12%] top-[18%] w-[10%] pointer-events-none rotate-[45deg] z-0" style={{ filter: filterWhite }} 
-        />
+        <motion.div
+          animate={{ y: [0, 15, 0], rotate: [45, 40, 45] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          className="absolute left-[12%] top-[18%] w-[10%] pointer-events-none z-0"
+        >
+          <motion.img 
+            initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 0.9 }} transition={{ duration: 0.8, delay: 0.2 }} viewport={{ once: true }}
+            src={noodle} alt="" aria-hidden className="w-full h-full" style={{ filter: filterWhite }} 
+          />
+        </motion.div>
 
         {/* Bottom Left: White Pyramid */}
-        <motion.img 
-          initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
-          src={pyramid} alt="" aria-hidden className="absolute left-[2%] bottom-[5%] w-[12%] pointer-events-none rotate-[-15deg] z-0" style={{ filter: filterWhite, opacity: 0.95 }} 
-        />
+        <motion.div
+          animate={{ y: [0, -20, 0], rotate: [-15, -10, -15] }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+          className="absolute left-[2%] bottom-[5%] w-[12%] pointer-events-none z-0"
+        >
+          <motion.img 
+            initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
+            src={pyramid} alt="" aria-hidden className="w-full h-full" style={{ filter: filterWhite, opacity: 0.95 }} 
+          />
+        </motion.div>
 
         {/* Bottom Mid-Left: Green Donut */}
-        <motion.img 
-          initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }} viewport={{ once: true }}
-          src={donut} alt="" aria-hidden className="absolute left-[8%] bottom-[-15%] w-[20%] pointer-events-none z-0" style={{ filter: filterGreen }} 
-        />
+        <motion.div
+          animate={{ y: [0, -25, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+          className="absolute left-[8%] bottom-[-15%] w-[20%] pointer-events-none z-0"
+        >
+          <motion.img 
+            initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }} viewport={{ once: true }}
+            src={donut} alt="" aria-hidden className="w-full h-full" style={{ filter: filterGreen }} 
+          />
+        </motion.div>
 
         {/* Top Right: Green Pyramid */}
-        <motion.img 
-          initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 0.8, delay: 0.1 }} viewport={{ once: true }}
-          src={pyramid} alt="" aria-hidden className="absolute right-[22%] top-[10%] w-[8%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} 
-        />
+        <motion.div
+          animate={{ y: [0, 15, 0], rotate: [15, 20, 15] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+          className="absolute right-[22%] top-[10%] w-[8%] pointer-events-none z-0"
+        >
+          <motion.img 
+            initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 0.8, delay: 0.1 }} viewport={{ once: true }}
+            src={pyramid} alt="" aria-hidden className="w-full h-full" style={{ filter: filterGreen }} 
+          />
+        </motion.div>
 
         {/* Mid Right: Massive White Cylinder */}
-        <motion.img 
-          initial={{ x: 100, opacity: 0 }} whileInView={{ x: 0, opacity: 0.95 }} transition={{ duration: 0.8, delay: 0.4 }} viewport={{ once: true }}
-          src={cylinder} alt="" aria-hidden className="absolute right-[-5%] top-[15%] w-[22%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterWhite }} 
-        />
+        <motion.div
+          animate={{ y: [0, -30, 0], rotate: [15, 10, 15] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute right-[-5%] top-[15%] w-[22%] pointer-events-none z-0"
+        >
+          <motion.img 
+            initial={{ x: 100, opacity: 0 }} whileInView={{ x: 0, opacity: 0.95 }} transition={{ duration: 0.8, delay: 0.4 }} viewport={{ once: true }}
+            src={cylinder} alt="" aria-hidden className="w-full h-full" style={{ filter: filterWhite }} 
+          />
+        </motion.div>
 
         {/* Bottom Right: Green Noodle */}
-        <motion.img 
-          initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }} viewport={{ once: true }}
-          src={noodle} alt="" aria-hidden className="absolute right-[2%] bottom-[-15%] w-[18%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} 
-        />
+        <motion.div
+          animate={{ y: [0, -20, 0], rotate: [15, 25, 15] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
+          className="absolute right-[2%] bottom-[-15%] w-[18%] pointer-events-none z-0"
+        >
+          <motion.img 
+            initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }} viewport={{ once: true }}
+            src={noodle} alt="" aria-hidden className="w-full h-full" style={{ filter: filterGreen }} 
+          />
+        </motion.div>
 
         <motion.div 
           initial={{ opacity: 0, y: 30 }}

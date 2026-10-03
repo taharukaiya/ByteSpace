@@ -31,3 +31,58 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
 }
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.live-bg {
+  background: linear-gradient(-45deg, #0047FF, #0033cc, #2b6cb0, #001f80);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes floatAnim {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.floating-element {
+  animation: floatAnim 6s ease-in-out infinite;
+}
+
+.floating-element-delayed {
+  animation: floatAnim 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  20% { opacity: 0.5; }
+  50% { transform: translateY(-50vh) scale(1.5); opacity: 0.8; }
+  80% { opacity: 0.5; }
+  100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleFloat 10s linear infinite;
+}

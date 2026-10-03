@@ -29,13 +29,29 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
     <div className="min-h-screen bg-white font-sans">
       {/* ── Blue Hero Header ── */}
       <section
-        className="bg-[#0047FF] pt-8 pb-0 relative"
+        className="live-bg overflow-hidden pt-8 pb-0 relative"
         style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
           backgroundSize: '120px 120px',
         }}
       >
-        <div className="w-11/12 lg:w-10/12 mx-auto">
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {[...Array(10)].map((_, i) => (
+            <div 
+              key={i} 
+              className="particle" 
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${80 + Math.random() * 40}%`,
+                width: `${10 + Math.random() * 20}px`,
+                height: `${10 + Math.random() * 20}px`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${10 + Math.random() * 10}s`
+              }} 
+            />
+          ))}
+        </div>
+        <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto">
           {/* Title row */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
