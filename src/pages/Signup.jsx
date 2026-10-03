@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import AuthCollage from '../components/AuthCollage';
 import { useCart } from '../context/CartContext';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import noodle from '../assets/images/noodle.png';
+import donut from '../assets/images/donut.png';
+import pyramid from '../assets/images/pyramid.png';
+import cylinder from '../assets/images/cylinder.png';
+
+const filterGreen = 'brightness(0) saturate(100%) invert(90%) sepia(60%) saturate(600%) hue-rotate(28deg) brightness(1.05)';
+const filterWhite = 'brightness(0) invert(1)';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -12,6 +19,18 @@ const Signup = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { register } = useCart();
+
+  // Memoize particle values to prevent layout shift/flicker on keystrokes
+  const particles = React.useMemo(() => {
+    return [...Array(15)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${80 + Math.random() * 40}%`,
+      width: `${10 + Math.random() * 20}px`,
+      height: `${10 + Math.random() * 20}px`,
+      animationDelay: `${Math.random() * 5}s`,
+      animationDuration: `${10 + Math.random() * 10}s`
+    }));
+  }, []);
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -29,16 +48,48 @@ const Signup = () => {
   };
 
   return (
-    <div
-      className="min-h-screen bg-[#0047FF] font-sans relative flex flex-col"
-      style={{
-        backgroundImage: `
-          linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px)
-        `,
-        backgroundSize: '120px 120px',
-      }}
-    >
+    <div className="min-h-screen relative flex flex-col font-sans overflow-hidden">
+      {/* Background layer */}
+      <div className="absolute inset-0 live-bg z-0" />
+      
+      {/* Grid Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
+          backgroundSize: '120px 120px'
+        }}
+      />
+
+      {/* Particles Wrapper */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        {particles.map((style, i) => (
+          <div key={i} className="particle" style={style} />
+        ))}
+      </div>
+
+      {/* Floating Shapes */}
+      <motion.div
+        animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute left-[-5%] top-[10%] w-[20%] max-w-[200px] pointer-events-none z-0"
+      >
+        <img src={noodle} alt="" aria-hidden className="w-full h-full" style={{ filter: filterGreen }} />
+      </motion.div>
+      <motion.div
+        animate={{ y: [0, -25, 0], rotate: [0, 10, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute right-[-2%] bottom-[10%] w-[18%] max-w-[180px] pointer-events-none z-0"
+      >
+        <img src={donut} alt="" aria-hidden className="w-full h-full" style={{ filter: filterWhite, opacity: 0.8 }} />
+      </motion.div>
+      <motion.div
+        animate={{ y: [0, 20, 0], rotate: [-10, 0, -10] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        className="absolute left-[35%] top-[-5%] w-[12%] max-w-[120px] pointer-events-none z-0"
+      >
+        <img src={pyramid} alt="" aria-hidden className="w-full h-full" style={{ filter: filterWhite, opacity: 0.6 }} />
+      </motion.div>
       {/* ── Inner width-constrained column ── */}
       <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto flex flex-col flex-1">
         
