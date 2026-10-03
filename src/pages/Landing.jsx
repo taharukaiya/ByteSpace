@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiSearch, FiCheckCircle, FiStar } from 'react-icons/fi';
 import { BiBarChartAlt2 } from 'react-icons/bi';
+import { motion } from 'framer-motion';
 import CourseCard from '../components/CourseCard';
 import StudentEllipse from '../components/StudentEllipse';
 
@@ -90,12 +91,9 @@ const TESTIMONIALS = [
 ];
 
 // ── CSS filter shorthands ─────────────────────────────────────────────────────
-// Make the gray PNG → bright lime-green (#D4FF00)
 const filterGreen = 'brightness(0) saturate(100%) invert(90%) sepia(60%) saturate(600%) hue-rotate(28deg) brightness(1.05)';
-// Make the gray PNG → pure white
 const filterWhite = 'brightness(0) invert(1)';
 
-// ══════════════════════════════════════════════════════════════════════════════
 export default function Landing() {
   const [activeCategory, setActiveCategory] = useState('Featured');
 
@@ -110,43 +108,33 @@ export default function Landing() {
           backgroundSize: '120px 120px',
         }}
       >
-        {/* ─── Hero Content Wrapper (w-10/12 container) ────────────────── */}
         <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto">
 
-          {/* ─── Decorative shapes (anchored to container boundaries) ─── */}
-
-          {/* LEFT – large GREEN noodle (half-out) */}
-          <img src={noodle} alt="" aria-hidden
-            className="absolute left-[-12%] top-[0%] w-[25%] pointer-events-none z-0"
-            style={{ filter: filterGreen }} />
-
-          {/* LEFT – smaller WHITE noodle */}
-          <img src={noodle} alt="" aria-hidden
-            className="absolute left-[3%] top-[25%] w-[9%] pointer-events-none rotate-[15deg] z-0"
-            style={{ filter: filterWhite, opacity: 0.9 }} />
-
-          {/* LEFT-BOTTOM – large WHITE donut ring (overlapping) */}
-          <img src={donut} alt="" aria-hidden
-            className="absolute left-[-3%] bottom-[15%] w-[20%] pointer-events-none z-30"
-            style={{ filter: filterWhite, opacity: 0.95 }} />
-
-          {/* RIGHT-TOP – WHITE pyramid / triangle */}
-          <img src={pyramid} alt="" aria-hidden
-            className="absolute right-[5%] top-[10%] w-[14%] pointer-events-none z-0"
-            style={{ filter: filterWhite, opacity: 0.95 }} />
-
-          {/* FAR-RIGHT – GREEN / lime cylinder (half-out) */}
-          <img src={cylinder} alt="" aria-hidden
-            className="absolute right-[-12%] top-[0%] w-[22%] pointer-events-none z-30"
-            style={{ filter: filterGreen }} />
-
-          {/* RIGHT-BOTTOM – WHITE noodle squiggle */}
-          <img src={noodle} alt="" aria-hidden
-            className="absolute right-[-2%] bottom-[20%] w-[15%] pointer-events-none rotate-[10deg] z-0"
-            style={{ filter: filterWhite, opacity: 0.9 }} />
+          {/* ─── Decorative shapes ─── */}
+          <motion.img 
+            initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 1 }}
+            src={noodle} alt="" aria-hidden className="absolute left-[-12%] top-[0%] w-[25%] pointer-events-none z-0" style={{ filter: filterGreen }} 
+          />
+          <motion.img 
+            initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }}
+            src={donut} alt="" aria-hidden className="absolute left-[-3%] bottom-[15%] w-[20%] pointer-events-none z-30" style={{ filter: filterWhite, opacity: 0.95 }} 
+          />
+          <motion.img 
+            initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 0.95 }} transition={{ duration: 0.8, delay: 0.4 }}
+            src={pyramid} alt="" aria-hidden className="absolute right-[5%] top-[10%] w-[14%] pointer-events-none z-0" style={{ filter: filterWhite }} 
+          />
+          <motion.img 
+            initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.1 }}
+            src={cylinder} alt="" aria-hidden className="absolute right-[-12%] top-[0%] w-[22%] pointer-events-none z-30" style={{ filter: filterGreen }} 
+          />
 
           {/* ─── Text content ─────────────────────────────────────────────── */}
-          <div className="relative z-40 text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative z-40 text-center"
+          >
             <h1 className="text-white text-4xl sm:text-5xl lg:text-[56px] font-bold font-poppins leading-tight max-w-3xl mx-auto">
               Get Access to Hundreds<br className="hidden sm:block" /> Courses Available
             </h1>
@@ -154,8 +142,10 @@ export default function Landing() {
               Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
             </p>
 
-            {/* Search bar */}
-            <div className="mt-8 flex items-center bg-white rounded-full px-4 py-1.5 max-w-lg mx-auto shadow-lg">
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="mt-8 flex items-center bg-white rounded-full px-4 py-1.5 max-w-lg mx-auto shadow-lg"
+            >
               <FiSearch className="text-gray-400 text-lg flex-shrink-0 ml-1" />
               <input
                 className="flex-1 px-3 py-2 text-[14px] text-gray-700 focus:outline-none bg-transparent"
@@ -164,13 +154,15 @@ export default function Landing() {
               <button className="bg-[#D4FF00] text-black font-semibold text-[14px] px-6 py-2.5 rounded-full hover:bg-[#c8f200] transition-colors flex-shrink-0">
                 Search
               </button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* ─── Hero image area ──────────────────────────────────────── */}
           <div className="mt-12 flex justify-center px-4 relative z-20">
-            {/* The huge green semi-circle container */}
-            <div
+            <motion.div
+              initial={{ y: 200, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
               className="relative bg-[#D4FF00] w-full max-w-[850px] flex justify-center items-end"
               style={{
                 aspectRatio: '2/1',
@@ -178,7 +170,6 @@ export default function Landing() {
                 borderTopRightRadius: '2000px',
               }}
             >
-              {/* Student image (scaled down to fit nicely, anchoring to bottom) */}
               <img
                 src={guyLaptop}
                 alt="Student with laptop"
@@ -186,60 +177,98 @@ export default function Landing() {
                 style={{ height: '115%' }}
               />
 
-              {/* Floating card – UI/UX Design (left) */}
-              <div className="absolute left-[-5%] sm:left-[0%] md:left-[8%] top-[25%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left scale-[0.6] sm:scale-100 origin-left min-w-[150px]">
+              <motion.div 
+                initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.8, type: "spring" }}
+                className="absolute left-[-5%] sm:left-[0%] md:left-[8%] top-[25%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left min-w-[150px]"
+              >
                 <p className="font-bold text-gray-900 text-[13px] font-poppins">UI/UX Design</p>
                 <p className="text-gray-400 text-[11px] mt-0.5">200 Courses → 1000+ Students</p>
-              </div>
+              </motion.div>
 
-              {/* Floating card – Happy Students */}
-              <div className="absolute left-[-8%] sm:left-[-2%] md:left-[5%] bottom-[12%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left scale-[0.6] sm:scale-100 origin-bottom-left min-w-[150px]">
+              <motion.div 
+                initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1, type: "spring" }}
+                className="absolute left-[-8%] sm:left-[-2%] md:left-[5%] bottom-[12%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left min-w-[150px]"
+              >
                 <p className="font-bold text-gray-900 text-[13px] font-poppins mb-1">Happy Students</p>
                 <p className="text-gray-600 text-[11px] flex items-center gap-1 mb-2">
                   4.5 <span className="text-gray-400">(240)</span>
                   <FiStar className="text-[#D4FF00] fill-[#D4FF00] text-[11px]" />
                 </p>
                 <StudentEllipse avatarCount={5} countText="2K+" size="sm" variant="dark" />
-              </div>
+              </motion.div>
 
-              {/* Floating card – Learning Progress (right) */}
-              <div className="absolute right-[-5%] sm:right-[0%] md:right-[8%] top-[35%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left scale-[0.6] sm:scale-100 origin-right min-w-[145px]">
+              <motion.div 
+                initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.2, type: "spring" }}
+                className="absolute right-[-5%] sm:right-[0%] md:right-[8%] top-[35%] bg-white rounded-2xl px-4 py-3 shadow-xl z-20 text-left min-w-[145px]"
+              >
                 <p className="text-gray-500 text-[10px] mb-1">Learning Progress</p>
                 <p className="text-gray-900 font-bold text-[34px] font-poppins leading-none">55%</p>
                 <div className="mt-2 w-full h-1.5 bg-gray-200 rounded-full">
-                  <div className="h-full bg-[#D4FF00] rounded-full" style={{ width: '55%' }} />
+                  <motion.div 
+                    initial={{ width: 0 }} animate={{ width: '55%' }} transition={{ duration: 1.5, delay: 1.5 }}
+                    className="h-full bg-[#D4FF00] rounded-full" 
+                  />
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════ PARTNER LOGOS ════════════════════════ */}
-      <section className="bg-[#F4F4F4] py-8 border-b border-gray-200">
-        <div className="w-11/12 lg:w-10/12 mx-auto flex flex-wrap justify-center items-center gap-8 md:gap-16">
+      <section className="bg-[#F4F4F4] py-8 border-b border-gray-200 overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="w-11/12 lg:w-10/12 mx-auto flex flex-wrap justify-center items-center gap-8 md:gap-16"
+        >
           {LOGOS.map((src, i) => (
-            <img key={i} src={src} alt={`Partner ${i + 1}`} className="h-7 md:h-8 opacity-50 grayscale hover:opacity-80 hover:grayscale-0 transition" />
+            <motion.img 
+              key={i} 
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              src={src} 
+              alt={`Partner ${i + 1}`} 
+              className="h-7 md:h-8 opacity-50 grayscale hover:opacity-80 hover:grayscale-0 transition" 
+            />
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* ══════════════════════════════ COURSES ══════════════════════════════ */}
       <section className="py-16 md:py-20 bg-white">
         <div className="w-11/12 lg:w-10/12 mx-auto">
-          <div className="text-center mb-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
             <h2 className="text-3xl md:text-[38px] font-bold font-poppins text-gray-900 leading-tight">
               Discover Your Passion,<br />Build Your Skills
             </h2>
             <p className="text-gray-500 text-[14px] md:text-[15px] mt-4 max-w-2xl mx-auto leading-relaxed">
               At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life.
             </p>
-          </div>
+          </motion.div>
 
           {/* Category pills */}
-          <div className="flex flex-wrap justify-center gap-2.5 mb-12">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-wrap justify-center gap-2.5 mb-12"
+          >
             {CATEGORIES.map((cat) => (
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-5 py-2 rounded-full text-[13px] font-medium transition-colors ${activeCategory === cat
@@ -248,36 +277,85 @@ export default function Landing() {
                   }`}
               >
                 {cat}
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
 
           {/* Course grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {COURSES.map((course, i) => <CourseCard key={i} {...course} />)}
-          </div>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.1 }
+              }
+            }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {COURSES.map((course, i) => (
+              <motion.div 
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+              >
+                <CourseCard {...course} />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* ══════════════════════════ LEARNING PATHS ═══════════════════════════ */}
       <section className="py-16 md:py-20 bg-white border-t border-gray-100">
         <div className="w-11/12 lg:w-10/12 mx-auto text-center">
-          <h2 className="text-3xl md:text-[36px] font-bold font-poppins text-gray-900">
-            Explore Diverse Learning Paths at Bytespace
-          </h2>
-          <p className="text-gray-500 text-[14px] md:text-[15px] mt-4 max-w-2xl mx-auto leading-relaxed">
-            At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various fields, ensuring there's something for everyone. Unleash your potential and explore our carefully curated categories.
-          </p>
-          <div className="mt-12 grid grid-cols-3 sm:grid-cols-6 gap-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-[36px] font-bold font-poppins text-gray-900">
+              Explore Diverse Learning Paths at Bytespace
+            </h2>
+            <p className="text-gray-500 text-[14px] md:text-[15px] mt-4 max-w-2xl mx-auto leading-relaxed">
+              At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various fields, ensuring there's something for everyone. Unleash your potential and explore our carefully curated categories.
+            </p>
+          </motion.div>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.1 }
+              }
+            }}
+            className="mt-12 grid grid-cols-3 sm:grid-cols-6 gap-4"
+          >
             {PATHS.map(({ icon, label }) => (
-              <div key={label} className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-[18px] py-6 px-2 cursor-pointer hover:shadow-md transition-shadow">
+              <motion.div 
+                key={label} 
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8 },
+                  visible: { opacity: 1, scale: 1 }
+                }}
+                whileHover={{ y: -5, scale: 1.05 }}
+                className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-[18px] py-6 px-2 cursor-pointer shadow-sm transition-shadow"
+              >
                 <div className="w-[56px] h-[56px] rounded-full bg-[#D4FF00] flex items-center justify-center">
                   <img src={icon} alt={label} className="w-6 h-6 object-contain" />
                 </div>
                 <span className="text-gray-800 font-semibold text-[12px] md:text-[13px]">{label}</span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -426,37 +504,68 @@ export default function Landing() {
         {/* ── Decorative Shapes (Matching Figma exactly) ── */}
 
         {/* Top Left: Green Noodle */}
-        <img src={noodle} alt="" aria-hidden className="absolute left-[-2%] top-[-5%] w-[18%] pointer-events-none z-0" style={{ filter: filterGreen }} />
+        <motion.img 
+          initial={{ x: -50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
+          src={noodle} alt="" aria-hidden className="absolute left-[-2%] top-[-5%] w-[18%] pointer-events-none z-0" style={{ filter: filterGreen }} 
+        />
 
         {/* Mid Left: White Noodle */}
-        <img src={noodle} alt="" aria-hidden className="absolute left-[12%] top-[18%] w-[10%] pointer-events-none rotate-[45deg] z-0" style={{ filter: filterWhite, opacity: 0.9 }} />
+        <motion.img 
+          initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 0.9 }} transition={{ duration: 0.8, delay: 0.2 }} viewport={{ once: true }}
+          src={noodle} alt="" aria-hidden className="absolute left-[12%] top-[18%] w-[10%] pointer-events-none rotate-[45deg] z-0" style={{ filter: filterWhite }} 
+        />
 
         {/* Bottom Left: White Pyramid */}
-        <img src={pyramid} alt="" aria-hidden className="absolute left-[2%] bottom-[5%] w-[12%] pointer-events-none rotate-[-15deg] z-0" style={{ filter: filterWhite, opacity: 0.95 }} />
+        <motion.img 
+          initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
+          src={pyramid} alt="" aria-hidden className="absolute left-[2%] bottom-[5%] w-[12%] pointer-events-none rotate-[-15deg] z-0" style={{ filter: filterWhite, opacity: 0.95 }} 
+        />
 
         {/* Bottom Mid-Left: Green Donut */}
-        <img src={donut} alt="" aria-hidden className="absolute left-[8%] bottom-[-15%] w-[20%] pointer-events-none z-0" style={{ filter: filterGreen }} />
+        <motion.img 
+          initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }} viewport={{ once: true }}
+          src={donut} alt="" aria-hidden className="absolute left-[8%] bottom-[-15%] w-[20%] pointer-events-none z-0" style={{ filter: filterGreen }} 
+        />
 
         {/* Top Right: Green Pyramid */}
-        <img src={pyramid} alt="" aria-hidden className="absolute right-[22%] top-[10%] w-[8%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} />
+        <motion.img 
+          initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 0.8, delay: 0.1 }} viewport={{ once: true }}
+          src={pyramid} alt="" aria-hidden className="absolute right-[22%] top-[10%] w-[8%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} 
+        />
 
         {/* Mid Right: Massive White Cylinder */}
-        <img src={cylinder} alt="" aria-hidden className="absolute right-[-5%] top-[15%] w-[22%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterWhite, opacity: 0.95 }} />
+        <motion.img 
+          initial={{ x: 100, opacity: 0 }} whileInView={{ x: 0, opacity: 0.95 }} transition={{ duration: 0.8, delay: 0.4 }} viewport={{ once: true }}
+          src={cylinder} alt="" aria-hidden className="absolute right-[-5%] top-[15%] w-[22%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterWhite }} 
+        />
 
         {/* Bottom Right: Green Noodle */}
-        <img src={noodle} alt="" aria-hidden className="absolute right-[2%] bottom-[-15%] w-[18%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} />
+        <motion.img 
+          initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }} viewport={{ once: true }}
+          src={noodle} alt="" aria-hidden className="absolute right-[2%] bottom-[-15%] w-[18%] pointer-events-none rotate-[15deg] z-0" style={{ filter: filterGreen }} 
+        />
 
-        <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="relative z-10 w-11/12 lg:w-10/12 mx-auto text-center"
+        >
           <h2 className="text-white text-3xl md:text-[42px] font-bold font-poppins leading-tight max-w-2xl mx-auto">
             Unlock Your Potential as a<br />Creator with ByteSpace
           </h2>
           <p className="text-white/80 mt-5 text-[14px] md:text-[16px] max-w-2xl mx-auto leading-relaxed">
             Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by publishing your finest course on the ByteSpace Course Library.
           </p>
-          <button className="mt-10 bg-[#D4FF00] text-black font-semibold text-[15px] px-10 py-3.5 rounded-full hover:bg-[#c8f200] transition-colors">
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="mt-10 bg-[#D4FF00] text-black font-semibold text-[15px] px-10 py-3.5 rounded-full hover:bg-[#c8f200] transition-colors"
+          >
             Join as Creator
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </section>
 
       {/* ═══════════════════════════ TESTIMONIALS ════════════════════════════ */}
@@ -467,7 +576,13 @@ export default function Landing() {
         <div className="w-11/12 lg:w-10/12 mx-auto">
 
           {/* ── Two-column header ── */}
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 mb-14">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col lg:flex-row gap-8 lg:gap-16 mb-14"
+          >
             {/* Left: heading */}
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-[40px] font-bold font-poppins text-gray-900 leading-tight">
@@ -480,12 +595,31 @@ export default function Landing() {
                 At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have experienced the transformative journey of learning and creating on our platform. Explore testimonials that reflect the diverse perspectives of enthusiastic learners and accomplished creators.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* ── Three testimonial cards ── */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.2 }
+              }
+            }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
             {TESTIMONIALS.map(({ name, role, roleColor, avatar, text }) => (
-              <div key={name} className="bg-white rounded-[20px] p-6 flex flex-col gap-4 shadow-sm">
+              <motion.div 
+                key={name} 
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                className="bg-white rounded-[20px] p-6 flex flex-col gap-4 shadow-sm"
+              >
                 {/* Avatar + name + role */}
                 <div className="flex items-center gap-3">
                   <img
@@ -502,9 +636,9 @@ export default function Landing() {
                 <p className="text-gray-500 text-[13px] md:text-[14px] leading-relaxed">
                   "{text}"
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
         </div>
       </section>

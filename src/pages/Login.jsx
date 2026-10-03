@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../services/firebase';
+import { motion } from 'framer-motion';
 import AuthCollage from '../components/AuthCollage';
 
 const Login = () => {
@@ -27,11 +28,6 @@ const Login = () => {
   };
 
   return (
-    /*
-     * Root: full viewport, no scrollbars.
-     * On mobile we allow vertical scroll (overflow-y-auto) so the form is reachable.
-     * On ≥xl the page must fit exactly in the viewport (overflow-hidden).
-     */
     <div
       className="min-h-screen bg-[#0047FF] font-sans relative flex flex-col"
       style={{
@@ -42,21 +38,26 @@ const Login = () => {
         backgroundSize: '120px 120px',
       }}
     >
-      {/* ── Inner width-constrained column ── */}
       <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto flex flex-col flex-1">
 
         {/* Logo */}
-        <div className="pt-6 md:pt-8 pb-4 md:pb-6 flex-shrink-0">
+        <motion.div 
+          initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}
+          className="pt-6 md:pt-8 pb-4 md:pb-6 flex-shrink-0"
+        >
           <Link to="/">
             <img src="/logo.svg" alt="ByteSpace" className="h-7 md:h-8" />
           </Link>
-        </div>
+        </motion.div>
 
         {/* Two-column layout */}
         <div className="flex-1 flex flex-col xl:flex-row items-center xl:items-stretch gap-8 xl:gap-12 pb-8 xl:pb-12">
 
           {/* ── LEFT: heading + collage ── */}
-          <div className="w-full xl:flex-1 flex flex-col justify-start xl:justify-center pt-0 xl:pt-4">
+          <motion.div 
+            initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.7 }}
+            className="w-full xl:flex-1 flex flex-col justify-start xl:justify-center pt-0 xl:pt-4"
+          >
             <h1 className="text-white text-[22px] md:text-[26px] font-bold font-poppins leading-snug">
               Sign in with ease
             </h1>
@@ -65,16 +66,17 @@ const Login = () => {
               instant access to a world of knowledge.
             </p>
 
-            {/* Collage – only visible on sm+ */}
             <div className="hidden sm:block mt-4 w-full max-w-[420px]">
               <AuthCollage />
             </div>
-          </div>
+          </motion.div>
 
           {/* ── RIGHT: white form card ── */}
-          <div className="w-full xl:w-[440px] flex-shrink-0 flex items-center xl:items-center">
+          <motion.div 
+            initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
+            className="w-full xl:w-[440px] flex-shrink-0 flex items-center xl:items-center"
+          >
             <div className="w-full bg-white rounded-[28px] px-8 sm:px-10 py-10 shadow-2xl">
-
               <p className="text-[#0047FF] text-[13px] font-medium mb-1">Sign In</p>
               <h2 className="text-[32px] md:text-[38px] font-bold font-poppins text-gray-900 leading-tight mb-8">
                 Welcome Back
@@ -104,12 +106,13 @@ const Login = () => {
                   />
                 </div>
                 <div className="flex justify-end pt-1">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                     type="submit"
                     className="bg-[#D4FF00] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#c8f200] transition-colors text-[14px]"
                   >
                     Sign In
-                  </button>
+                  </motion.button>
                 </div>
               </form>
 
@@ -122,8 +125,8 @@ const Login = () => {
 
               {/* Social */}
               <div className="mt-6 flex justify-center gap-4">
-                {/* Google */}
-                <button 
+                <motion.button 
+                  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
                   type="button"
                   onClick={handleGoogleLogin}
                   className="w-[52px] h-[52px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
@@ -131,7 +134,7 @@ const Login = () => {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M21.805 10.023H12.2v3.977h5.451c-.467 2.446-2.556 3.754-5.451 3.754-3.313 0-6-2.686-6-6s2.687-6 6-6c1.466 0 2.8.504 3.833 1.33l2.939-2.94C17.318 2.942 14.86 2 12.2 2 6.677 2 2.2 6.477 2.2 12s4.477 10 10 10c5.523 0 9.8-4.477 9.8-10 0-.66-.067-1.31-.195-1.977Z" fill="black"/>
                   </svg>
-                </button>
+                </motion.button>
               </div>
 
               <p className="mt-8 text-center text-[13px] text-gray-500">
@@ -141,7 +144,7 @@ const Login = () => {
                 </Link>
               </p>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

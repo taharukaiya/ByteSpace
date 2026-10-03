@@ -6,6 +6,7 @@ import { FaStar, FaRegStar } from 'react-icons/fa';
 import { HiUserGroup } from 'react-icons/hi';
 import { MdVideoLibrary, MdWorkspacePremium } from 'react-icons/md';
 import { RiCustomerService2Fill } from 'react-icons/ri';
+import { motion } from 'framer-motion';
 import { COURSES, CREATORS } from '../data/mockData';
 
 import playIcon from '../assets/images/play-icon.svg';
@@ -36,7 +37,10 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
       >
         <div className="w-11/12 lg:w-10/12 mx-auto">
           {/* Title row */}
-          <div className="flex justify-between items-start mb-3 pt-2">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+            className="flex justify-between items-start mb-3 pt-2"
+          >
             <div className="flex-1 pr-4">
               <h1 className="text-white text-2xl md:text-3xl font-bold font-poppins leading-snug">
                 {course.title}
@@ -64,22 +68,28 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
             <button className="bg-white/15 border border-white/30 text-white text-[13px] font-medium px-5 py-2 rounded-full flex items-center gap-2 hover:bg-white/25 transition-colors flex-shrink-0 mt-1">
               <img src={shareIcon} alt="" className="w-4 h-4 brightness-0 invert" /> Share
             </button>
-          </div>
+          </motion.div>
 
           {/* Two-col: video + sidebar */}
           <div className="flex flex-col lg:flex-row gap-6 items-start">
             {/* Video */}
-            <div className="w-full lg:flex-1 relative rounded-2xl overflow-hidden aspect-video bg-gray-900 mb-0">
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
+              className="w-full lg:flex-1 relative rounded-2xl overflow-hidden aspect-video bg-gray-900 mb-0"
+            >
               <img src={course.imageSrc} alt="Course preview" className="w-full h-full object-cover opacity-80" />
-              <button className="absolute inset-0 flex items-center justify-center">
-                <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50">
+              <button className="absolute inset-0 flex items-center justify-center group">
+                <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50 group-hover:bg-white/40 transition-colors">
                   <img src={playIcon} alt="Play" className="w-6 h-6 brightness-0 invert ml-1" />
                 </div>
               </button>
-            </div>
+            </motion.div>
 
             {/* Sidebar card */}
-            <div className="w-full lg:w-[320px] flex-shrink-0 bg-white rounded-2xl shadow-2xl p-5 -mb-8 relative z-20">
+            <motion.div 
+              initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }}
+              className="w-full lg:w-[320px] flex-shrink-0 bg-white rounded-2xl shadow-2xl p-5 -mb-8 relative z-20"
+            >
               <p className="font-bold text-gray-900 text-[15px] font-poppins mb-3">{course.lessons} Lessons ({course.duration})</p>
               <ul className="space-y-2 mb-3">
                 {LESSONS_LIST.map((l) => (
@@ -100,9 +110,12 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
                 <span className="text-[#0047FF] font-bold text-[32px] font-poppins leading-none">${course.price}</span>
                 <span className="text-gray-400 text-[13px]">/lifetime</span>
               </div>
-              <button className="w-full bg-[#D4FF00] text-black font-bold text-[15px] py-3.5 rounded-full hover:bg-[#c8f200] transition-colors">
+              <motion.button 
+                whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                className="w-full bg-[#D4FF00] text-black font-bold text-[15px] py-3.5 rounded-full hover:bg-[#c8f200] transition-colors"
+              >
                 Enroll Now
-              </button>
+              </motion.button>
 
               <p className="text-[12px] font-semibold text-gray-800 mt-5 mb-3">This course include</p>
               <ul className="space-y-2.5 text-[13px] text-gray-600">
@@ -129,7 +142,7 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
                   See Full Profile
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -164,9 +177,14 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
 
       {/* ── Tab content (injected) ── */}
       <div className="w-11/12 lg:w-10/12 mx-auto py-10">
-        <div className="lg:w-[calc(100%-344px)]">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="lg:w-[calc(100%-344px)]"
+        >
           {children}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

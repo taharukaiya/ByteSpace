@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FiShoppingBag, FiMenu, FiX } from 'react-icons/fi';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../services/firebase';
+import { motion } from 'framer-motion';
 
 const Navbar = ({ variant = 'solid' }) => {
   const isTransparent = variant === 'transparent';
@@ -27,7 +28,10 @@ const Navbar = ({ variant = 'solid' }) => {
   };
   
   return (
-    <nav 
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={`w-full sticky top-0 z-50 ${isTransparent ? 'bg-transparent' : 'bg-[#0047FF] border-b border-white/10'}`}
       style={!isTransparent ? {
         backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
@@ -94,7 +98,7 @@ const Navbar = ({ variant = 'solid' }) => {
           )}
         </div>
       )}
-    </nav>
+    </motion.nav>
   );
 };
 
