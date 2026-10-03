@@ -35,13 +35,32 @@ const SearchPage = () => {
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col">
       {/* ── HERO SECTION ── */}
-      <section
-        className="w-full bg-[#0047FF] pt-12 pb-16 relative"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
-          backgroundSize: '120px 120px',
-        }}
-      >
+      <section className="w-full live-bg pt-12 pb-16 relative overflow-hidden">
+        {/* Grid Overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
+            backgroundSize: '120px 120px',
+          }}
+        />
+        {/* Particles */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {[...Array(10)].map((_, i) => (
+            <div 
+              key={i} 
+              className="particle" 
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${80 + Math.random() * 40}%`,
+                width: `${10 + Math.random() * 20}px`,
+                height: `${10 + Math.random() * 20}px`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${10 + Math.random() * 10}s`
+              }} 
+            />
+          ))}
+        </div>
         <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto text-center flex flex-col items-center">
           <h1 className="text-white text-3xl md:text-[36px] font-bold font-poppins mb-8">
             Find Your Next Course
