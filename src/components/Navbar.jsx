@@ -32,12 +32,17 @@ const Navbar = ({ variant = 'solid' }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`w-full sticky top-0 z-50 ${isTransparent ? 'bg-transparent' : 'bg-[#0047FF] border-b border-white/10'}`}
-      style={!isTransparent ? {
-        backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
-        backgroundSize: '120px 120px',
-      } : {}}
+      className={`w-full sticky top-0 z-50 ${isTransparent ? 'bg-transparent' : 'live-bg border-b border-white/10'}`}
     >
+      {!isTransparent && (
+        <div 
+          className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
+            backgroundSize: '120px 120px',
+          }}
+        />
+      )}
       <div className="w-11/12 lg:w-10/12 mx-auto py-6 flex justify-between items-center text-white relative">
         <Link to="/" className="flex items-center gap-2 relative z-50">
           <img src="/logo.svg" alt="Logo" className="h-6" />

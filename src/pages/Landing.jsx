@@ -101,7 +101,7 @@ export default function Landing() {
     <div className="font-sans">
 
       {/* ════════════════════════════════════ HERO ═══════════════════════════ */}
-      <section className="relative live-bg overflow-hidden py-16 md:py-24 border-b-[8px] border-[#D4FF00]">
+      <section className="relative live-bg overflow-hidden pt-16 md:pt-24 pb-0 border-b-[8px] border-[#D4FF00]">
         {/* Grid Overlay */}
         <div 
           className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"

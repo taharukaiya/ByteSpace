@@ -45,7 +45,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .live-bg {
-  background-color: #0047FF;
+  background: linear-gradient(135deg, #0047FF, #1a5cff, #003deb, #0047FF);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  background-attachment: fixed;
 }
 
 @keyframes panGrid {
@@ -97,3 +100,19 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
   animation: particleFloat 10s linear infinite;
 }
+
+/* Custom Scrollbar to match theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #0047FF;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0033cc;
+}
+
