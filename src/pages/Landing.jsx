@@ -108,6 +108,7 @@ export default function Landing() {
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
             backgroundSize: '120px 120px',
+            animationDelay: `-${(Date.now() % 10000) / 1000}s`
           }}
         />
         <div className="absolute inset-0 pointer-events-none z-0">
