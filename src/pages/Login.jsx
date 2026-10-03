@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { auth } from '../services/firebase';
 import { motion } from 'framer-motion';
 import AuthCollage from '../components/AuthCollage';
+import { useCart } from '../context/CartContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
+  const { login } = useCart();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('Login', email, password);
+    setError('');
+    try {
+      login(email, password);
+      navigate(location.state?.from || '/');
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      console.log('Logged in user:', result.user);
-      navigate(location.state?.from || '/');
-    } catch (error) {
-      console.error('Google Login Error:', error.message);
-      alert('Failed to log in with Google: ' + error.message);
-    }
+  const handleGoogleLogin = () => {
+    setError('Google login is disabled in mock mode. Please use email/password.');
   };
 
   return (
@@ -83,8 +82,22 @@ const Login = () => {
                 Welcome Back
               </h2>
 
-              <form onSubmit={handleLogin} className="space-y-5">
-                <div>
+              <motion.form 
+                onSubmit={handleLogin} 
+                className="space-y-5"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                }}
+              >
+                {error && (
+                  <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="bg-red-50 text-red-600 text-sm px-4 py-3 rounded-xl">
+                    {error}
+                  </motion.div>
+                )}
+                <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
                   <label className="block text-[13px] font-medium text-gray-700 mb-1.5">Email</label>
                   <input
                     type="email"
@@ -94,8 +107,8 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
-                </div>
-                <div>
+                </motion.div>
+                <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
                   <label className="block text-[13px] font-medium text-gray-700 mb-1.5">Password</label>
                   <input
                     type="password"
@@ -105,8 +118,8 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                </div>
-                <div className="flex justify-end pt-1">
+                </motion.div>
+                <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex justify-end pt-1">
                   <motion.button
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                     type="submit"
@@ -114,8 +127,8 @@ const Login = () => {
                   >
                     Sign In
                   </motion.button>
-                </div>
-              </form>
+                </motion.div>
+              </motion.form>
 
               {/* Divider */}
               <div className="mt-7 flex items-center gap-3">

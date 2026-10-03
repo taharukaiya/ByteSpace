@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiShoppingBag, FiMenu, FiX } from 'react-icons/fi';
-import { signOut } from 'firebase/auth';
-import { auth } from '../services/firebase';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import Avatar from './Avatar';
@@ -19,7 +17,7 @@ const CartLink = ({ count, className = '' }) => (
 );
 
 const Navbar = ({ variant = 'solid' }) => {
-  const { cartIds, user } = useCart();
+  const { cartIds, user, logout } = useCart();
   const isTransparent = variant === 'transparent';
   const [isOpen, setIsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,9 +32,9 @@ const Navbar = ({ variant = 'solid' }) => {
     return () => document.removeEventListener('mousedown', close);
   }, []);
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     try {
-      await signOut(auth);
+      logout();
       navigate('/');
     } catch (error) {
       console.error('Logout error:', error);

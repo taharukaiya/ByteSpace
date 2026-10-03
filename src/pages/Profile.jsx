@@ -1,16 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
-import {
-  updateProfile,
-  updatePassword,
-  reauthenticateWithCredential,
-  EmailAuthProvider,
-  sendPasswordResetEmail,
-} from 'firebase/auth';
 import { FiUser, FiLock, FiCreditCard } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useCart } from '../context/CartContext';
-import { auth } from '../services/firebase';
 import Avatar from '../components/Avatar';
 
 const inputCls =
@@ -29,7 +21,7 @@ const Notice = ({ n }) =>
     </p>
   ) : null;
 
-const ProfileTab = ({ user, refreshUser }) => {
+const ProfileTab = ({ user, updateProfileMock }) => {
   const [name, setName] = useState(user.displayName || '');
   const [photo, setPhoto] = useState(user.photoURL || '');
   const [busy, setBusy] = useState(false);
@@ -40,8 +32,7 @@ const ProfileTab = ({ user, refreshUser }) => {
     setBusy(true);
     setNote(null);
     try {
-      await updateProfile(user, { displayName: name.trim(), photoURL: photo.trim() || null });
-      refreshUser();
+      updateProfileMock({ displayName: name.trim(), photoURL: photo.trim() || null });
       setNote({ type: 'ok', text: 'Profile updated.' });
     } catch (err) {
       setNote({ type: 'err', text: err.message });
@@ -75,8 +66,7 @@ const ProfileTab = ({ user, refreshUser }) => {
   );
 };
 
-const SecurityTab = ({ user }) => {
-  const hasPassword = user.providerData.some((p) => p.providerId === 'password');
+const SecurityTab = ({ user, updatePasswordMock }) => {
   const [current, setCurrent] = useState('');
   const [next, setNext] = useState('');
   const [confirm, setConfirm] = useState('');
@@ -90,43 +80,14 @@ const SecurityTab = ({ user }) => {
     if (next !== confirm) return setNote({ type: 'err', text: 'Passwords do not match.' });
     setBusy(true);
     try {
-      await reauthenticateWithCredential(user, EmailAuthProvider.credential(user.email, current));
-      await updatePassword(user, next);
+      updatePasswordMock(current, next);
       setCurrent(''); setNext(''); setConfirm('');
       setNote({ type: 'ok', text: 'Password changed successfully.' });
-    } catch (err) {
-      const wrong = err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential';
-      setNote({ type: 'err', text: wrong ? 'Current password is incorrect.' : err.message });
-    }
-    setBusy(false);
-  };
-
-  const sendReset = async () => {
-    setBusy(true);
-    setNote(null);
-    try {
-      await sendPasswordResetEmail(auth, user.email);
-      setNote({ type: 'ok', text: `Password reset email sent to ${user.email}.` });
     } catch (err) {
       setNote({ type: 'err', text: err.message });
     }
     setBusy(false);
   };
-
-  if (!hasPassword) {
-    return (
-      <div className="max-w-lg space-y-4">
-        <p className="text-sm text-gray-600">
-          You signed in with Google, so your password is managed by your Google account. You can still
-          request a password reset email to set a ByteSpace password.
-        </p>
-        <Notice n={note} />
-        <button onClick={sendReset} disabled={busy} className="bg-[#D4FF00] text-black font-bold px-8 py-3 rounded-full hover:bg-[#c8f200] transition-colors disabled:opacity-60">
-          {busy ? 'Sending…' : 'Send Password Reset Email'}
-        </button>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={change} className="space-y-4 max-w-lg">
@@ -175,7 +136,7 @@ const TransactionsTab = ({ orders }) => {
 };
 
 const Profile = () => {
-  const { user, authReady, orders, refreshUser, profileVersion } = useCart();
+  const { user, authReady, orders, profileVersion, updateProfileMock, updatePasswordMock } = useCart();
   const [params, setParams] = useSearchParams();
   const tab = TABS.some((t) => t.key === params.get('tab')) ? params.get('tab') : 'profile';
 
@@ -239,8 +200,8 @@ const Profile = () => {
           <h2 className="font-bold text-gray-900 font-poppins text-lg sm:text-xl mb-5 sm:mb-6">
             {TABS.find((t) => t.key === tab).label}
           </h2>
-          {tab === 'profile' && <ProfileTab user={user} refreshUser={refreshUser} />}
-          {tab === 'security' && <SecurityTab user={user} />}
+          {tab === 'profile' && <ProfileTab user={user} updateProfileMock={updateProfileMock} />}
+          {tab === 'security' && <SecurityTab user={user} updatePasswordMock={updatePasswordMock} />}
           {tab === 'transactions' && <TransactionsTab orders={orders.filter((o) => !o.uid || o.uid === user.uid)} />}
         </motion.div>
       </div>
