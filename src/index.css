@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .live-bg {
-  background: linear-gradient(-45deg, #0047FF, #0033cc, #2b6cb0, #001f80);
+  background: linear-gradient(-45deg, #0047FF, #1a5cff, #003deb, #0047FF);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
 }
