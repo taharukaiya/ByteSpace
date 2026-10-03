@@ -104,7 +104,7 @@ export default function Landing() {
       <section className="relative live-bg overflow-hidden py-16 md:py-24 border-b-[8px] border-[#D4FF00]">
         {/* Grid Overlay */}
         <div 
-          className="absolute inset-0 pointer-events-none z-0 opacity-50"
+          className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
             backgroundSize: '120px 120px',
@@ -543,7 +543,7 @@ export default function Landing() {
       <section className="relative py-20 md:py-28 overflow-hidden live-bg border-t-[8px] border-[#D4FF00]">
         {/* Grid Overlay */}
         <div 
-          className="absolute inset-0 pointer-events-none z-0 opacity-50"
+          className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
             backgroundSize: '120px 120px',

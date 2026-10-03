@@ -31,7 +31,7 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
       <section className="live-bg overflow-hidden pt-8 pb-0 relative">
         {/* Grid Overlay */}
         <div 
-          className="absolute inset-0 pointer-events-none z-0 opacity-50"
+          className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)`,
             backgroundSize: '120px 120px',
