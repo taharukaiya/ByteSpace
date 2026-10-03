@@ -32,6 +32,8 @@ const DynamicTitle = () => {
       title = 'Your Cart | ByteSpace';
     } else if (path === '/checkout') {
       title = 'Checkout | ByteSpace';
+    } else if (path === '/profile') {
+      title = 'My Profile | ByteSpace';
     } else {
       title = 'Page Not Found | ByteSpace';
     }

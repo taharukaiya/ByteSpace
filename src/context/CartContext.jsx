@@ -47,6 +47,10 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = useCallback(() => setCartIds([]), []);
 
+  // updateProfile mutates the same user object, so bump a counter to re-render consumers
+  const [profileVersion, setProfileVersion] = useState(0);
+  const refreshUser = useCallback(() => setProfileVersion((v) => v + 1), []);
+
   const placeOrder = useCallback((order) => {
     setOrders((prev) => [order, ...prev]);
     setCartIds([]);
@@ -54,7 +58,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartIds, orders, user, authReady, addToCart, removeFromCart, clearCart, placeOrder }}
+      value={{ cartIds, orders, user, authReady, profileVersion, refreshUser, addToCart, removeFromCart, clearCart, placeOrder }}
     >
       {children}
     </CartContext.Provider>

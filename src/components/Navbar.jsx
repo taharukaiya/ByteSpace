@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiShoppingBag, FiMenu, FiX } from 'react-icons/fi';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { auth } from '../services/firebase';
 import { motion } from 'framer-motion';
 import { useCart } from '../context/CartContext';
+import Avatar from './Avatar';
 
 const CartLink = ({ count, className = '' }) => (
   <Link to="/cart" aria-label="Cart" className={`relative hover:text-[#D4FF00] transition-colors ${className}`}>
@@ -18,17 +19,19 @@ const CartLink = ({ count, className = '' }) => (
 );
 
 const Navbar = ({ variant = 'solid' }) => {
-  const { cartIds } = useCart();
+  const { cartIds, user } = useCart();
   const isTransparent = variant === 'transparent';
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
+    const close = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
+    };
+    document.addEventListener('mousedown', close);
+    return () => document.removeEventListener('mousedown', close);
   }, []);
 
   const handleLogout = async () => {
@@ -72,9 +75,29 @@ const Navbar = ({ variant = 'solid' }) => {
         {/* Desktop Right items */}
         <div className="hidden md:flex items-center gap-6 text-[15px] font-medium relative z-10">
           {user ? (
-            <button onClick={handleLogout} className="hover:text-[#D4FF00] transition-colors font-medium">
-              Logout
-            </button>
+            <div className="relative" ref={menuRef}>
+              <button
+                onClick={() => setMenuOpen((o) => !o)}
+                aria-label="Account menu"
+                className="flex items-center rounded-full focus:outline-none hover:opacity-90 transition-opacity"
+              >
+                <Avatar user={user} size={36} />
+              </button>
+              {menuOpen && (
+                <div className="absolute right-0 top-full mt-3 w-60 bg-white text-gray-800 rounded-2xl shadow-2xl border border-gray-100 py-2 z-50">
+                  <div className="px-4 py-3 border-b border-gray-100">
+                    <p className="font-semibold text-[14px] truncate">{user.displayName || 'My Account'}</p>
+                    <p className="text-[12px] text-gray-400 truncate">{user.email}</p>
+                  </div>
+                  <Link to="/profile" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Edit Profile</Link>
+                  <Link to="/profile?tab=security" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Change Password</Link>
+                  <Link to="/profile?tab=transactions" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Transactions</Link>
+                  <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="w-full text-left px-4 py-2.5 text-[14px] text-red-500 hover:bg-gray-50 border-t border-gray-100 mt-1">
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <>
               <Link to="/login" className="hover:text-[#D4FF00] transition-colors">Sign In</Link>
@@ -101,9 +124,15 @@ const Navbar = ({ variant = 'solid' }) => {
           <Link to="/creators" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Creators</Link>
           <div className="w-11/12 h-px bg-white/20 my-2"></div>
           {user ? (
-            <button onClick={() => { handleLogout(); setIsOpen(false); }} className="hover:text-[#D4FF00] transition-colors font-medium">
-              Logout
-            </button>
+            <>
+              <Link to="/profile" onClick={() => setIsOpen(false)} className="flex items-center gap-2 hover:text-[#D4FF00] transition-colors">
+                <Avatar user={user} size={28} /> My Profile
+              </Link>
+              <Link to="/profile?tab=transactions" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Transactions</Link>
+              <button onClick={() => { handleLogout(); setIsOpen(false); }} className="hover:text-[#D4FF00] transition-colors font-medium">
+                Logout
+              </button>
+            </>
           ) : (
             <>
               <Link to="/login" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Sign In</Link>

@@ -39,6 +39,7 @@ const Checkout = () => {
     setTimeout(() => {
       const newOrder = {
         id: 'BS-' + Math.floor(100000 + Math.random() * 900000),
+        uid: user.uid,
         items: items.map((c) => ({ id: c.id, title: c.title, price: c.price })),
         total,
         date: new Date().toISOString(),

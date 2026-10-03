@@ -14,6 +14,7 @@ import NotFound from '../pages/NotFound';
 import DynamicTitle from '../components/DynamicTitle';
 import Cart from '../pages/Cart';
 import Checkout from '../pages/Checkout';
+import Profile from '../pages/Profile';
 import { CartProvider } from '../context/CartContext';
 
 const AppRoutes = () => {
@@ -33,6 +34,7 @@ const AppRoutes = () => {
           <Route path="/creator/:id" element={<CreatorProfile />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         {/* Routes without MainLayout wrapper */}
