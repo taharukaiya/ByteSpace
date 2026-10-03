@@ -28,7 +28,7 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* ── Blue Hero Header ── */}
-      <section className="live-bg overflow-hidden pt-8 pb-0 relative">
+      <section className="live-bg overflow-hidden pt-8 pb-32 relative">
         {/* Grid Overlay */}
         <div 
           className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
@@ -87,27 +87,31 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
               <img src={shareIcon} alt="" className="w-4 h-4 brightness-0 invert" /> Share
             </button>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Two-col: video + sidebar */}
-          <div className="flex flex-col lg:flex-row gap-6 items-start">
-            {/* Video */}
-            <motion.div 
-              initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-full lg:flex-1 relative rounded-2xl overflow-hidden aspect-video bg-gray-900 mb-0"
-            >
-              <img src={course.imageSrc} alt="Course preview" className="w-full h-full object-cover opacity-80" />
-              <button className="absolute inset-0 flex items-center justify-center group">
-                <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50 group-hover:bg-white/40 transition-colors">
-                  <img src={playIcon} alt="Play" className="w-6 h-6 brightness-0 invert ml-1" />
-                </div>
-              </button>
-            </motion.div>
+      {/* Main Content Area */}
+      <div className="w-11/12 lg:w-10/12 mx-auto relative z-20 -mt-8 md:-mt-16 mb-12">
+        {/* Two-col: video + sidebar */}
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          {/* Video */}
+          <motion.div 
+            initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full lg:flex-1 relative rounded-2xl overflow-hidden aspect-video bg-gray-900 mb-0 shadow-2xl"
+          >
+            <img src={course.imageSrc} alt="Course preview" className="w-full h-full object-cover opacity-80" />
+            <button className="absolute inset-0 flex items-center justify-center group">
+              <div className="w-14 h-14 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50 group-hover:bg-white/40 transition-colors">
+                <img src={playIcon} alt="Play" className="w-6 h-6 brightness-0 invert ml-1" />
+              </div>
+            </button>
+          </motion.div>
 
-            {/* Sidebar card */}
-            <motion.div 
-              initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }}
-              className="w-full lg:w-[320px] flex-shrink-0 bg-white rounded-2xl shadow-2xl p-5 -mb-8 relative z-20"
-            >
+          {/* Sidebar card */}
+          <motion.div 
+            initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }}
+            className="w-full lg:w-[320px] flex-shrink-0 bg-white rounded-2xl shadow-2xl p-5 mb-0 relative z-20 border border-gray-100"
+          >
               <p className="font-bold text-gray-900 text-[15px] font-poppins mb-3">{course.lessons} Lessons ({course.duration})</p>
               <ul className="space-y-2 mb-3">
                 {LESSONS_LIST.map((l) => (
@@ -163,7 +167,6 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
             </motion.div>
           </div>
         </div>
-      </section>
 
       {/* ── Tab navigation ── */}
       <div className="sticky top-[73px] bg-white border-b border-gray-100 z-10">
