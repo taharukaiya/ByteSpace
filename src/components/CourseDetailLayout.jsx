@@ -40,9 +40,9 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
       <section className="pt-8 pb-0 relative">
         {/* Background layer */}
         <div className="absolute inset-0 live-bg z-0" />
-        
+
         {/* Grid Overlay - Outside overflow-hidden so background-attachment: fixed works */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
@@ -53,9 +53,9 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
         {/* Particles Wrapper with overflow-hidden */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           {[...Array(10)].map((_, i) => (
-            <div 
-              key={i} 
-              className="particle" 
+            <div
+              key={i}
+              className="particle"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${80 + Math.random() * 40}%`,
@@ -63,13 +63,13 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
                 height: `${10 + Math.random() * 20}px`,
                 animationDelay: `${Math.random() * 5}s`,
                 animationDuration: `${10 + Math.random() * 10}s`
-              }} 
+              }}
             />
           ))}
         </div>
         <div className="relative z-20 w-11/12 lg:w-10/12 mx-auto">
           {/* Title row */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
             className="flex justify-between items-start mb-3 pt-2"
           >
@@ -103,9 +103,9 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
           </motion.div>
 
           {/* Two-col: video + sidebar */}
-          <div className="flex flex-col lg:flex-row gap-6 items-start pb-8">
+          <div className="flex flex-col lg:flex-row gap-6 items-start">
             {/* Video */}
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
               className="w-full lg:flex-1 relative rounded-2xl overflow-hidden aspect-video bg-gray-900 mb-0 shadow-2xl"
             >
@@ -118,7 +118,7 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
             </motion.div>
 
             {/* Sidebar card */}
-            <motion.div 
+            <motion.div
               initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }}
               className="w-full lg:w-[320px] flex-shrink-0 bg-white rounded-2xl shadow-2xl p-5 -mb-24 relative z-20 border border-gray-100"
             >
@@ -142,7 +142,7 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
                 <span className="text-[#0047FF] font-bold text-[32px] font-poppins leading-none">${course.price}</span>
                 <span className="text-gray-400 text-[13px]">/lifetime</span>
               </div>
-              <motion.button 
+              <motion.button
                 onClick={handleEnroll}
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                 className="w-full bg-[#D4FF00] text-black font-bold text-[15px] py-3.5 rounded-full hover:bg-[#c8f200] transition-colors"
@@ -194,10 +194,9 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
                 to={to}
                 end={label === 'About'}
                 className={({ isActive }) =>
-                  `px-6 py-2.5 rounded-full text-[13px] font-medium transition-colors ${
-                    isActive
-                      ? 'bg-[#D4FF00] text-black'
-                      : 'text-gray-500 hover:text-gray-800'
+                  `px-6 py-2.5 rounded-full text-[13px] font-medium transition-colors ${isActive
+                    ? 'bg-[#D4FF00] text-black'
+                    : 'text-gray-500 hover:text-gray-800'
                   }`
                 }
               >
@@ -210,7 +209,7 @@ const CourseDetailLayout = ({ children, courseId = '1' }) => {
 
       {/* ── Tab content (injected) ── */}
       <div className="w-11/12 lg:w-10/12 mx-auto py-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

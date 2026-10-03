@@ -15,12 +15,12 @@ const Avatar = ({ user, size = 30, className = '' }) => {
       alt={name}
       referrerPolicy="no-referrer"
       style={style}
-      className={`rounded-full object-cover ring-1 ring-white/50 ${className}`}
+      className={`rounded-full object-cover ${className}`}
     />
   ) : (
     <span
       style={style}
-      className={`rounded-full bg-[#D4FF00] text-black font-bold font-poppins flex items-center justify-center ring-1 ring-white/50 ${className}`}
+      className={`rounded-full bg-[#D4FF00] text-black font-bold font-poppins flex items-center justify-center ${className}`}
     >
       {initials}
     </span>

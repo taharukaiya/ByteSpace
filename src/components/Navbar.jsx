@@ -78,39 +78,43 @@ const Navbar = ({ variant = 'solid' }) => {
               <Link to="/signup" className="hover:text-[#D4FF00] transition-colors">Join Us</Link>
             </>
           )}
-          <CartLink count={cartIds.length} className="ml-2" />
+          <CartLink count={cartIds.length} className="ml-2 mr-2" />
           {user && (
             <div className="relative" ref={menuRef}>
               <motion.button
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.94 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setMenuOpen((o) => !o)}
                 aria-label="Account menu"
                 aria-expanded={menuOpen}
-                className={`flex items-center rounded-full focus:outline-none transition-shadow ${menuOpen ? 'ring-2 ring-[#D4FF00] ring-offset-2 ring-offset-[#0047FF]' : ''}`}
+                className={`flex items-center rounded-full focus:outline-none transition-all ${menuOpen ? 'ring-4 ring-[#D4FF00] ring-offset-2 ring-offset-[#0047FF]' : 'ring-2 ring-transparent hover:ring-white/50'}`}
               >
-                <Avatar user={user} size={30} />
+                <Avatar user={user} size={42} className="border-none" />
               </motion.button>
               <AnimatePresence>
                 {menuOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                    transition={{ duration: 0.16 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ duration: 0.2, type: "spring", bounce: 0.3 }}
                     style={{ transformOrigin: 'top right' }}
-                    className="absolute right-0 top-full mt-4 w-60 bg-white text-gray-800 rounded-2xl shadow-2xl border border-gray-100 py-2 z-50"
+                    className="absolute right-0 top-full mt-4 w-[260px] bg-white text-gray-800 rounded-[24px] shadow-2xl border border-gray-100 py-3 z-50 overflow-hidden"
                   >
-                    <div className="px-4 py-3 border-b border-gray-100">
-                      <p className="font-semibold text-[14px] truncate">{user.displayName || 'My Account'}</p>
-                      <p className="text-[12px] text-gray-400 truncate">{user.email}</p>
+                    <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50">
+                      <p className="font-bold text-gray-900 text-[15px] font-poppins truncate">{user.displayName || 'My Account'}</p>
+                      <p className="text-[13px] text-gray-500 truncate mt-0.5">{user.email}</p>
                     </div>
-                    <Link to="/profile" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Edit Profile</Link>
-                    <Link to="/profile?tab=security" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Change Password</Link>
-                    <Link to="/profile?tab=transactions" onClick={() => setMenuOpen(false)} className="block px-4 py-2.5 text-[14px] hover:bg-gray-50">Transactions</Link>
-                    <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="w-full text-left px-4 py-2.5 text-[14px] text-red-500 hover:bg-gray-50 border-t border-gray-100 mt-1">
-                      Logout
-                    </button>
+                    <div className="py-2">
+                      <Link to="/profile" onClick={() => setMenuOpen(false)} className="block px-6 py-3 text-[14px] font-medium text-gray-700 hover:text-[#0047FF] hover:bg-blue-50 transition-colors">Edit Profile</Link>
+                      <Link to="/profile?tab=security" onClick={() => setMenuOpen(false)} className="block px-6 py-3 text-[14px] font-medium text-gray-700 hover:text-[#0047FF] hover:bg-blue-50 transition-colors">Change Password</Link>
+                      <Link to="/profile?tab=transactions" onClick={() => setMenuOpen(false)} className="block px-6 py-3 text-[14px] font-medium text-gray-700 hover:text-[#0047FF] hover:bg-blue-50 transition-colors">Transactions</Link>
+                    </div>
+                    <div className="border-t border-gray-100 py-2">
+                      <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="w-full text-left px-6 py-3 text-[14px] font-bold text-red-500 hover:bg-red-50 transition-colors">
+                        Logout
+                      </button>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -123,7 +127,7 @@ const Navbar = ({ variant = 'solid' }) => {
           <CartLink count={cartIds.length} />
           {user && (
             <Link to="/profile" aria-label="Profile">
-              <Avatar user={user} size={28} />
+              <Avatar user={user} size={32} />
             </Link>
           )}
           <button onClick={() => setIsOpen(!isOpen)} className="text-white hover:text-[#D4FF00]">
@@ -149,7 +153,7 @@ const Navbar = ({ variant = 'solid' }) => {
           {user ? (
             <>
               <Link to="/profile" onClick={() => setIsOpen(false)} className="flex items-center gap-2 hover:text-[#D4FF00] transition-colors">
-                <Avatar user={user} size={28} /> My Profile
+                <Avatar user={user} size={32} /> My Profile
               </Link>
               <Link to="/profile?tab=transactions" onClick={() => setIsOpen(false)} className="hover:text-[#D4FF00] transition-colors">Transactions</Link>
               <button onClick={() => { handleLogout(); setIsOpen(false); }} className="hover:text-[#D4FF00] transition-colors font-medium">
