@@ -2,7 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiStar } from 'react-icons/fi';
 import { BiBarChartAlt2 } from 'react-icons/bi';
+import { motion } from 'framer-motion';
 import StudentEllipse from './StudentEllipse';
+
+const MotionLink = motion(Link);
 
 const CourseCard = ({
   title,
@@ -18,7 +21,15 @@ const CourseCard = ({
   courseId = '1',
 }) => {
   return (
-    <Link to={`/course/${courseId}`} className="block bg-white border border-gray-100 rounded-[28px] p-4 hover:shadow-xl transition-shadow duration-300 font-sans">
+    <MotionLink 
+      to={`/course/${courseId}`} 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+      className="block bg-white border border-gray-100 rounded-[28px] p-4 shadow-sm hover:shadow-xl font-sans"
+    >
       
       {/* Image with overlay pills */}
       <div className="relative mb-5 rounded-2xl overflow-hidden aspect-video">
@@ -70,7 +81,7 @@ const CourseCard = ({
         </div>
       </div>
 
-    </Link>
+    </MotionLink>
   );
 };
 

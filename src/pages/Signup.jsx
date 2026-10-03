@@ -1,58 +1,116 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { auth } from '../services/firebase';
 import AuthCollage from '../components/AuthCollage';
+import { useCart } from '../context/CartContext';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import noodle from '../assets/images/noodle.png';
+import donut from '../assets/images/donut.png';
+import pyramid from '../assets/images/pyramid.png';
+import cylinder from '../assets/images/cylinder.png';
+
+const filterGreen = 'brightness(0) saturate(100%) invert(90%) sepia(60%) saturate(600%) hue-rotate(28deg) brightness(1.05)';
+const filterWhite = 'brightness(0) invert(1)';
 
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const { register } = useCart();
+
+  // Memoize particle values to prevent layout shift/flicker on keystrokes
+  const particles = React.useMemo(() => {
+    return [...Array(15)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${80 + Math.random() * 40}%`,
+      width: `${10 + Math.random() * 20}px`,
+      height: `${10 + Math.random() * 20}px`,
+      animationDelay: `${Math.random() * 5}s`,
+      animationDuration: `${10 + Math.random() * 10}s`
+    }));
+  }, []);
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log('Signup', name, email, password);
-  };
-
-  const handleGoogleLogin = async () => {
+    setError('');
     try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      console.log('Signed up user:', result.user);
-      navigate('/');
-    } catch (error) {
-      console.error('Google Signup Error:', error.message);
-      alert('Failed to sign up with Google: ' + error.message);
+      register(name, email, password);
+      navigate(location.state?.from || '/');
+    } catch (err) {
+      setError(err.message);
     }
   };
 
+  const handleGoogleLogin = () => {
+    setError('Google sign up is disabled in mock mode. Please use email/password.');
+  };
+
   return (
-    <div
-      className="min-h-screen bg-[#0047FF] font-sans relative flex flex-col"
-      style={{
-        backgroundImage: `
-          linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px)
-        `,
-        backgroundSize: '120px 120px',
-      }}
-    >
+    <div className="min-h-screen relative flex flex-col font-sans overflow-hidden">
+      {/* Background layer */}
+      <div className="absolute inset-0 live-bg z-0" />
+      
+      {/* Grid Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0 opacity-50 live-grid"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)`,
+          backgroundSize: '120px 120px'
+        }}
+      />
+
+      {/* Particles Wrapper */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        {particles.map((style, i) => (
+          <div key={i} className="particle" style={style} />
+        ))}
+      </div>
+
+      {/* Floating Shapes */}
+      <motion.div
+        animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute left-[-5%] top-[10%] w-[20%] max-w-[200px] pointer-events-none z-0"
+      >
+        <img src={noodle} alt="" aria-hidden className="w-full h-full" style={{ filter: filterGreen }} />
+      </motion.div>
+      <motion.div
+        animate={{ y: [0, -25, 0], rotate: [0, 10, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute right-[-2%] bottom-[10%] w-[18%] max-w-[180px] pointer-events-none z-0"
+      >
+        <img src={donut} alt="" aria-hidden className="w-full h-full" style={{ filter: filterWhite, opacity: 0.8 }} />
+      </motion.div>
+      <motion.div
+        animate={{ y: [0, 20, 0], rotate: [-10, 0, -10] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        className="absolute left-[35%] top-[-5%] w-[12%] max-w-[120px] pointer-events-none z-0"
+      >
+        <img src={pyramid} alt="" aria-hidden className="w-full h-full" style={{ filter: filterWhite, opacity: 0.6 }} />
+      </motion.div>
       {/* ── Inner width-constrained column ── */}
       <div className="relative z-10 w-11/12 lg:w-10/12 mx-auto flex flex-col flex-1">
-
+        
         {/* Logo */}
-        <div className="pt-6 md:pt-8 pb-4 md:pb-6 flex-shrink-0">
+        <motion.div 
+          initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}
+          className="pt-6 md:pt-8 pb-4 md:pb-6 flex-shrink-0"
+        >
           <Link to="/">
             <img src="/logo.svg" alt="ByteSpace" className="h-7 md:h-8" />
           </Link>
-        </div>
+        </motion.div>
 
         {/* Two-column layout */}
         <div className="flex-1 flex flex-col xl:flex-row items-center xl:items-stretch gap-8 xl:gap-12 pb-8 xl:pb-12">
 
           {/* ── LEFT: heading + collage ── */}
-          <div className="w-full xl:flex-1 flex flex-col justify-start xl:justify-center pt-0 xl:pt-4">
+          <motion.div 
+            initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.7 }}
+            className="w-full xl:flex-1 flex flex-col justify-start xl:justify-center pt-0 xl:pt-4"
+          >
             <h1 className="text-white text-[22px] md:text-[26px] font-bold font-poppins leading-snug">
               Sign up and come in
             </h1>
@@ -65,10 +123,13 @@ const Signup = () => {
             <div className="hidden sm:block mt-4 w-full max-w-[420px]">
               <AuthCollage />
             </div>
-          </div>
+          </motion.div>
 
           {/* ── RIGHT: white form card ── */}
-          <div className="w-full xl:w-[440px] flex-shrink-0 flex items-center xl:items-center">
+          <motion.div 
+            initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.7, delay: 0.2 }}
+            className="w-full xl:w-[440px] flex-shrink-0 flex items-center xl:items-center"
+          >
             <div className="w-full bg-white rounded-[28px] px-8 sm:px-10 py-10 shadow-2xl">
 
               <p className="text-[#0047FF] text-[13px] font-medium mb-1">Create an Account</p>
@@ -76,8 +137,22 @@ const Signup = () => {
                 Welcome to<br />ByteSpace
               </h2>
 
-              <form onSubmit={handleSignup} className="space-y-5">
-                <div>
+              <motion.form 
+                onSubmit={handleSignup} 
+                className="space-y-5"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                }}
+              >
+                {error && (
+                  <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="bg-red-50 text-red-600 text-sm px-4 py-3 rounded-xl">
+                    {error}
+                  </motion.div>
+                )}
+                <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
                   <label className="block text-[13px] font-medium text-gray-700 mb-1.5">Full Name</label>
                   <input
                     type="text"
@@ -87,8 +162,8 @@ const Signup = () => {
                     onChange={(e) => setName(e.target.value)}
                     required
                   />
-                </div>
-                <div>
+                </motion.div>
+                <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
                   <label className="block text-[13px] font-medium text-gray-700 mb-1.5">Email</label>
                   <input
                     type="email"
@@ -98,8 +173,8 @@ const Signup = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
-                </div>
-                <div>
+                </motion.div>
+                <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
                   <label className="block text-[13px] font-medium text-gray-700 mb-1.5">Password</label>
                   <input
                     type="password"
@@ -109,16 +184,17 @@ const Signup = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                </div>
-                <div className="flex justify-end pt-1">
-                  <button
+                </motion.div>
+                <motion.div variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="flex justify-end pt-1">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                     type="submit"
                     className="bg-[#D4FF00] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#c8f200] transition-colors text-[14px]"
                   >
                     Continue
-                  </button>
-                </div>
-              </form>
+                  </motion.button>
+                </motion.div>
+              </motion.form>
 
               {/* Divider */}
               <div className="mt-7 flex items-center gap-3">
@@ -130,7 +206,8 @@ const Signup = () => {
               {/* Social */}
               <div className="mt-6 flex justify-center gap-4">
                 {/* Google */}
-                <button 
+                <motion.button 
+                  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
                   type="button"
                   onClick={handleGoogleLogin}
                   className="w-[52px] h-[52px] rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
@@ -138,7 +215,7 @@ const Signup = () => {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M21.805 10.023H12.2v3.977h5.451c-.467 2.446-2.556 3.754-5.451 3.754-3.313 0-6-2.686-6-6s2.687-6 6-6c1.466 0 2.8.504 3.833 1.33l2.939-2.94C17.318 2.942 14.86 2 12.2 2 6.677 2 2.2 6.477 2.2 12s4.477 10 10 10c5.523 0 9.8-4.477 9.8-10 0-.66-.067-1.31-.195-1.977Z" fill="black"/>
                   </svg>
-                </button>
+                </motion.button>
               </div>
 
               <p className="mt-10 text-center text-[13px] text-gray-500">
@@ -148,7 +225,7 @@ const Signup = () => {
                 </Link>
               </p>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

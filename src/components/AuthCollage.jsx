@@ -85,4 +85,4 @@ const AuthCollage = () => {
   );
 };
 
-export default AuthCollage;
+export default React.memo(AuthCollage);
