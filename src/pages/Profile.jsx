@@ -32,7 +32,7 @@ const ProfileTab = ({ user, updateProfileMock }) => {
     setBusy(true);
     setNote(null);
     try {
-      updateProfileMock({ displayName: name.trim(), photoURL: photo.trim() || null });
+      await updateProfileMock({ displayName: name.trim(), photoURL: photo.trim() || null });
       setNote({ type: 'ok', text: 'Profile updated.' });
     } catch (err) {
       setNote({ type: 'err', text: err.message });
@@ -80,7 +80,7 @@ const SecurityTab = ({ user, updatePasswordMock }) => {
     if (next !== confirm) return setNote({ type: 'err', text: 'Passwords do not match.' });
     setBusy(true);
     try {
-      updatePasswordMock(current, next);
+      await updatePasswordMock(current, next);
       setCurrent(''); setNext(''); setConfirm('');
       setNote({ type: 'ok', text: 'Password changed successfully.' });
     } catch (err) {

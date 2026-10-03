@@ -32,9 +32,9 @@ const Navbar = ({ variant = 'solid' }) => {
     return () => document.removeEventListener('mousedown', close);
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     try {
-      logout();
+      await logout();
       navigate('/');
     } catch (error) {
       console.error('Logout error:', error);

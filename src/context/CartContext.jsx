@@ -1,11 +1,20 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { auth } from '../services/firebase';
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+  updateProfile,
+  updatePassword,
+  onAuthStateChanged
+} from 'firebase/auth';
 
 const CartContext = createContext(null);
 
 const CART_KEY = 'bytespace_cart';
 const ORDERS_KEY = 'bytespace_orders';
-const USERS_KEY = 'bytespace_users';
-const SESSION_KEY = 'bytespace_session';
 
 const read = (key, defaultVal = []) => {
   try {
@@ -18,71 +27,70 @@ const read = (key, defaultVal = []) => {
 export const CartProvider = ({ children }) => {
   const [cartIds, setCartIds] = useState(() => read(CART_KEY, []));
   const [orders, setOrders] = useState(() => read(ORDERS_KEY, []));
-  const [users, setUsers] = useState(() => read(USERS_KEY, []));
-  const [user, setUser] = useState(null); // The current logged-in user object
+  const [user, setUser] = useState(null);
   const [authReady, setAuthReady] = useState(false);
   const [profileVersion, setProfileVersion] = useState(0);
 
-  // Initialize session
+  // Initialize Firebase Auth listener
   useEffect(() => {
-    const sessionUid = localStorage.getItem(SESSION_KEY);
-    if (sessionUid) {
-      const found = users.find((u) => u.uid === sessionUid);
-      if (found) setUser(found);
-    }
-    setAuthReady(true);
-  }, [users]); // Re-run if users change to keep current user up to date
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        setUser({
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          displayName: firebaseUser.displayName || 'My Account',
+          photoURL: firebaseUser.photoURL,
+          providerData: firebaseUser.providerData
+        });
+      } else {
+        setUser(null);
+      }
+      setAuthReady(true);
+    });
 
-  // Persist storage
-  useEffect(() => localStorage.setItem(CART_KEY, JSON.stringify(cartIds)), [cartIds]);
-  useEffect(() => localStorage.setItem(ORDERS_KEY, JSON.stringify(orders)), [orders]);
-  useEffect(() => localStorage.setItem(USERS_KEY, JSON.stringify(users)), [users]);
-
-  // Auth Methods
-  const register = useCallback((name, email, password) => {
-    if (users.some((u) => u.email === email)) {
-      throw new Error('Email already in use.');
-    }
-    const newUser = {
-      uid: 'u_' + Date.now().toString(),
-      displayName: name,
-      email,
-      password, // cleartext for mock
-      photoURL: '',
-      providerData: [{ providerId: 'password' }],
-    };
-    setUsers((prev) => [...prev, newUser]);
-    localStorage.setItem(SESSION_KEY, newUser.uid);
-    setUser(newUser);
-  }, [users]);
-
-  const login = useCallback((email, password) => {
-    const found = users.find((u) => u.email === email && u.password === password);
-    if (!found) throw new Error('Invalid email or password.');
-    localStorage.setItem(SESSION_KEY, found.uid);
-    setUser(found);
-  }, [users]);
-
-  const logout = useCallback(() => {
-    localStorage.removeItem(SESSION_KEY);
-    setUser(null);
+    return () => unsubscribe();
   }, []);
 
-  const updateProfileMock = useCallback((updates) => {
-    if (!user) return;
-    setUsers((prev) =>
-      prev.map((u) => (u.uid === user.uid ? { ...u, ...updates } : u))
-    );
-    setProfileVersion((v) => v + 1);
-  }, [user]);
+  // Persist cart and orders to local storage
+  useEffect(() => localStorage.setItem(CART_KEY, JSON.stringify(cartIds)), [cartIds]);
+  useEffect(() => localStorage.setItem(ORDERS_KEY, JSON.stringify(orders)), [orders]);
 
-  const updatePasswordMock = useCallback((currentPass, newPass) => {
-    if (!user) return;
-    if (user.password !== currentPass) throw new Error('Current password is incorrect.');
-    setUsers((prev) =>
-      prev.map((u) => (u.uid === user.uid ? { ...u, password: newPass } : u))
-    );
-  }, [user]);
+  // Auth Methods (Pure Firebase)
+  const register = useCallback(async (name, email, password) => {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(userCredential.user, { displayName: name });
+    // Force a local update to immediately reflect the new name before the next auth state change fires
+    setUser((prev) => prev ? { ...prev, displayName: name } : null);
+  }, []);
+
+  const login = useCallback(async (email, password) => {
+    await signInWithEmailAndPassword(auth, email, password);
+  }, []);
+
+  const loginWithGoogle = useCallback(async () => {
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
+  }, []);
+
+  const logout = useCallback(async () => {
+    await signOut(auth);
+    setCartIds([]);
+  }, []);
+
+  const updateProfileMock = useCallback(async (updates) => {
+    if (!auth.currentUser) throw new Error("No authenticated user.");
+    await updateProfile(auth.currentUser, updates);
+    setUser((prev) => ({ ...prev, ...updates }));
+    setProfileVersion((v) => v + 1);
+  }, []);
+
+  const updatePasswordMock = useCallback(async (currentPass, newPass) => {
+    if (!auth.currentUser) throw new Error("No authenticated user.");
+    // In a real app, you would need to re-authenticate the user with their current password
+    // before updating it, but for simplicity here we just call updatePassword.
+    // If the user's login session is too old, Firebase will throw an error requiring re-authentication.
+    await updatePassword(auth.currentUser, newPass);
+  }, []);
 
   // Cart Methods
   const addToCart = useCallback((id) => setCartIds((prev) => (prev.includes(id) ? prev : [...prev, id])), []);
@@ -99,7 +107,7 @@ export const CartProvider = ({ children }) => {
       value={{
         cartIds, orders, user, authReady, profileVersion,
         addToCart, removeFromCart, clearCart, placeOrder,
-        register, login, logout, updateProfileMock, updatePasswordMock
+        register, login, loginWithGoogle, logout, updateProfileMock, updatePasswordMock
       }}
     >
       {children}

@@ -18,7 +18,7 @@ const Signup = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const { register } = useCart();
+  const { register, loginWithGoogle } = useCart();
 
   // Memoize particle values to prevent layout shift/flicker on keystrokes
   const particles = React.useMemo(() => {
@@ -32,19 +32,25 @@ const Signup = () => {
     }));
   }, []);
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      register(name, email, password);
+      await register(name, email, password);
       navigate(location.state?.from || '/');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'An error occurred during signup.');
     }
   };
 
-  const handleGoogleLogin = () => {
-    setError('Google sign up is disabled in mock mode. Please use email/password.');
+  const handleGoogleLogin = async () => {
+    setError('');
+    try {
+      await loginWithGoogle();
+      navigate(location.state?.from || '/');
+    } catch (err) {
+      setError(err.message || 'Google sign up failed.');
+    }
   };
 
   return (
